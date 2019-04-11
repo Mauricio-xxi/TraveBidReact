@@ -239,18 +239,18 @@ List of other features outside of the MVPs scope
 | Description           | Method                  | Test Text     |
 | :---                  |    :----:               |          :---:|
 | api/offer/:ID         | GET  | Renders info for a specific offer and the bids made on it. |
-| api/offer         | POST | Renders create form and posts to DB. |
-| api/offer/:ID  | PUT  | Renders update form and posts update. |
-| api/offer/:ID  | DELETE  | Renders update form and posts update. |
+| api/offer             | POST | Renders create form and posts to DB. |
+| api/offer/:ID         | PUT  | Renders update form and posts update. |
+| api/offer/:ID         | DELETE  | Renders update form and posts update. |
 
 
 ### Bid Router
 | Description        | Method                  | Test Text     |
 | :---               |    :----:               |          :---:|
 | api/bid/:ID        | GET    | Renders bid info / Accept / reject button || Update button || Only info|
-| api/bid        | POST   | creates new BID (Required: Offer ID)
-| api/bid/:ID | PUT    | Renders update form and updates DB |
-| api/bid/:ID | DELETE | Renders update form and updates DB |
+| api/bid            | POST   | creates new BID (Required: Offer ID)
+| api/bid/:ID        | PUT    | Renders update form and updates DB |
+| api/bid/:ID        | DELETE | Renders update form and updates DB |
 
 ### User Router
 | Description           | Method                  | Test Text     |
@@ -271,15 +271,15 @@ List of other features outside of the MVPs scope
 
 ### Trello/Kanban
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+[Link to your trello board](https://trello.com/b/FU3XOPef/travelbid)
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Client repository Link](https://github.com/Ironhack-PartTime-BCN/boilerplate-frontend-module-3)
+[Client repository Link](https://github.com/Mauricio-xxi/TraveBidReact)
 
-[Server repository Link](https://github.com/Ironhack-PartTime-BCN/boilerplate-backend-module-3)
+[Server repository Link](https://github.com/Mauricio-xxi/TravelBidApi)
 
 [Deploy Link Backend](http://heroku.com)
 
@@ -289,4 +289,4 @@ The url to your repository and to your deployed project
 
 The url to your presentation slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://slides.com/margal/travelbid/edit)
