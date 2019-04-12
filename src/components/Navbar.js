@@ -8,7 +8,8 @@ class Navbar extends Component {
       <div>
         {isLoggedin ? (
           <>
-            <p>username: {user.username}</p>
+            <h1>TravelBID</h1>
+            {/* <h2>username: {user.username}</h2> */}
             <button onClick={logout}>Logout</button>
           </>
         ) : (
