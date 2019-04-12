@@ -178,24 +178,25 @@ List of other features outside of the MVPs scope
     },
     coordinates: [Number],
   },
-  privateRoom: { type: String },
-  sharedRoom: { type: String },
-  entireProperty: { type: String },
-  tv: { type: String },
-  wifi: { type: String },
-  air: { type: String },
-  garage: { type: String },
-  termo: { type: String },
-  whaser: { type: String },
-  pool: { type: String },
-  privateBathroom: { type: String },
-  wheelchair: { type: String },
-  smoke: { type: String },
-  pet: { type: String },
-  couples: { type: String },
-  accomodationDescription: { type: String },
-  accomodationImage: { type: String },
-  facilities: [String],
+  facilities: [
+    privateRoom: { type: String },
+    sharedRoom: { type: String },
+    entireProperty: { type: String },
+    tv: { type: String },
+    wifi: { type: String },
+    air: { type: String },
+    garage: { type: String },
+    termo: { type: String },
+    whaser: { type: String },
+    pool: { type: String },
+    privateBathroom: { type: String },
+    wheelchair: { type: String },
+    smoke: { type: String },
+    pet: { type: String },
+    couples: { type: String },
+    accomodationDescription: { type: String },
+    accomodationImage: { type: String },
+  ],
 }, { timestamps: true });
 ```
 
@@ -265,6 +266,11 @@ List of other features outside of the MVPs scope
 | api/room/:ID        | GET  | Room info |
 | api/room            | POST | Renders create form and posts to DB. |
 | api/room/:ID        | PUT  | Renders update form and posts update. |
+
+## Tech Challenges
+- Geo Maps
+- Private messages
+- Push Notifications
   
 
 ## Links
