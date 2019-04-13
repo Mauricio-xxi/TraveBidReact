@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
+import offer from '../lib/offer-service';
 
-class AddProject extends Component {
+class CreateOffer extends Component {
   constructor(props) {
       super(props);
-      this.state = { 
+      this.state = {
         location: "", 
-        budget: "" 
+        budget: "",
+        from: "",
+        until:"",  
       };
   }
    
-  // handleFormSubmit = (event) => {
-  //   event.preventDefault();
-  //   const title = this.state.title;
-  //   const description = this.state.description;
-  //   // axios.post("http://localhost:5000/api/projects", { title, description })
-  //   .then( () => {
-  //       this.props.getData();
-  //       this.setState({title: "", description: ""});
-  //   })
-  //   .catch( error => console.log(error) )
-  // }
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const { location, budget, from, until } = this.state;
+    console.log(location);
+    console.log(this.props)
+    offer.create({ location, budget, from, until })
+    .then( () => {
+        this.setState({
+          location:"",
+          budget: "",
+          from: "",
+          until:"", 
+        })
+    })
+    .catch( error => console.log(error) )
+  }
 
   handleChange = (event) => {  
-      const {name, value} = event.target;
-      this.setState({[name]: value});
+      const { name, value } = event.target;
+      this.setState({[name]: value})
   }
 
   render() {
@@ -31,9 +39,13 @@ class AddProject extends Component {
       <div>
        <form onSubmit={this.handleFormSubmit}>
          <label>Location:</label>
-         <input type="text" name="location" value={this.state.title} onChange={e => this.handleChangeTitle(e)}/>
+         <input type="text" name="location" value={this.state.location} onChange={e => this.handleChange(e)}/>
          <label>Budget:</label>
-         <input type="number" name="budget" value={this.state.description} onChange={e => this.handleChangeDesc(e)} />
+         <input type="number" name="budget" value={this.state.budget} onChange={e => this.handleChange(e)} />
+         <label>From:</label>
+         <input type="date" name="from" value={this.state.from} onChange={e => this.handleChange(e)} />
+         <label>Until:</label>
+         <input type="date" name="until" value={this.state.until} onChange={e => this.handleChange(e)} />
          <input type="submit" value="Submit" />
        </form>
       </div>
@@ -41,4 +53,4 @@ class AddProject extends Component {
   }
 }
 
-export default AddProject;
+export default CreateOffer;
