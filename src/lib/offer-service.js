@@ -16,6 +16,13 @@ class Offer {
         return data
       })
   }
+
+  showOfferList(userId) {
+    return this.offers.get('/offer', userId)
+      .then(({ data }) => data)
+  }
+
+
 }
 
 const offer = new Offer();
