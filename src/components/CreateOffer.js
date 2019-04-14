@@ -17,7 +17,7 @@ class CreateOffer extends Component {
     const { location, budget, from, until } = this.state;
     offer.create({ location, budget, from, until })
     .then( () => {
-        this.props.getAllOffers()
+        this.props.getOffers()
         this.setState({
           location:"",
           budget: "",

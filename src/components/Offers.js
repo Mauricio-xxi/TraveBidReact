@@ -1,22 +1,29 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import offer from '../lib/offer-service';
+import CreateOffer from "../components/CreateOffer";
 
 
 class Offers extends Component {
   constructor(props){
     super(props);
     this.state = {
-        offers: [this.props.offers],
+        offers: [],
+        showCreateOfferForm: true,
     }
   }
 
+  renderOfferForm = (e) => {
+    this.setState({
+      showCreateOfferForm: !this.state.showCreateOfferForm
+     })
+  }
 
   getOffers = () => {
     offer.showOfferList(this.props.user._id)
     .then(responseData => {
         this.setState({
-          offers: [...responseData]
+          offers: responseData
         })
     })
     .catch( error => console.log(error) )
@@ -28,6 +35,7 @@ class Offers extends Component {
   
 
   render() {
+    const { showCreateOfferForm } = this.state;
     return (
       <div>
         {this.state.offers.map((offer) => {
@@ -38,6 +46,10 @@ class Offers extends Component {
             </div>
           )
         })}
+        <button onClick={this.renderOfferForm}>
+        { showCreateOfferForm ? 'Create offer' : 'Hide'}
+        </button>
+        { !showCreateOfferForm ? <CreateOffer getOffers={()=>this.getOffers()}/> : <div></div>}
       </div>
     );
   }
