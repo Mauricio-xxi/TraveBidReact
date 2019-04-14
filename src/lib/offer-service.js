@@ -22,6 +22,11 @@ class Offer {
       .then(({ data }) => data)
   }
 
+  deleteOffer(offerID) {
+    return this.offers.delete(`/offer/${offerID}`)
+      .then(({ data }) => data)
+  }
+
 
 }
 

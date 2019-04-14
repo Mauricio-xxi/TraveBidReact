@@ -13,6 +13,10 @@ class Offers extends Component {
     }
   }
 
+  componentDidMount() {
+    this.getOffers();
+  }
+
   renderOfferForm = (e) => {
     this.setState({
       showCreateOfferForm: !this.state.showCreateOfferForm
@@ -29,8 +33,12 @@ class Offers extends Component {
     .catch( error => console.log(error) )
   }
 
-  componentDidMount() {
-    this.getOffers();
+  deleteOffer = (offerID) => {
+    offer.deleteOffer(offerID)
+    .then(() => {
+      this.getOffers()
+  })
+    .catch( error => console.log(error) )
   }
   
 
@@ -42,7 +50,8 @@ class Offers extends Component {
           return(
             <div key={offer._id}>
               <p>{offer.location}</p> 
-              <p>{offer.budget}</p> 
+              <p>{offer.budget}</p>
+              <button onClick={()=>this.deleteOffer(offer._id)}></button> 
             </div>
           )
         })}
