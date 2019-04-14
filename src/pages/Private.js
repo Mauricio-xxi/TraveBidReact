@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import Navbar from "../components/Navbar";
 import CreateOffer from "../components/CreateOffer";
+import Offers from "../components/Offers";
+import offer from '../lib/offer-service';
 
 
 class Private extends Component {
@@ -19,6 +21,16 @@ class Private extends Component {
       showCreateOfferForm: !this.state.showCreateOfferForm
      })
   }
+
+  getAllOffers = () => {
+    offer.showOfferList(this.props.user._id)
+    .then(responseData => {
+        this.setState({
+          offers: responseData
+        })
+    })
+    .catch( error => console.log(error) )
+  }
   
 
   render() {
@@ -27,10 +39,11 @@ class Private extends Component {
       <div>
         <Navbar />
         <h1>Welcome {this.props.user.username}</h1>
+        <Offers offers={this.state.offers} />
         <button onClick={this.renderOfferForm}>
           { showCreateOfferForm ? 'Create offer' : 'Hide'}
         </button>
-        { !showCreateOfferForm ? <CreateOffer /> : <div></div>}
+        { !showCreateOfferForm ? <CreateOffer getAllOffers={()=>this.getAllOffers()}/> : <div></div>}
         
       </div>
     );

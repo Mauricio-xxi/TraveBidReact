@@ -15,10 +15,9 @@ class CreateOffer extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     const { location, budget, from, until } = this.state;
-    console.log(location);
-    console.log(this.props)
     offer.create({ location, budget, from, until })
     .then( () => {
+        this.props.getAllOffers()
         this.setState({
           location:"",
           budget: "",
