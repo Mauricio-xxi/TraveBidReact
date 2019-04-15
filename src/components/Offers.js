@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import offer from '../lib/offer-service';
 import CreateOffer from "../components/CreateOffer";
+import { Link } from "react-router-dom";
+
 
 
 class Offers extends Component {
@@ -48,11 +50,13 @@ class Offers extends Component {
       <div>
         {this.state.offers.map((offer) => {
           return(
+            <Link to={`/Offer/${offer._id}`}>
             <div key={offer._id}>
               <p>{offer.location}</p> 
               <p>{offer.budget}</p>
               <button onClick={()=>this.deleteOffer(offer._id)}></button> 
             </div>
+            </Link>
           )
         })}
         <button onClick={this.renderOfferForm}>
