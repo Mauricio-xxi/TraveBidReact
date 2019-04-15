@@ -27,6 +27,12 @@ class Offer {
       .then(({ data }) => data)
   }
 
+  // searchOffers (city) {
+  //   console.log(city)
+  //   return this.offers.get(`/offer/search`, city)
+  //     .then(({ data }) => data )
+  // }
+
   deleteOffer(offerID) {
     return this.offers.delete(`/offer/${offerID}`)
       .then(({ data }) => data)
