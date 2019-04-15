@@ -22,8 +22,19 @@ class Offer {
       .then(({ data }) => data)
   }
 
+  getOffer(offerID) {
+    return this.offers.get(`/offer/${offerID}`)
+      .then(({ data }) => data)
+  }
+
   deleteOffer(offerID) {
     return this.offers.delete(`/offer/${offerID}`)
+      .then(({ data }) => data)
+  }
+
+  editOffer(offer) {
+    const { offerID, from, until, budget} = offer;
+    return this.offers.put(`/offer/${offerID}`, {from, until, budget})
       .then(({ data }) => data)
   }
 

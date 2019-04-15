@@ -10,13 +10,22 @@ class EditOffer extends Component {
         until:"",  
       };
   }
+
+  componentDidMount() {
+    this.setState({
+      budget: this.props.budget,
+      from: this.props.from,
+      until: this.props.until, 
+    });
+  }
    
   handleFormSubmit = (event) => {
     event.preventDefault();
+    const offerID = this.props.offerID;
     const { budget, from, until } = this.state;
-    offer.edit({ budget, from, until })
+    offer.editOffer({ offerID, budget, from, until })
     .then( () => {
-        // this.props.getOffers()
+        this.props.getOffer()
         this.setState({
           budget: "",
           from: "",
@@ -32,15 +41,16 @@ class EditOffer extends Component {
   }
 
   render() {
+    const { budget, from, until } = this.state;
     return(
       <div>
        <form onSubmit={this.handleFormSubmit}>
          <label>Budget:</label>
-         <input type="number" name="budget" value={this.state.budget} onChange={e => this.handleChange(e)} />
+         <input type="number" name="budget" value={budget} onChange={e => this.handleChange(e)} />
          <label>From:</label>
-         <input type="date" name="from" value={this.state.from} onChange={e => this.handleChange(e)} />
+         <input type="date" name="from" value={from} onChange={e => this.handleChange(e)} />
          <label>Until:</label>
-         <input type="date" name="until" value={this.state.until} onChange={e => this.handleChange(e)} />
+         <input type="date" name="until" value={until} onChange={e => this.handleChange(e)} />
          <input type="submit" value="Submit" />
        </form>
       </div>
