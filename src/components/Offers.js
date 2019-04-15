@@ -50,15 +50,16 @@ class Offers extends Component {
       <div>
         {this.state.offers.map((offer) => {
           return(
-            <Link to={`/Offer/${offer._id}`}>
+            
             <div key={offer._id}>
+            <Link to={`/Offer/${offer._id}`}>
               <p>{offer.location}</p> 
               <p>{offer.from}</p> 
               <p>{offer.until}</p> 
               <p>{offer.budget}</p>
-              <button onClick={()=>this.deleteOffer(offer._id)}></button> 
+              </Link>
+              <button onClick={()=>this.deleteOffer(offer._id)}>Delete</button> 
             </div>
-            </Link>
           )
         })}
         <button onClick={this.renderOfferForm}>
