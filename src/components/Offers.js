@@ -58,9 +58,9 @@ class Offers extends Component {
             <div key={offer._id}>
             <Link to={`/Offer/${offer._id}`}>
               <p>{offer.location}</p> 
-              <p>{from}</p> 
-              <p>{until}</p> 
-              <p>{offer.budget}</p>
+              <p>From: {from}</p> 
+              <p>Until: {until}</p> 
+              <p>Budget: {offer.budget}</p>
               </Link>
               <button onClick={()=>this.deleteOffer(offer._id)}>Delete</button> 
             </div>
