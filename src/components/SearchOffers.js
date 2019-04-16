@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import offer from '../lib/offer-service';
+import Card from "../components/Card";
+
 
 
 class SearchOffers extends Component {
@@ -8,46 +10,47 @@ class SearchOffers extends Component {
     super(props);
     this.state = {
         searchResults: [],
-        location: "CARTAGENA"
+        location: "BOGOTA",
+        showSearchResults: true,
     }
   }
 
+  renderSearchResults = (e) => {
+    this.setState({
+      showSearchResults: !this.state.showSearchResults
+     })
+  }
+
   
-  searchOffers = () => {
+  search = () => {
     offer.searchOffers(this.state.location)
     .then(responseData => {
         this.setState({
           searchResults: responseData
         })
-        console.log(responseData)
     })
     .catch( error => console.log(error) )
   }
 
-  componentDidMount() {
-    this.searchOffers();
+  componentDidMount = ()=> {
+    this.search();
   }
 
-  showSearchResults(){
-    const results = this.state.searchResults;
-    return(
-      results.map((offer)=>{
-        return (
-          <div key={offer._id}>
-            <h5>{offer.budget}</h5>
-            <h5>{offer.from}</h5>
-            <h5>{offer.until}</h5>
-          </div>
-        )
-      })
-    )
-  }
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
   render() {
+    const { showSearchResults, searchResults } = this.state;
     return (
       <div>
-       <button onClick={this.showSearchResults}>Search Offers</button>
+       <button onClick={this.renderSearchResults}>
+        { showSearchResults ? 'View offers in your town' : 'Hide'}
+        </button>
+        { !showSearchResults ? <Card searchResults={searchResults}/> : <div></div>}
       </div>
+      
     );
   }
 }
