@@ -45,6 +45,10 @@ class MyOffer extends Component {
   render() {
     const { showEditOfferForm } = this.state;
     const { budget, from, until } = this.state;
+    const fromISO = new Date(from);
+    const fromGood = fromISO.getFullYear()+'-' + (fromISO.getMonth()+1) + '-'+fromISO.getDate();
+    const untilISO = new Date(until);
+    const untilGood = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
     const offerID = this.props.match.params.id;
     console.log(offerID)
     return (
@@ -52,8 +56,8 @@ class MyOffer extends Component {
         <Navbar />
         <h1>We are in offer detail</h1>
         <h5>{this.state.budget}</h5>
-        <h5>{this.state.from}</h5>
-        <h5>{this.state.until}</h5>
+        <h5>{fromGood}</h5>
+        <h5>{untilGood}</h5>
         <button onClick={this.renderOfferForm}>
         { showEditOfferForm ? 'Edit offer' : 'Hide'}
         </button>
