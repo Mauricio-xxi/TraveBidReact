@@ -4,6 +4,7 @@ import { Switch } from "react-router-dom";
 import Private from "./pages/Private";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Landing from "./pages/Landing";
 
 import PrivateRoute from "./components/PrivateRoute";
 import AnonRoute from "./components/AnonRoute";
@@ -16,6 +17,7 @@ class App extends Component {
       <AuthProvider>
         <div className="container">
           <Switch>
+            <AnonRoute exact path="/" component={Landing} />
             <AnonRoute path="/signup" component={Signup} />
             <AnonRoute path="/login" component={Login} />
             <PrivateRoute path="/private" component={Private} />
