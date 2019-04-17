@@ -11,16 +11,19 @@ class MyOffer extends Component {
     super(props);
     this.state = {
         bids: [],
-        showEditOfferForm: true,
+        showEditOfferForm: false,
+        showEditButton: false,
+        showBidButton: false,
         budget: "",
         from: "",
-        until:"", 
+        until:"",
+        userID:"" 
     }
   }
 
   renderOfferForm = (e) => {
     this.setState({
-      showEditOfferForm: !this.state.showEditOfferForm
+      showEditOfferForm: true,
      })
   }
 
@@ -31,8 +34,18 @@ class MyOffer extends Component {
         this.setState({
           budget: responseData.budget,
           from: responseData.from,
-          until: responseData.until, 
+          until: responseData.until,
+          userID: responseData.userID,
         })
+        if (this.state.userID !== this.props.user._id){
+          this.setState({
+            showBidButton: true,
+          })
+        } else if (this.state.userID === this.props.user._id) {
+          this.setState({
+            showEditButton: true,
+          })
+        }
     })
     .catch( error => console.log(error) )
   }
@@ -43,14 +56,16 @@ class MyOffer extends Component {
   
 
   render() {
+    console.log(this.state)
     const { showEditOfferForm } = this.state;
+    const { showBidButton } = this.state;
+    const { showEditButton } = this.state;
     const { budget, from, until } = this.state;
     const fromISO = new Date(from);
     const fromGood = fromISO.getFullYear()+'-' + (fromISO.getMonth()+1) + '-'+fromISO.getDate();
     const untilISO = new Date(until);
     const untilGood = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
     const offerID = this.props.match.params.id;
-    console.log(offerID)
     return (
       <div>
         <Navbar />
@@ -58,10 +73,10 @@ class MyOffer extends Component {
         <h5>{this.state.budget}</h5>
         <h5>{fromGood}</h5>
         <h5>{untilGood}</h5>
-        <button onClick={this.renderOfferForm}>
-        { showEditOfferForm ? 'Edit offer' : 'Hide'}
-        </button>
-        { !showEditOfferForm ? <EditOffer getOffer= {()=>this.getOffer()}offerID={offerID} budget={budget} from={from} until={until} /> : <div></div>}
+        {showBidButton ? <button>Bid</button> : <div></div> }
+        {showEditButton ?  <button onClick={this.renderOfferForm}>Edit Offer</button> : <div></div>}
+        
+        { showEditOfferForm ? <EditOffer getOffer= {()=>this.getOffer()}offerID={offerID} budget={budget} from={from} until={until} /> : <div></div>}
       </div>
     );
   }

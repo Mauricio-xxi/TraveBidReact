@@ -56,7 +56,7 @@ class Offers extends Component {
           return(
             
             <div key={offer._id}>
-            <Link to={`/Offer/${offer._id}`}>
+              <Link to={`/Offer/${offer._id}`}>
               <p>{offer.location}</p> 
               <p>From: {from}</p> 
               <p>Until: {until}</p> 
