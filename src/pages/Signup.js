@@ -4,13 +4,15 @@ import { withAuth } from "../lib/AuthProvider";
 class Signup extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    city:"",
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const { username, password } = this.state;
-    this.props.signup({ username, password });
+    const { username, password, city } = this.state;
+    console.log(city)
+    this.props.signup({ username, password, city });
   };
 
   handleChange = event => {
@@ -19,7 +21,7 @@ class Signup extends Component {
   };
 
   render() {
-    const { username, password } = this.state;
+    const { username, password, city } = this.state;
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
@@ -35,6 +37,13 @@ class Signup extends Component {
             type="password"
             name="password"
             value={password}
+            onChange={this.handleChange}
+          />
+          <label>City:</label>
+           <input
+            type="text"
+            name="city"
+            value={city}
             onChange={this.handleChange}
           />
           <input type="submit" value="Signup" />

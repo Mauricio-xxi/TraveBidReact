@@ -10,7 +10,7 @@ class SearchOffers extends Component {
     super(props);
     this.state = {
         searchResults: [],
-        location: "BOGOTA",
+        location: this.props.user.city,
         showSearchResults: true,
     }
   }
