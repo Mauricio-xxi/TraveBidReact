@@ -20,12 +20,16 @@ class Card extends Component {
      <div>
        <h2>All offers in your town</h2>
        {offers.map((offer)=>{
+         const fromISO = new Date(offer.from);
+         const from = fromISO.getFullYear()+'-' + (fromISO.getMonth()+1) + '-'+fromISO.getDate();
+         const untilISO = new Date(offer.until);
+         const until = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
          return(
            <div key={offer._id}>
              <Link to={`/Offer/${offer._id}`}>
-               <p>{offer.from}</p> 
-               <p>{offer.until}</p> 
-               <p>{offer.budget}</p>
+               <h4>{offer.budget}</h4>
+               <p>{from}</p> 
+               <p>{until}</p> 
              </Link>
            </div>
          )
