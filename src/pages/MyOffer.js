@@ -63,7 +63,6 @@ class MyOffer extends Component {
     const offerID = this.props.match.params.id;
     bid.getBids(offerID)
     .then(responseData => {
-      console.log(responseData)
       this.setState({
         bids: responseData,
         showBidForm: false,
@@ -99,6 +98,8 @@ class MyOffer extends Component {
             <div key={bid._id}>
               <p>Description: {bid.description}</p>
               <p>Value: {bid.value}</p>
+              {bid.userID === this.props.user._id ? <button>Delete</button> : <div></div> }
+              {bid.userID === this.props.user._id ? <button>Update</button> : <div></div> }
             </div>
           )
         })}
