@@ -25,7 +25,7 @@ class EditOffer extends Component {
     const { budget, from, until } = this.state;
     offer.editOffer({ offerID, budget, from, until })
     .then( () => {
-        this.props.getOffer()
+        this.props.getOffers()
         this.setState({
           budget: "",
           from: "",
@@ -41,16 +41,15 @@ class EditOffer extends Component {
   }
 
   render() {
-    const { budget, from, until } = this.state;
     return(
       <div>
        <form onSubmit={this.handleFormSubmit}>
          <label>Budget:</label>
-         <input type="number" name="budget" value={budget} onChange={e => this.handleChange(e)} />
+         <input type="number" name="budget"  onChange={e => this.handleChange(e)} />
          <label>From:</label>
-         <input type="date" name="from" value={from} onChange={e => this.handleChange(e)} />
+         <input type="date" name="from" onChange={e => this.handleChange(e)} />
          <label>Until:</label>
-         <input type="date" name="until" value={until} onChange={e => this.handleChange(e)} />
+         <input type="date" name="until"  onChange={e => this.handleChange(e)} />
          <input type="submit" value="Submit" />
        </form>
       </div>
