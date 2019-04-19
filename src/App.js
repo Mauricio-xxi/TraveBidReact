@@ -9,7 +9,7 @@ import Landing from "./pages/Landing";
 import PrivateRoute from "./components/PrivateRoute";
 import AnonRoute from "./components/AnonRoute";
 import AuthProvider from "./lib/AuthProvider";
-import MyOffer from "./pages/MyOffer";
+import OfferDetail from "./pages/OfferDetail";
 
 class App extends Component {
   render() {
@@ -21,7 +21,7 @@ class App extends Component {
             <AnonRoute path="/signup" component={Signup} />
             <AnonRoute path="/login" component={Login} />
             <PrivateRoute path="/private" component={Private} />
-            <PrivateRoute exact path="/offer/:id" component={MyOffer} />
+            <PrivateRoute exact path="/offer/:id" component={OfferDetail} />
           </Switch>
         </div>
       </AuthProvider>

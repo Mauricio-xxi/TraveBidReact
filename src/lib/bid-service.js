@@ -21,6 +21,12 @@ class Bid {
       .then(({ data }) => data)
   }
 
+
+  deleteBid(bidID) {
+    return this.bids.delete(`/bid/${bidID}`)
+      .then(({ data }) => data)
+  }
+
   // getOffer(offerID) {
   //   return this.offers.get(`/offer/${offerID}`)
   //     .then(({ data }) => data)
@@ -29,11 +35,6 @@ class Bid {
   // searchOffers (city) {
   //   return this.offers.get(`/offer/search/${city}`)
   //     .then(({ data }) => data )
-  // }
-
-  // deleteOffer(offerID) {
-  //   return this.offers.delete(`/offer/${offerID}`)
-  //     .then(({ data }) => data)
   // }
 
   // editOffer(offer) {
