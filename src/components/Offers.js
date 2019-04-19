@@ -3,6 +3,8 @@ import { withAuth } from "../lib/AuthProvider";
 import offer from '../lib/offer-service';
 import CreateOffer from "../components/CreateOffer";
 import { Link } from "react-router-dom";
+import EditOffer from "../components/EditOffer";
+
 
 
 
@@ -12,6 +14,7 @@ class Offers extends Component {
     this.state = {
         offers: [],
         showCreateOfferForm: true,
+        showEditOfferForm: false,
     }
   }
 
@@ -25,11 +28,18 @@ class Offers extends Component {
      })
   }
 
+  renderEditOfferForm = (e) => {
+    this.setState({
+      showEditOfferForm: true,
+     })
+  }
+
   getOffers = () => {
     offer.showOfferList(this.props.user._id)
     .then(responseData => {
         this.setState({
-          offers: responseData
+          offers: responseData,
+          showEditOfferForm: false,
         })
     })
     .catch( error => console.log(error) )
@@ -53,8 +63,8 @@ class Offers extends Component {
           const from = fromISO.getFullYear()+'-' + (fromISO.getMonth()+1) + '-'+fromISO.getDate();
           const untilISO = new Date(offer.until);
           const until = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
+          const { showEditOfferForm } = this.state;
           return(
-            
             <div key={offer._id}>
               <Link to={`/Offer/${offer._id}`}>
               <p>{offer.location}</p> 
@@ -62,7 +72,9 @@ class Offers extends Component {
               <p>Until: {until}</p> 
               <p>Budget: {offer.budget}</p>
               </Link>
-              <button onClick={()=>this.deleteOffer(offer._id)}>Delete</button> 
+              <button onClick={()=>this.deleteOffer(offer._id)}>Delete Offer</button> 
+              <button onClick={this.renderEditOfferForm}>Edit Offer</button>
+              {showEditOfferForm ? <EditOffer offerID={offer._id} getOffers= {()=>this.getOffers()}/> : <div></div>}
             </div>
           )
         })}

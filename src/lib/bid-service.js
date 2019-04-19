@@ -27,6 +27,12 @@ class Bid {
       .then(({ data }) => data)
   }
 
+  editBid(bid) {
+    const {bidID, description, value } = bid;
+    return this.bids.put(`/bid/${bidID}`, {description, value})
+      .then(({ data }) => data)
+  }
+
   // getOffer(offerID) {
   //   return this.offers.get(`/offer/${offerID}`)
   //     .then(({ data }) => data)
