@@ -11,6 +11,9 @@ import AnonRoute from "./components/AnonRoute";
 import AuthProvider from "./lib/AuthProvider";
 import OfferDetail from "./pages/OfferDetail";
 
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
 class App extends Component {
   render() {
     return (

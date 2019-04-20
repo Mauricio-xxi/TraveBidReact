@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import { HttpLink } from 'apollo-link-http';
 
 const client = new ApolloClient ({
-  networkInterface : createNetworkInterface({
+  link : new HttpLink ({
     uri: '/api',
   }),
 })
