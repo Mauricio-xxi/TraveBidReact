@@ -9,13 +9,14 @@ import { HttpLink } from 'apollo-link-http';
 const client = new ApolloClient ({
   link : new HttpLink ({
     uri: '/api',
+    credentials:'same-origin'
   }),
 })
 
 ReactDOM.render(
-  <Router>
-    <ApolloProvider client ={client}>
+  <ApolloProvider client ={client}>
+    <Router>
       <App />
-    </ApolloProvider>
-  </Router>
+    </Router>
+  </ApolloProvider>
 , document.getElementById('root'));

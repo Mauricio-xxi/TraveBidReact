@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 
+
 class Login extends Component {
   state = {
     username: "",
@@ -12,6 +13,10 @@ class Login extends Component {
     const { username, password } = this.state;
     this.props.login({ username, password });
   };
+
+  sendLogin = () =>{
+
+  }
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -43,3 +48,4 @@ class Login extends Component {
 }
 
 export default withAuth(Login);
+
