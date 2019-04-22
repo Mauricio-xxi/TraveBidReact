@@ -11,6 +11,7 @@ class Navbar extends Component {
             <h1>TravelBID</h1>
             {/* <h2>username: {user.username}</h2> */}
             <button onClick={logout}>Logout</button>
+            <button>Update Profile</button>
           </>
         ) : (
           <>
