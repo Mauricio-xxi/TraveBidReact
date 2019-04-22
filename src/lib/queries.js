@@ -14,3 +14,10 @@ mutation createUser($username : String!, $password : String!){
 }
 }
 `
+export const IS_LOGGEDIN = gql `
+query{
+  usersession{
+  	currentsession
+  }
+}
+`

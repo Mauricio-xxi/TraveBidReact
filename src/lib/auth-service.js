@@ -1,6 +1,7 @@
 import axios from "axios";
 
 
+
 class Auth {
   constructor() {
     this.auth = axios.create({
@@ -27,8 +28,8 @@ class Auth {
     return this.auth.post("/auth/logout", {}).then(response => response.data);
   }
 
-  me() {
-    return this.auth.get("/auth/me").then(response => response.data);
+  me () {
+   return this.auth.get("/auth/me").then(response => response.data);
   }
 }
 
