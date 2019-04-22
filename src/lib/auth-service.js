@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 class Auth {
   constructor() {
     this.auth = axios.create({
