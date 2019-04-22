@@ -8,7 +8,7 @@ import { HttpLink } from 'apollo-link-http';
 
 const client = new ApolloClient ({
   link : new HttpLink ({
-    uri: '/api',
+    uri: '/graphql',
     credentials:'same-origin'
   }),
 })
