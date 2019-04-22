@@ -7,3 +7,10 @@ export  const LOGIN_USER = gql`
     }
   }
 `
+export const CREATE_USER = gql `
+mutation createUser($username : String!, $password : String!){
+  createUser(input:{username:$username,password:$password}){
+    username
+}
+}
+`

@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Loginn from "./pages/Loginn";
 import Landing from "./pages/Landing";
+import Signupp from "./pages/Signupp";
 
 import PrivateRoute from "./components/PrivateRoute";
 import AnonRoute from "./components/AnonRoute";
@@ -22,6 +23,7 @@ class App extends Component {
           <Switch>
             <AnonRoute exact path="/" component={Landing} />
             <AnonRoute path="/signup" component={Signup} />
+            <AnonRoute path="/signupp" component={Signupp} />
             <AnonRoute path="/login" component={Login} />
             <AnonRoute path="/loginn" component={Loginn} />
             <PrivateRoute path="/private" component={Private} />
