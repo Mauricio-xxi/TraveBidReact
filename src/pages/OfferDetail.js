@@ -62,6 +62,7 @@ class OfferDetail extends Component {
 
   getBids = () => {
     const offerID = this.props.match.params.id;
+    console.log(`this is the offer ID: ${offerID}`)
     bid.getBids(offerID)
     .then(responseData => {
       this.setState({
@@ -120,7 +121,6 @@ class OfferDetail extends Component {
         <h5>{untilGood}</h5>
         {bids.map((bid)=> {
           const { showEditBidForm } = this.state
-          console.log(bid.userID, offerOwner)
           return (
             <div key={bid._id}>
               <p>Description: {bid.description}</p>
