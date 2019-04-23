@@ -17,6 +17,7 @@ class CreateBid extends Component {
     bid.create({ description, value, offerID })
     .then( () => {
         this.props.getBids()
+        this.props.checkIfUserBidded()
         this.setState({
           description:"",
           value: "",

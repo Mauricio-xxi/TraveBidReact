@@ -17,6 +17,7 @@ class OfferDetail extends Component {
         showBidButton: false,
         showBidForm: false,
         showEditBidForm: false,
+        alreadyBidded : false,
         budget: "",
         from: "",
         until:"",
@@ -60,14 +61,21 @@ class OfferDetail extends Component {
     .catch( error => console.log(error) )
   }
 
+
+  checkIfUserBidded = () => {
+    this.setState({
+      alreadyBidded: true,
+    })
+  }
+
   getBids = () => {
     const offerID = this.props.match.params.id;
-    console.log(`this is the offer ID: ${offerID}`)
     bid.getBids(offerID)
     .then(responseData => {
       this.setState({
-        bids: responseData,
+        bids: [...responseData],
         showBidForm: false,
+        showEditBidForm: false,
       })
     })
   }
@@ -84,25 +92,6 @@ class OfferDetail extends Component {
     })
   }
 
-  // acceptBid = (bidID) => {
-  //   bid.acceptBid(bidID)
-  //   .then(responseData => {
-  //     this.setState({
-  //       bids: responseData,
-  //       showBidForm: false,
-  //     })
-  //   })
-  // }
-  // rejectBid = (bidID) => {
-  //   bid.rejectBid(bidID)
-  //   .then(responseData => {
-  //     this.setState({
-  //       bids: responseData,
-  //       showBidForm: false,
-  //     })
-  //   })
-  // }
-
   render() {
     const { showBidForm, from, until } = this.state;
     const fromISO = new Date(from);
@@ -111,7 +100,7 @@ class OfferDetail extends Component {
     const untilGood = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
     const offerID = this.props.match.params.id;
     const currentUser = this.props.user._id;
-    const {bids, offerOwner} = this.state;
+    const {bids, offerOwner, alreadyBidded} = this.state;
     return (
       <div>
         <Navbar />
@@ -120,21 +109,24 @@ class OfferDetail extends Component {
         <h5>{fromGood}</h5>
         <h5>{untilGood}</h5>
         {bids.map((bid)=> {
-          const { showEditBidForm } = this.state
+          const { showEditBidForm } = this.state;
+          const currentUser = this.props.user._id;
           return (
             <div key={bid._id}>
+              <p>----------------------------------------</p>
               <p>Description: {bid.description}</p>
               <p>Value: {bid.value} </p>
-              {bid.userID !== offerOwner ? <div></div> : <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> }
-              {bid.userID !== offerOwner ? <div></div> : <button onClick={this.renderEditBidForm}>Edit</button>  }
+              {bid.userID === currentUser ? <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> : <div></div> }
+              {bid.userID === currentUser ? <button onClick={this.renderEditBidForm}>Edit</button>:  <div></div>  }
               { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} getBids={()=> this.getBids()} /> : <div></div>}
               {/* {bid.userID !== this.props.user._id ? <button onClick={this.acceptBid(bid._id)}>Accept</button> : <div></div> }
               {bid.userID !== this.props.user._id ? <button onClick={this.rejectBid(bid._id)}>Reject</button> : <div></div> } */}
+              <p>--------------------------------------------</p>
             </div>
           )
         })}
-        { currentUser !== offerOwner? <button onClick={this.renderBidForm}>Bid</button> : <div></div> }
-        {showBidForm ?  < CreateBid offerID={offerID} getBids={()=> this.getBids()}/> : <div></div>}
+        { alreadyBidded === true && offerOwner !== currentUser ?  <button onClick={this.renderBidForm}>Bid</button> : <div></div>  }
+        { showBidForm ?  < CreateBid offerID={offerID} getBids={()=> this.getBids()} checkIfUserBidded={()=>this.checkIfUserBidded()}/> : <div></div> }
       </div>
     );
   }
