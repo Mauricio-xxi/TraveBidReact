@@ -78,6 +78,7 @@ class Offers extends Component {
             </div>
           )
         })}
+        <p>------------------------</p>
         <button onClick={this.renderOfferForm}>
         { showCreateOfferForm ? 'Create offer' : 'Hide'}
         </button>
