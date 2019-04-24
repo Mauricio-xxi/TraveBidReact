@@ -74,7 +74,7 @@ class Offers extends Component {
               </Link>
               <button onClick={()=>this.deleteOffer(offer._id)}>Delete Offer</button> 
               <button onClick={this.renderEditOfferForm}>Edit Offer</button>
-              {showEditOfferForm ? <EditOffer offerID={offer._id} getOffers= {()=>this.getOffers()}/> : <div></div>}
+              {showEditOfferForm ? <EditOffer offer={offer} offerID={offer._id} getOffers= {()=>this.getOffers()}/> : <div></div>}
             </div>
           )
         })}

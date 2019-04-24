@@ -13,9 +13,9 @@ class EditOffer extends Component {
 
   componentDidMount() {
     this.setState({
-      budget: this.props.budget,
-      from: this.props.from,
-      until: this.props.until, 
+      budget: this.props.offer.budget,
+      from: this.props.offer.from,
+      until: this.props.offer.until, 
     });
   }
    
