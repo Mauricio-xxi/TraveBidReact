@@ -86,6 +86,8 @@ class OfferDetail extends Component {
     this.checkIfUserBidded();
   }
 
+  
+
   deleteBid = (bidID) => {
     bid.deleteBid(bidID)
     .then(()=>{
