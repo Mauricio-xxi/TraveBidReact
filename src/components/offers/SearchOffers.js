@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { withAuth } from "../lib/AuthProvider";
-import offer from '../lib/offer-service';
-import Card from "../components/Card";
+import { withAuth } from "../../lib/AuthProvider";
+import offer from '../../lib/offer-service';
+import Card from "../../components/Card";
 
 
 

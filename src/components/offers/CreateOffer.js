@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import offer from '../lib/offer-service';
+import offer from '../../lib/offer-service';
 
 class CreateOffer extends Component {
   constructor(props) {

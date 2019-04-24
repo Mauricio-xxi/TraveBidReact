@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { withAuth } from "../lib/AuthProvider";
-import offer from '../lib/offer-service';
-import CreateOffer from "../components/CreateOffer";
+import { withAuth } from "../../lib/AuthProvider";
+import offer from '../../lib/offer-service';
+import CreateOffer from "../offers/CreateOffer";
 import { Link } from "react-router-dom";
-import EditOffer from "../components/EditOffer";
+import EditOffer from "../offers/EditOffer";
 
 
 

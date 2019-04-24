@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import Navbar from "../components/Navbar";
-import Offers from "../components/Offers";
-import SearchOffers from "../components/SearchOffers";
+import Offers from "../components/offers/Offers";
+import SearchOffers from "../components/offers/SearchOffers";
 import offer from '../lib/offer-service';
 
 
