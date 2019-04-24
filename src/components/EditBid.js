@@ -5,8 +5,8 @@ class EditBid extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        description: "", 
-        value: 0, 
+        description: this.props.descriptions, 
+        value: this.props.values, 
       };
   }
 
@@ -25,8 +25,8 @@ class EditBid extends Component {
     .then( () => {
         this.props.getBids()
         this.setState({
-          description: "", 
-          value: 0, 
+          description: this.props.descriptions, 
+          value: this.props.values, 
         })
     })
     .catch( error => console.log(error) )
