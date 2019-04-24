@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import bid from '../lib/bid-service';
+import bid from '../../lib/bid-service';
 
 class CreateBid extends Component {
   constructor(props) {

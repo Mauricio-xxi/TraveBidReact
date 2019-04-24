@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import Navbar from "../components/Navbar";
-import CreateBid from "../components/CreateBid";
-import EditBid from "../components/EditBid";
+import CreateBid from "../components/bids/CreateBid";
+import EditBid from "../components/bids/EditBid";
 import offer from '../lib/offer-service';
 import bid from '../lib/bid-service';
 
