@@ -83,6 +83,7 @@ class OfferDetail extends Component {
   componentDidMount() {
     this.getOffer();
     this.getBids();
+    this.checkIfUserBidded();
   }
 
   deleteBid = (bidID) => {
@@ -125,7 +126,7 @@ class OfferDetail extends Component {
             </div>
           )
         })}
-        { alreadyBidded === true && offerOwner !== currentUser ?  <button onClick={this.renderBidForm}>Bid</button> : <div></div>  }
+        { alreadyBidded === false && offerOwner !== currentUser ?  <button onClick={this.renderBidForm}>Bid</button> : <div></div>  }
         { showBidForm ?  < CreateBid offerID={offerID} getBids={()=> this.getBids()} checkIfUserBidded={()=>this.checkIfUserBidded()}/> : <div></div> }
       </div>
     );
