@@ -1,35 +1,34 @@
 import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
-import Card from "../../components/Card";
+import OfferSearchResults from "../../components/OfferSearchResults";
 
 
 
 class SearchOffers extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
+    state = {
         searchResults: [],
-        location: this.props.user.city,
         showSearchResults: true,
     }
-  }
+  
 
-  renderSearchResults = (e) => {
+  handleShowSearchResults = (e) => {
+    const { showSearchResults } = this.state
     this.setState({
-      showSearchResults: !this.state.showSearchResults
+      showSearchResults: !showSearchResults
      })
   }
 
   
   search = () => {
-    offer.searchOffers(this.state.location)
-    .then(responseData => {
+    // Protect, verify city that user has city
+    offer.searchOffers(this.props.user.city)
+      .then(responseData => {
         this.setState({
           searchResults: responseData
         })
-    })
-    .catch( error => console.log(error) )
+      })
+      .catch( error => console.log(error) )
   }
 
 
@@ -37,19 +36,14 @@ class SearchOffers extends Component {
     this.search();
   }
 
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
-
   render() {
     const { showSearchResults, searchResults } = this.state;
     return (
       <div>
-       <button onClick={this.renderSearchResults}>
+       <button onClick={this.handleShowSearchResults}>
         { showSearchResults ? 'View offers in your town' : 'Hide'}
         </button>
-        { !showSearchResults ? <Card searchResults={searchResults}/> : <div></div>}
+        { !showSearchResults ? <OfferSearchResults OfferSearchResults={searchResults}/> : <div></div> }
       </div>
       
     );
