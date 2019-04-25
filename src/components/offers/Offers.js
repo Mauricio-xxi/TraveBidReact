@@ -15,6 +15,7 @@ class Offers extends Component {
         offers: [],
         showCreateOfferForm: true,
         showEditOfferForm: false,
+        offerToEdit:{},
     }
   }
 
@@ -28,9 +29,10 @@ class Offers extends Component {
      })
   }
 
-  renderEditOfferForm = (e) => {
+  renderEditOfferForm = (offer) => {
     this.setState({
       showEditOfferForm: true,
+      offerToEdit: offer,
      })
   }
 
@@ -55,7 +57,7 @@ class Offers extends Component {
   
 
   render() {
-    const { showCreateOfferForm } = this.state;
+    const { showCreateOfferForm, showEditOfferForm } = this.state;
     return (
       <div>
         {this.state.offers.map((offer) => {
@@ -63,7 +65,6 @@ class Offers extends Component {
           const from = fromISO.getFullYear()+'-' + (fromISO.getMonth()+1) + '-'+fromISO.getDate();
           const untilISO = new Date(offer.until);
           const until = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
-          const { showEditOfferForm } = this.state;
           return(
             <div key={offer._id}>
               <Link to={`/Offer/${offer._id}`}>
@@ -73,11 +74,11 @@ class Offers extends Component {
               <p>Budget: {offer.budget}</p>
               </Link>
               <button onClick={()=>this.deleteOffer(offer._id)}>Delete Offer</button> 
-              <button onClick={this.renderEditOfferForm}>Edit Offer</button>
-              {showEditOfferForm ? <EditOffer offer={offer} offerID={offer._id} getOffers= {()=>this.getOffers()}/> : <div></div>}
+              <button onClick={()=>this.renderEditOfferForm(offer)}>Edit Offer</button>
             </div>
           )
         })}
+        {showEditOfferForm ? <EditOffer offer={this.state.offerToEdit} offerID={this.state.offerToEdit._id} getOffers= {()=>this.getOffers()}/> : <div></div>}
         <p>------------------------</p>
         <button onClick={this.renderOfferForm}>
         { showCreateOfferForm ? 'Create offer' : 'Hide'}
