@@ -21,6 +21,11 @@ class Bid {
       .then(({ data }) => data)
   }
 
+  getUserBids(userID) {
+    return this.bids.get(`/bid/userBids/${userID}`)
+      .then(({ data }) => data)
+  }
+
 
   deleteBid(bidID) {
     return this.bids.delete(`/bid/${bidID}`)
@@ -32,23 +37,6 @@ class Bid {
     return this.bids.put(`/bid/${bidID}`, {description, value})
       .then(({ data }) => data)
   }
-
-  // getOffer(offerID) {
-  //   return this.offers.get(`/offer/${offerID}`)
-  //     .then(({ data }) => data)
-  // }
-
-  // searchOffers (city) {
-  //   return this.offers.get(`/offer/search/${city}`)
-  //     .then(({ data }) => data )
-  // }
-
-  // editOffer(offer) {
-  //   const { offerID, from, until, budget} = offer;
-  //   return this.offers.put(`/offer/${offerID}`, {from, until, budget})
-  //     .then(({ data }) => data)
-  // }
-
 
 }
 

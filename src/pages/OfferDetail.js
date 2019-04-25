@@ -69,8 +69,8 @@ class OfferDetail extends Component {
   }
 
   getBids = () => {
-    const offerID = this.props.match.params.id;
-    bid.getBids(offerID)
+    const ID = this.props.match.params.id;
+    bid.getBids(ID)
     .then(responseData => {
       this.setState({
         bids: [...responseData],

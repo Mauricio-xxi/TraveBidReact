@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import Navbar from "../components/Navbar";
 import Offers from "../components/offers/Offers";
+import Bids from "../components/bids/Bids";
 import SearchOffers from "../components/offers/SearchOffers";
 import offer from '../lib/offer-service';
 
@@ -37,6 +38,8 @@ class Private extends Component {
         <SearchOffers/>
         <p>------------------------</p>
         <Offers />
+        <p>------------------------</p>
+        <Bids/>
       </div>
     );
   }
