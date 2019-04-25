@@ -63,8 +63,13 @@ class OfferDetail extends Component {
 
 
   checkIfUserBidded = () => {
-    this.setState({
-      alreadyBidded: true,
+    let bids = this.state.bids;
+      bids.forEach((bid)=>{
+        if (this.props.user._id === bid.userID){
+         this.setState({
+          alreadyBidded: true,
+        }) 
+      }
     })
   }
 
@@ -77,13 +82,13 @@ class OfferDetail extends Component {
         showBidForm: false,
         showEditBidForm: false,
       })
+      this.checkIfUserBidded();
     })
   }
 
   componentDidMount() {
     this.getOffer();
     this.getBids();
-    this.checkIfUserBidded();
   }
 
   
