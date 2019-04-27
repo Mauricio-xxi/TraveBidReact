@@ -16,7 +16,7 @@ class Profile extends Component {
         user:responseData
       })
     })
-    .catch( error => console.log(error) )
+    .catch( error => console.error(error) )
   }
 
   componentDidMount() {
