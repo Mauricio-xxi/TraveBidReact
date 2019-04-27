@@ -3,7 +3,7 @@ import axios from 'axios';
 class Offer {
   constructor() {
     this.offers = axios.create({
-      baseURL: 'http://localhost:5000',
+      baseURL: process.env.REACT_APP_URL,
       withCredentials: true
     })
   }
