@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { withAuth } from "../lib/AuthProvider";
+import { withAuth } from "../../lib/AuthProvider";
 import { Link } from "react-router-dom";
 
 
 
-class Card extends Component {
+class OfferSearchResults extends Component {
   
   render() {
-    const offers = this.props.OfferSearchResults;
+    const { offers } = this.props;
     return (
      <div>
        <h2>All offers in your town</h2>
@@ -32,4 +32,4 @@ class Card extends Component {
   }
 }
 
-export default withAuth(Card);
+export default withAuth(OfferSearchResults);
