@@ -1,14 +1,16 @@
 import React from 'react'
 import { withFormik, Field } from "formik";
 
+
 function ProfileForm(props) {
   const {
     handleSubmit,
-    isSubmitting
+    isSubmitting,
+    userUpdate
 
   } = props;
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={userUpdate}>
       <label>Age:</label>
       <Field name = "age" type = "number"/>
       <label>Gender:</label>

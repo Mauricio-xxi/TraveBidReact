@@ -19,6 +19,14 @@ class Profile extends Component {
     })
     .catch( error => console.error(error) )
   }
+  updateUser = (value)=>{
+    console.log(value)
+     user.updateUser(value)
+     .then(responseData=>{
+       console.log(responseData)
+     })
+
+  }
 
   renderProfileForm = ()=>{
     return(ProfileForm)
@@ -35,7 +43,7 @@ class Profile extends Component {
         <Navbar/>
         <h1>Profile</h1>
         <h2>{username}</h2>  
-        <ProfileForm/>
+        <ProfileForm updateUser={this.updateUser}/>
       </div>
     )
   }
