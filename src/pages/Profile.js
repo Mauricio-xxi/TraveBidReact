@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from "../components/Navbar";
 import { withAuth } from "../lib/AuthProvider";
 import user from "../lib/user-service";
+import  ProfileForm  from "../components/profile/ProfileForm";
 
 class Profile extends Component {
 
@@ -19,6 +20,10 @@ class Profile extends Component {
     .catch( error => console.error(error) )
   }
 
+  renderProfileForm = ()=>{
+    return(ProfileForm)
+  }
+
   componentDidMount() {
     this.getUser();
   }
@@ -29,7 +34,8 @@ class Profile extends Component {
       <div>
         <Navbar/>
         <h1>Profile</h1>
-        <h2>{username}</h2>
+        <h2>{username}</h2>  
+        <ProfileForm/>
       </div>
     )
   }

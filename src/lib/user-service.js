@@ -11,6 +11,28 @@ import axios from 'axios';
     return this.user.get(`/profile/`)
       .then(({ data }) => data)
   }
+  async updateUser(userInfo){
+    const {
+      email,
+      age,
+      gender,
+      description,
+      city,
+      userImage
+    } = userInfo;
+    try {
+      const data = await this.user.put(`/user`,{      email,
+        age,
+        gender,
+        description,
+        city,
+        userImage})
+        return ({data});
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 const user = new User();
 
