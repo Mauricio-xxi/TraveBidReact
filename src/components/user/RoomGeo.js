@@ -57,8 +57,10 @@ class RoomGeo extends Component {
       <MapGL
         ref={this.mapRef}
         {...this.state.viewport}
+        mapStyle="mapbox://styles/mapbox/streets-v9"
         onViewportChange={this.handleViewportChange}
-        mapboxApiAccessToken={MAPBOX_TOKEN}>
+        mapboxApiAccessToken={MAPBOX_TOKEN} 
+        >
         <Geocoder
           mapRef={this.mapRef}
           onViewportChange={this.handleGeocoderViewportChange}
