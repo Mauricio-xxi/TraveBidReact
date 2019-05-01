@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
-import OfferSearchResults from "../../components/OfferSearchResults";
+import OfferSearchResults from "./OfferSearchResults";
 
 
 
 class SearchOffers extends Component {
     state = {
-        searchResults: [],
+        offers: [],
         showSearchResults: true,
     }
   
@@ -25,7 +25,7 @@ class SearchOffers extends Component {
     offer.searchOffers(this.props.user.city)
       .then(responseData => {
         this.setState({
-          searchResults: responseData
+          offers: responseData
         })
       })
       .catch( error => console.log(error) )
@@ -37,13 +37,13 @@ class SearchOffers extends Component {
   }
 
   render() {
-    const { showSearchResults, searchResults } = this.state;
+    const { showSearchResults, offers } = this.state;
     return (
       <div>
        <button onClick={this.handleShowSearchResults}>
         { showSearchResults ? 'View offers in your town' : 'Hide'}
         </button>
-        { !showSearchResults ? <OfferSearchResults OfferSearchResults={searchResults}/> : <div></div> }
+        { !showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       </div>
       
     );
