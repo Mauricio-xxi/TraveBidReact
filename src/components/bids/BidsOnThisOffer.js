@@ -88,11 +88,11 @@ class BidsOnThisOffer extends Component {
               <p>----------------------------------------</p>
               <p>Description: {bid.description}</p>
               <p>Value: {bid.value} </p>
-              {bid.userID === currentUser ? <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> : <div></div> }
-              {bid.userID === currentUser ? <button onClick={this.renderEditBidForm}>Edit</button>:  <div></div>  }
+              { bid.userID === currentUser ? <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> : <div></div> }
+              { bid.userID === currentUser ? <button onClick={this.renderEditBidForm}>Edit</button>:  <div></div>  }
               { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} getBids={()=> this.getBids()} /> : <div></div>}
-              {/* {bid.userID !== this.props.user._id ? <button onClick={this.acceptBid(bid._id)}>Accept</button> : <div></div> }
-              {bid.userID !== this.props.user._id ? <button onClick={this.rejectBid(bid._id)}>Reject</button> : <div></div> } */}
+              { offerOwner === this.props.user._id ? <button onClick={()=>this.acceptBid(bid._id)}>Accept</button> : <div></div> }
+              { offerOwner === this.props.user._id ? <button onClick={()=>this.rejectBid(bid._id)}>Reject</button> : <div></div> } 
               <p>--------------------------------------------</p>
             </div>
           )
