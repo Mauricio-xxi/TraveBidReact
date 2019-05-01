@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import { Link } from "react-router-dom";
+import transformDate from "../../functions/dates"
 
 
 
@@ -12,10 +13,8 @@ class OfferSearchResults extends Component {
      <div>
        <h2>All offers in your town</h2>
        {offers.map((offer)=>{
-         const fromISO = new Date(offer.from);
-         const from = fromISO.getFullYear()+'-' + (fromISO.getMonth()+1) + '-'+fromISO.getDate();
-         const untilISO = new Date(offer.until);
-         const until = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
+         const from = transformDate(offer.from)
+         const until = transformDate(offer.until)
          return(
            <div key={offer._id}>
              <Link to={`/Offer/${offer._id}`}>

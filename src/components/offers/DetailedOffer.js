@@ -4,6 +4,7 @@ import CreateBid from "../bids/CreateBid";
 import EditBid from "../bids/EditBid";
 import offer from '../../lib/offer-service';
 import bid from '../../lib/bid-service';
+import transformDate from "../../functions/dates"
 
 
 
@@ -100,20 +101,17 @@ class OfferDetail extends Component {
   }
 
   render() {
-    const { showBidForm, from, until } = this.state;
-    const fromISO = new Date(from);
-    const fromGood = fromISO.getFullYear()+'-' + (fromISO.getMonth()+1) + '-'+fromISO.getDate();
-    const untilISO = new Date(until);
-    const untilGood = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
+    const { showBidForm, from, until,bids, offerOwner, alreadyBidded } = this.state;
+    const fromFormated = transformDate(from)
+    const untilFormated = transformDate(until)
     const { offerID } = this.props;
     const currentUser = this.props.user._id;
-    const { bids, offerOwner, alreadyBidded } = this.state;
     return (
       <div>
         <h1>We are in offer detail</h1>
         <h5>{this.state.budget}</h5>
-        <h5>{fromGood}</h5>
-        <h5>{untilGood}</h5>
+        <h5>{fromFormated }</h5>
+        <h5>{untilFormated}</h5>
         {bids.map((bid)=> {
           const { showEditBidForm } = this.state;
           const currentUser = this.props.user._id;
