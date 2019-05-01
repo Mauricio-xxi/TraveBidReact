@@ -42,6 +42,12 @@ class Offer {
       .then(({ data }) => data)
   }
 
+  // updateStatus(offer) {
+  //   const { offerID, Status} = offer;
+  //   return this.offers.put(`/offer/${offerID}/status`, { Status })
+  //     .then(({ data }) => data)
+  // }
+
 
 }
 

@@ -3,6 +3,7 @@ import { withAuth } from "../../lib/AuthProvider";
 import EditBid from "../bids/EditBid";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
+import offer from '../../lib/offer-service';
 
 
 class BidsOnThisOffer extends Component {
@@ -97,8 +98,19 @@ class BidsOnThisOffer extends Component {
               { bid.userID === currentUser ? <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> : <div></div> }
               { bid.userID === currentUser ? <button onClick={this.renderEditBidForm}>Edit</button>:  <div></div>  }
               { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} getBids={()=> this.getBids()} /> : <div></div>}
-              { offerOwner === this.props.user._id ? <button onClick={()=>this.handleBidStatus(bid._id, bid.description, bid.value, 1)}>Accept</button> : <div></div> }
-              { offerOwner === this.props.user._id ? <button onClick={()=>this.handleBidStatus(bid._id, bid.description, bid.value, 2)}>Reject</button> : <div></div> } 
+              
+              { 
+                offerOwner === this.props.user._id ? 
+                <button onClick= {()=>this.handleBidStatus(bid._id, bid.description, bid.value, 1)}> 
+                Accept</button> 
+                : <div></div>  
+              }
+
+              { 
+                offerOwner === this.props.user._id ? 
+                <button onClick={()=>this.handleBidStatus(bid._id, bid.description, bid.value, 2)}> 
+                Reject</button> : <div></div> 
+              } 
               <p>--------------------------------------------</p>
             </div>
           )
