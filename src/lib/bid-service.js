@@ -33,8 +33,8 @@ class Bid {
   }
 
   editBid(bid) {
-    const {bidID, description, value, Status } = bid;
-    return this.bids.put(`/bid/${bidID}`, { description, value, Status })
+    const {bidID, description, value, Status, offerID } = bid;
+    return this.bids.put(`/bid/${bidID}`, { description, value, Status, offerID })
       .then(({ data }) => data)
   }
 

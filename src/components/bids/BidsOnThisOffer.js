@@ -73,8 +73,8 @@ class BidsOnThisOffer extends Component {
     })
   }
 
-  handleBidStatus = (bidID, description, value, Status) =>{
-    bid.editBid({ bidID, description, value, Status })
+  handleBidStatus = (bidID, description, value, Status, offerID) =>{
+    bid.editBid({ bidID, description, value, Status, offerID })
     .then( () => {
       this.getBids()
     })
@@ -101,15 +101,14 @@ class BidsOnThisOffer extends Component {
               
               { 
                 offerOwner === this.props.user._id ? 
-                <button onClick= {()=>this.handleBidStatus(bid._id, bid.description, bid.value, 1)}> 
-                Accept</button> 
+                <button onClick= {()=>this.handleBidStatus(bid._id, bid.description, bid.value, 1, offerID)}> Accept</button> 
                 : <div></div>  
               }
 
               { 
                 offerOwner === this.props.user._id ? 
-                <button onClick={()=>this.handleBidStatus(bid._id, bid.description, bid.value, 2)}> 
-                Reject</button> : <div></div> 
+                <button onClick={()=>this.handleBidStatus(bid._id, bid.description, bid.value, 2)}> Reject</button> 
+                : <div></div> 
               } 
               <p>--------------------------------------------</p>
             </div>

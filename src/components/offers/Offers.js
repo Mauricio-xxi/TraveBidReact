@@ -60,7 +60,7 @@ class Offers extends Component {
           offers={offers}
           deleteOffer={this.deleteOffer}
           showEditOfferForm={this.renderEditOfferForm}
-          />
+        />
 
         {showEditOfferForm ? 
             <EditOffer 
