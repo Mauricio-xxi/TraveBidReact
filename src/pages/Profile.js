@@ -7,7 +7,25 @@ import UserData from "../components/user/UserData";
 import RoomGeo from "../components/user/RoomGeo";
 
 
+
 class Profile extends Component {
+
+  state = {
+    user,
+  }
+
+    getUser(){
+    user.getUser()
+    .then(responseData=>{
+      this.setState({
+        user:responseData
+      })
+    })
+ }
+
+ componentDidMount(){
+   this.getUser()
+ }
 
   renderForm = (value)=> {
     this.setState({
@@ -27,8 +45,7 @@ class Profile extends Component {
         <h2>{description}</h2>
         <h2>{city}</h2>   
         <ProfileForm dataAcces={this.renderForm}/>
-        <Navbar/>
-        <UserData/>
+        {/* <UserData/> */}
         <RoomGeo />
       </div>
     )
