@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from "../components/Navbar";
 import { withAuth } from "../lib/AuthProvider";
 import user from "../lib/user-service";
-import  ProfileForm  from "../components/profile/ProfileForm";
+import  ProfileForm   from "../components/profile/ProfileForm";
 
 class Profile extends Component {
 
@@ -19,31 +19,29 @@ class Profile extends Component {
     })
     .catch( error => console.error(error) )
   }
-  updateUser = (value)=>{
-    console.log(value)
-     user.updateUser(value)
-     .then(responseData=>{
-       console.log(responseData)
-     })
-
-  }
-
-  renderProfileForm = ()=>{
-    return(ProfileForm)
-  }
 
   componentDidMount() {
     this.getUser();
   }
 
+  renderForm = (value)=> {
+    this.setState({
+      user:value.data
+    })
+  }
+
   render() {
-    const { username } = this.state.user;
+    const { username,age, description, city, userImage } = this.state.user;
     return (
       <div>
         <Navbar/>
+        <img src={userImage} alt="profile avatar"></img>
         <h1>Profile</h1>
-        <h2>{username}</h2>  
-        <ProfileForm updateUser={this.updateUser}/>
+        <h2>{username}</h2>
+        <h2>{age}</h2>
+        <h2>{description}</h2>
+        <h2>{city}</h2>   
+        <ProfileForm dataAcces={this.renderForm}/>
       </div>
     )
   }

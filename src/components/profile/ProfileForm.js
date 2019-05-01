@@ -1,16 +1,24 @@
 import React from 'react'
 import { withFormik, Field } from "formik";
+import user from "../../lib/user-service";
 
+function updateUser(value){
+   user.updateUser(value)
+   .then(responseData=>{
+     console.log(responseData)
+   })
+}
 
 function ProfileForm(props) {
+  
   const {
     handleSubmit,
-    isSubmitting,
-    userUpdate
-
+    isSubmitting
   } = props;
+
+
   return (
-    <form onSubmit={userUpdate}>
+    <form onSubmit={handleSubmit}>
       <label>Age:</label>
       <Field name = "age" type = "number"/>
       <label>Gender:</label>
@@ -19,6 +27,8 @@ function ProfileForm(props) {
       <Field name = "description" type = "string" />
       <label>City:</label>
       <Field name = "city" type = "string"/>
+      <label>Image</label>
+      <Field name = "userImage" type = "file"/>
       <button type= "submit" disabled={isSubmitting}> Submit </button>
     </form>
   )
@@ -26,7 +36,7 @@ function ProfileForm(props) {
 
 export default withFormik({
   handleSubmit(value, formikBag){
-    console.log(value)
+    updateUser(value)
     formikBag.setSubmitting(false)
   }
 
