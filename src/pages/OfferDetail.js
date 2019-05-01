@@ -108,7 +108,7 @@ class OfferDetail extends Component {
     const untilGood = untilISO.getFullYear()+'-' + (untilISO.getMonth()+1) + '-'+untilISO.getDate();
     const offerID = this.props.match.params.id;
     const currentUser = this.props.user._id;
-    const {bids, offerOwner, alreadyBidded} = this.state;
+    const { bids, offerOwner, alreadyBidded } = this.state;
     return (
       <div>
         <Navbar />

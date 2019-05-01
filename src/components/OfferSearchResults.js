@@ -5,17 +5,9 @@ import { Link } from "react-router-dom";
 
 
 class Card extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-        offers: this.props.searchResults,
-    }
-  }
-
-
+  
   render() {
-    const offers = this.state.offers;
-    console.log(offers)
+    const offers = this.props.OfferSearchResults;
     return (
      <div>
        <h2>All offers in your town</h2>

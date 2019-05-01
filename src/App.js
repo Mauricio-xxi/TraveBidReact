@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import Private from "./pages/Private";
 import Signup from "./pages/Signup";
@@ -18,7 +18,7 @@ class App extends Component {
       <AuthProvider>
         <div className="container">
           <Switch>
-            <AnonRoute exact path="/" component={Landing} />
+            <Route exact path="/" component={Landing} />
             <AnonRoute path="/signup" component={Signup} />
             <AnonRoute path="/login" component={Login} />
             <PrivateRoute path="/private" component={Private} />
@@ -30,5 +30,7 @@ class App extends Component {
     );
   }
 }
+
+// crear component container 
 
 export default App;

@@ -4,38 +4,16 @@ import Navbar from "../components/Navbar";
 import Offers from "../components/offers/Offers";
 import Bids from "../components/bids/Bids";
 import SearchOffers from "../components/offers/SearchOffers";
-import offer from '../lib/offer-service';
 
 
 class Private extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-        bids: [],
-    }
-  }
-
-  getAllOffers = () => {
-    offer.showOfferList(this.props.user._id)
-    .then(responseData => {
-        this.setState({
-          offers: responseData
-        })
-    })
-    .catch( error => console.log(error) )
-  }
-
-  componentDidMount() {
-    this.getAllOffers();
-  }
-  
 
   render() {
     return (
       <div>
         <Navbar />
         <h1>Welcome {this.props.user.username}</h1>
-        <SearchOffers/>
+        <SearchOffers />
         <p>------------------------</p>
         <Offers />
         <p>------------------------</p>
