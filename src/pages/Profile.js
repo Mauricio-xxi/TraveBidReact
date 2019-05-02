@@ -11,21 +11,34 @@ class Profile extends Component {
 
   state = {
     user,
+    showUserForm: false,
+    showRoomForm: false,
   }
 
-    getUser(){
+  getUser(){
     user.getUser()
     .then(responseData=>{
       this.setState({
         user:responseData
       })
     })
- }
+  }
 
  componentDidMount(){
    this.getUser()
  }
 
+ showUserFormButton = (e) => {
+  this.setState({
+    showUserForm:true
+  })
+ }
+
+ showRoomFormButton = (e) => {
+  this.setState({
+    showRoomForm:true
+  })
+ }
   renderForm = (value)=> {
     this.setState({
       user:value.data
@@ -43,8 +56,11 @@ class Profile extends Component {
         <h2>{age}</h2>
         <h2>{description}</h2>
         <h2>{city}</h2>   
-        <ProfileForm dataAcces={this.renderForm}/>
-        <RoomData/>
+        <button onClick={this.showUserFormButton}>Update Profile</button>
+        {this.state.showUserForm? <ProfileForm /> : <div/> }
+        <button onClick={this.showRoomFormButton}>Update Room</button>
+        {this.state.showRoomForm? <RoomData/> : <div/> }
+        {/*  */}
       </div>
     )
   }
