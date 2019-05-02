@@ -4,7 +4,6 @@ import { withAuth } from "../lib/AuthProvider";
 import user from "../lib/user-service";
 import  ProfileForm   from "../components/profile/ProfileForm";
 import RoomData from "../components/user/RoomData";
-import RoomGeo from "../components/user/RoomGeo";
 
 
 
@@ -46,8 +45,6 @@ class Profile extends Component {
         <h2>{city}</h2>   
         <ProfileForm dataAcces={this.renderForm}/>
         <RoomData/>
-        {/* <UserData/> */}
-        {/* <RoomGeo /> */}
       </div>
     )
   }
