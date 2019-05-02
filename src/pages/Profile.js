@@ -29,15 +29,21 @@ class Profile extends Component {
  }
 
  showUserFormButton = (e) => {
-  this.setState({
-    showUserForm:true
-  })
+  const { showUserForm} = this.state
+  if(showUserForm){this.setState({
+   showUserForm:false
+ })} else {this.setState({
+   showUserForm:true
+ })}
  }
 
  showRoomFormButton = (e) => {
-  this.setState({
+   const { showRoomForm} = this.state
+   if(showRoomForm){this.setState({
+    showRoomForm:false
+  })} else {this.setState({
     showRoomForm:true
-  })
+  })}
  }
   renderForm = (value)=> {
     this.setState({
