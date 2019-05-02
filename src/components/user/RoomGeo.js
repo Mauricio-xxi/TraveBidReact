@@ -40,12 +40,11 @@ class RoomGeo extends Component {
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     })
-    console.log(this.state.viewport.latitude, this.state.viewport.longitude )
+    console.log(this.state.viewport.latitude, this.state.viewport.longitude)
   }
  
   handleGeocoderViewportChange = (viewport) => {
     const geocoderDefaultOverrides = { transitionDuration: 1000 }
- 
     return this.handleViewportChange({
       ...viewport,
       ...geocoderDefaultOverrides
@@ -65,6 +64,12 @@ class RoomGeo extends Component {
           mapRef={this.mapRef}
           onViewportChange={this.handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
+          // onResult={(results) => {
+          //   console.log("test", results);
+          // }}
+          // onError={(error) =>{
+          //   console.log(error);
+          // }}
         />
       </MapGL>
     )
