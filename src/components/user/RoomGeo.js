@@ -40,7 +40,7 @@ class RoomGeo extends Component {
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     })
-    console.log(this.state.viewport)
+    console.log(this.state.viewport.latitude, this.state.viewport.longitude )
   }
  
   handleGeocoderViewportChange = (viewport) => {
@@ -58,7 +58,7 @@ class RoomGeo extends Component {
         ref={this.mapRef}
         {...this.state.viewport}
         mapStyle="mapbox://styles/mapbox/streets-v9"
-        onViewportChange={this.handleViewportChange}
+        // onViewportChange={this.handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN} 
         >
         <Geocoder
