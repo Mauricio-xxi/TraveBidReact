@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
 import OfferSearchResults from "./OfferSearchResults";
+import user from "../../lib/user-service";
 
 
 
@@ -9,20 +10,32 @@ class SearchOffers extends Component {
     state = {
         offers: [],
         showSearchResults: true,
+        user:{}
     }
   
 
-  handleShowSearchResults = (e) => {
+  handleShowSearchResults = async (e) => {
     const { showSearchResults } = this.state
-    this.setState({
+    await this.search();
+    await this.setState({
       showSearchResults: !showSearchResults
      })
   }
 
+  getUser(){
+    user.getUser()
+    .then(responseData=>{
+      this.setState({
+        user:responseData
+      })
+    })
+ }
+
   
   search = () => {
     // Protect, verify city that user has city
-    offer.searchOffers(this.props.user.city)
+    const city = this.state.user.city
+    offer.searchOffers(city)
       .then(responseData => {
         this.setState({
           offers: responseData
@@ -33,7 +46,7 @@ class SearchOffers extends Component {
 
 
   componentDidMount = ()=> {
-    this.search();
+    this.getUser();
   }
 
   render() {
