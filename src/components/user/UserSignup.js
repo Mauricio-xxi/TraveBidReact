@@ -7,12 +7,16 @@ class Signup extends Component {
     username: "",
     password: "",
     city:"",
+    age:"",
+    gender:"",
+    email:"",
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const { username, password, city } = this.state;
-    this.props.signup({ username, password, city });
+    const { username, password, city, age, gender, email  } = this.state;
+    console.log(username, password, city, age, gender, email)
+    this.props.signup({ username, password, city, age, gender, email });
   };
 
   handleChange = event => {
@@ -21,7 +25,7 @@ class Signup extends Component {
   };
 
   render() {
-    const { username, password, city } = this.state;
+    const { username, password, city , age, gender, email } = this.state;
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
@@ -32,6 +36,13 @@ class Signup extends Component {
             value={username}
             onChange={this.handleChange}
           />
+          <label>Email:</label>
+          <input
+            type="text"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+          />          
           <label>Password:</label>
           <input
             type="password"
@@ -44,6 +55,20 @@ class Signup extends Component {
             type="text"
             name="city"
             value={city}
+            onChange={this.handleChange}
+          />
+          <label>Age:</label>
+           <input
+            type="text"
+            name="age"
+            value={age}
+            onChange={this.handleChange}
+          />
+          <label>Gender:</label>
+           <input
+            type="text"
+            name="gender"
+            value={gender}
             onChange={this.handleChange}
           />
           <input type="submit" value="Signup" />
