@@ -2,15 +2,16 @@ import axios from 'axios';
 
 class Room {
   constructor() {
-    this.Rooms = axios.create({
+    this.rooms = axios.create({
       baseURL: process.env.REACT_APP_URL,
       withCredentials: true
     })
   }
 
   create(room) {
-    const { location, comodities } = room;
-    return this.rooms.post('/room', { location, comodities})
+    console.log(room)
+    const { location, comodities, description } = room;
+    return this.rooms.post('/room', { location, comodities, description})
       .then(({ data }) => {
         return data
       })

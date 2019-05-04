@@ -4,6 +4,7 @@ import { withAuth } from "../lib/AuthProvider";
 import user from "../lib/user-service";
 import  ProfileForm   from "../components/profile/ProfileForm";
 import RoomData from "../components/user/RoomData";
+import  RoomGeo  from "../components/user/RoomGeo";
 
 
 
