@@ -22,11 +22,12 @@ class BidsOnThisOffer extends Component {
   }
 
   getBids = () => {
+    console.log('llamadA GET BIDS')
     const ID = this.props.offerID;
     bid.getBids(ID)
     .then(responseData => {
       this.setState({
-        bids: [...responseData],
+        bids: responseData,
         showBidForm: false,
         showEditBidForm: false,
       })
@@ -55,7 +56,7 @@ class BidsOnThisOffer extends Component {
       })
   }
 
-  renderBidForm = (e) => {
+  renderBidForm = e => {
     this.setState({
       showBidForm: true,
      })
@@ -75,8 +76,16 @@ class BidsOnThisOffer extends Component {
     })
   }
 
-  handleBidStatus = (bidID, description, value, Status, offerID) =>{
-    bid.editBid({ bidID, description, value, Status, offerID })
+  // handleBidStatus = (bidID, description, value, Status, offerID) =>{
+  //   bid.editBid({ bidID, description, value, Status, offerID })
+  //   .then( () => {
+  //     this.getBids()
+  //   })
+  //   .catch( error => console.log(error) )
+  // }
+
+  handleBidStatus = (Status, offerID) =>{
+    bid.updateStatus({ Status, offerID })
     .then( () => {
       this.getBids()
     })
@@ -109,7 +118,7 @@ class BidsOnThisOffer extends Component {
               <p>Value: {bid.value} </p>
               { bid.userID === currentUser ? <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> : <div></div> }
               { bid.userID === currentUser ? <button onClick={this.renderEditBidForm}>Edit</button>:  <div></div>  }
-              { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} getBids={()=> this.getBids()} /> : <div></div>}
+              { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={()=> this.getBids()} /> : <div></div>}
               
               { 
                 offerOwner === this.props.user._id && aBidHasBeenAccepted === false ? 

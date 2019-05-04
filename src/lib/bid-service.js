@@ -36,6 +36,7 @@ class Bid {
     const {bidID, description, value, Status, offerID } = bid;
     return this.bids.put(`/bid/${bidID}`, { description, value, Status, offerID })
       .then(({ data }) => data)
+      .catch(error => console.log(error))
   }
 
 }

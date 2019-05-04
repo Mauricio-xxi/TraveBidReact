@@ -2,33 +2,37 @@ import React, { Component } from 'react';
 import bid from '../../lib/bid-service';
 
 class EditBid extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
-        description: this.props.descriptions, 
-        value: this.props.values, 
-      };
-  }
-
-  componentDidMount() {
-    this.setState({
+    
+  state = {
       description: this.props.description, 
-      value: this.props.value, 
-    });
-  }
+      value: this.props.value,
+      Status: this.props.Status  
+    };
+
+
+  // componentDidMount() {
+  //   this.setState({
+  //     description: this.props.description, 
+  //     value: this.props.value,
+  //     Status: this.props.Status  
+  //   });
+  // }
    
   handleFormSubmit = (event) => {
     event.preventDefault();
     const bidID = this.props.bidID;
-    const { description, value } = this.state;
-    bid.editBid({ bidID, description, value  })
-    .then( () => {
+    const { description, value, Status } = this.state;
+    console.log(Status)
+     bid.editBid({ bidID, description, value, Status  })
+     .then((data)=>{
+       console.log(data)
         this.props.getBids()
         this.setState({
-          description: this.props.descriptions, 
-          value: this.props.values, 
+          description: "", 
+          value: "",
+          Status: "" 
         })
-    })
+      })
     .catch( error => console.log(error) )
   }
 
