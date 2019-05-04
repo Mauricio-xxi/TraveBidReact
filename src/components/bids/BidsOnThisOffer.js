@@ -3,7 +3,6 @@ import { withAuth } from "../../lib/AuthProvider";
 import EditBid from "../bids/EditBid";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
-import offer from '../../lib/offer-service';
 
 
 class BidsOnThisOffer extends Component {
@@ -14,18 +13,21 @@ class BidsOnThisOffer extends Component {
     showBidButton: false,//button to create bid
     showBidForm: false,//form to create bid
     alreadyBidded : false,
+    aBidHasBeenAccepted: false,
   }
 
   componentDidMount() {
     this.getBids();
+    console.log(this.state.aBidHasBeenAccepted)
   }
 
   getBids = () => {
+    console.log('llamadA GET BIDS')
     const ID = this.props.offerID;
     bid.getBids(ID)
     .then(responseData => {
       this.setState({
-        bids: [...responseData],
+        bids: responseData,
         showBidForm: false,
         showEditBidForm: false,
       })
@@ -40,20 +42,21 @@ class BidsOnThisOffer extends Component {
         showEditButton: true,
       })
     }
+    this.checkIfABidHasBeenAccepted(this.state.bids) 
   }
 
-  checkIfUserBidded = () => {
-    let bids = this.state.bids;
-      bids.forEach((bid)=>{
-        if (this.props.user._id === bid.userID){
-         this.setState({
-          alreadyBidded: true,
-        }) 
-      }
-    })
+  checkIfUserBidded = async () => {
+      let bids = this.state.bids;
+      await bids.forEach((bid)=>{
+          if (this.props.user._id === bid.userID){
+           this.setState({
+            alreadyBidded: true,
+          }) 
+        }
+      })
   }
 
-  renderBidForm = (e) => {
+  renderBidForm = e => {
     this.setState({
       showBidForm: true,
      })
@@ -73,17 +76,35 @@ class BidsOnThisOffer extends Component {
     })
   }
 
-  handleBidStatus = (bidID, description, value, Status, offerID) =>{
-    bid.editBid({ bidID, description, value, Status, offerID })
+  // handleBidStatus = (bidID, description, value, Status, offerID) =>{
+  //   bid.editBid({ bidID, description, value, Status, offerID })
+  //   .then( () => {
+  //     this.getBids()
+  //   })
+  //   .catch( error => console.log(error) )
+  // }
+
+  handleBidStatus = (Status, offerID) =>{
+    bid.updateStatus({ Status, offerID })
     .then( () => {
       this.getBids()
     })
     .catch( error => console.log(error) )
   }
 
+  checkIfABidHasBeenAccepted = (bids) => {
+     bids.forEach((bid)=>{
+      if (bid.Status === 1){
+       this.setState({
+        aBidHasBeenAccepted: true,
+      }) 
+     }
+   })
+  }
+
 
   render() {
-    const { bids, alreadyBidded, showBidForm, showEditBidForm } = this.state;
+    const { bids, alreadyBidded, showBidForm, showEditBidForm, aBidHasBeenAccepted  } = this.state;
     const { offerOwner, offerID } = this.props;
     const currentUser = this.props.user._id;
 
@@ -97,17 +118,17 @@ class BidsOnThisOffer extends Component {
               <p>Value: {bid.value} </p>
               { bid.userID === currentUser ? <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> : <div></div> }
               { bid.userID === currentUser ? <button onClick={this.renderEditBidForm}>Edit</button>:  <div></div>  }
-              { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} getBids={()=> this.getBids()} /> : <div></div>}
+              { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={()=> this.getBids()} /> : <div></div>}
               
               { 
-                offerOwner === this.props.user._id ? 
+                offerOwner === this.props.user._id && aBidHasBeenAccepted === false ? 
                 <button onClick= {()=>this.handleBidStatus(bid._id, bid.description, bid.value, 1, offerID)}> Accept</button> 
                 : <div></div>  
               }
 
               { 
-                offerOwner === this.props.user._id ? 
-                <button onClick={()=>this.handleBidStatus(bid._id, bid.description, bid.value, 2)}> Reject</button> 
+                offerOwner === this.props.user._id && aBidHasBeenAccepted === false ? 
+                <button onClick={()=>this.handleBidStatus(bid._id, bid.description, bid.value, 2) }> Reject</button> 
                 : <div></div> 
               } 
               <p>--------------------------------------------</p>

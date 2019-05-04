@@ -9,16 +9,16 @@ import user from "../../lib/user-service";
 class SearchOffers extends Component {
     state = {
         offers: [],
-        showSearchResults: true,
+        showSearchResults: false,
         user:{}
     }
   
 
   handleShowSearchResults = async (e) => {
-    const { showSearchResults } = this.state
+    // const { showSearchResults } = this.state
     await this.search();
     await this.setState({
-      showSearchResults: !showSearchResults
+      showSearchResults: true
      })
   }
 
@@ -37,6 +37,7 @@ class SearchOffers extends Component {
     const city = this.state.user.city
     offer.searchOffers(city)
       .then(responseData => {
+        console.log(responseData)
         this.setState({
           offers: responseData
         })
@@ -54,9 +55,9 @@ class SearchOffers extends Component {
     return (
       <div>
        <button onClick={this.handleShowSearchResults}>
-        { showSearchResults ? 'View offers in your town' : 'Hide'}
+        { !showSearchResults ? 'View offers in your town' : 'Hide'}
         </button>
-        { !showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
+        { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       </div>
       
     );
