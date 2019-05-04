@@ -1,6 +1,8 @@
 import React from 'react'
 import { withFormik, Field } from "formik";
 import user from "../../lib/user-service";
+import  FileUpload  from "../firebase/index";
+
 
 function updateUser(value){
    user.updateUser(value)
@@ -18,6 +20,9 @@ function ProfileForm(props) {
 
 
   return (
+    <div>
+      <label>Image</label>
+      <FileUpload></FileUpload>
     <form onSubmit={handleSubmit}>
       <label>Age:</label>
       <Field name = "age" type = "number"/>
@@ -27,10 +32,9 @@ function ProfileForm(props) {
       <Field name = "description" type = "string" />
       <label>City:</label>
       <Field name = "city" type = "string"/>
-      <label>Image</label>
-      <Field name = "userImage" type = "file"/>
       <button type= "submit" disabled={isSubmitting}> Submit </button>
     </form>
+  </div>
   )
 }
 
