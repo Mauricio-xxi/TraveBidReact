@@ -16,9 +16,10 @@ class Profile extends Component {
     showRoomForm: false,
   }
 
-  getUser(){
+  getUser = () => {
     user.getUser()
     .then(responseData=>{
+      console.log(responseData)
       this.setState({
         user:responseData
       })
@@ -64,7 +65,7 @@ class Profile extends Component {
         <h2>{description}</h2>
         <h2>{city}</h2>   
         <button onClick={this.showUserFormButton}>Update Profile</button>
-        {this.state.showUserForm? <ProfileForm /> : <div/> }
+        {this.state.showUserForm? <ProfileForm  getUser={this.getUser}/> : <div/> }
         <button onClick={this.showRoomFormButton}>Update Room</button>
         {this.state.showRoomForm? <RoomData/> : <div/> }
         {/*  */}

@@ -22,6 +22,7 @@ class ProfileForm extends Component {
       .then(responseData=>{
         console.log(responseData)
       })
+      this.props.getUser()
    }
 
   getUrl = (url) => {
