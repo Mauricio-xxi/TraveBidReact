@@ -65,7 +65,7 @@ class Profile extends Component {
         <h2>{description}</h2>
         <h2>{city}</h2>   
         <button onClick={this.showUserFormButton}>Update Profile</button>
-        {this.state.showUserForm? <ProfileForm  getUser={this.getUser}/> : <div/> }
+        {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} /> : <div/> }
         <button onClick={this.showRoomFormButton}>Update Room</button>
         {this.state.showRoomForm? <RoomData/> : <div/> }
         {/*  */}
