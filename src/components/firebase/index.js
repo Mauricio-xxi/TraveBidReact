@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase'
 
-firebase.initializeApp({
-  apiKey: "AIzaSyCIZeYGN84Y4USmGRs0GmJLywFJewPGsjo",
-  authDomain: "travelbid-1552229318200.firebaseapp.com",
-  databaseURL: "https://travelbid-1552229318200.firebaseio.com",
-  projectId: "travelbid-1552229318200",
-  storageBucket: "travelbid-1552229318200.appspot.com",
-  messagingSenderId: "357225272013",
-  appId: "1:357225272013:web:6b4b08108dba91db"
+firebase.initializeApp({ 
+  apiKey: process.env.APIKEY,
+  authDomain: process.env.AUTHDOMAIN,
+  databaseURL: process.env.DATABASEURL,
+  projectId: process.env.PROJECTID,
+  storageBucket: process.env.STORAGEBUCKET,
+  messagingSenderId: process.env.MESSAGINGSENDERID,
+  appId: process.env.APPID
 })
 
 class FileUpload extends Component {
