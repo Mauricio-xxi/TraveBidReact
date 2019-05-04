@@ -1,47 +1,61 @@
-import React from 'react'
-import { withFormik, Field } from "formik";
+import React, { Component } from "react";
+// import { withFormik, Field } from "formik";
 import user from "../../lib/user-service";
 import  FileUpload  from "../firebase/index";
 
 
-function updateUser(value){
-   user.updateUser(value)
-   .then(responseData=>{
-     console.log(responseData)
-   })
-}
+class ProfileForm extends Component {
+    state = {
+      age: "",
+      gender:"",
+      city:"",
+      description:"",
+      userImage:""
+    }
 
-function ProfileForm(props) {
-  
-  const {
-    handleSubmit,
-    isSubmitting
-  } = props;
-
-
-  return (
-    <div>
-      <label>Image</label>
-      <FileUpload></FileUpload>
-    <form onSubmit={handleSubmit}>
-      <label>Age:</label>
-      <Field name = "age" type = "number"/>
-      <label>Gender:</label>
-      <Field  name = "gender" type = "string"/>
-      <label>Description:</label>
-      <Field name = "description" type = "string" />
-      <label>City:</label>
-      <Field name = "city" type = "string"/>
-      <button type= "submit" disabled={isSubmitting}> Submit </button>
-    </form>
-  </div>
-  )
-}
-
-export default withFormik({
-  handleSubmit(value, formikBag){
-    updateUser(value)
-    formikBag.setSubmitting(false)
+  submit = () => {
+    this.updateUser(this.state)
   }
 
-})(ProfileForm);
+  updateUser = (data) => {
+      user.updateUser(data)
+      .then(responseData=>{
+        console.log(responseData)
+      })
+   }
+
+  getUrl = (url) => {
+    this.setState({
+      userImage: url,
+    })
+  }
+
+  handleChange = event => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
+
+  render () {
+    return (
+     <div>
+        <label>Image</label>
+        <FileUpload getUrl={this.getUrl }></FileUpload>
+
+      <form>
+        <label>Age:</label>
+        <input name = "age" type = "number" onChange={this.handleChange}/>
+        <label>Gender:</label>
+        <input  name = "gender" type = "string" onChange={this.handleChange}/>
+        <label>Description:</label>
+        <input name = "description" type = "string"  onChange={this.handleChange}/>
+        <label>City:</label>
+        <input name = "city" type = "string" onChange={this.handleChange}/>
+      </form>
+      <button type= "submit" onClick={this.submit}> Submit </button>
+
+     </div>
+    )
+  } 
+}
+
+export default ProfileForm;

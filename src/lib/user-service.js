@@ -13,7 +13,6 @@ import axios from 'axios';
   }
   async updateUser(userInfo){
     const {
-      email,
       age,
       gender,
       description,
@@ -21,7 +20,7 @@ import axios from 'axios';
       userImage
     } = userInfo;
     try {
-      const data = await this.user.put(`/profile`,{      email,
+      const data = await this.user.put(`/profile`,{
         age,
         gender,
         description,

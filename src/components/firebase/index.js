@@ -27,7 +27,6 @@ class FileUpload extends Component {
 
     task.on('state_changed', (snapshot) => {
       let percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-      console.log(snapshot)
       this.setState({
         uploadValue: percentage
       })
@@ -35,13 +34,12 @@ class FileUpload extends Component {
       console.error(error.message)
     }, () => {
       task.snapshot.ref.getDownloadURL().then((downloadURL) => {
+        this.props.getUrl(downloadURL)
         this.setState({
           picture: downloadURL
         })
       })
       // Upload complete
-      
-      console.log(this.state)
     })
   }
 
