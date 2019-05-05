@@ -18,6 +18,7 @@ class CreateOffer extends Component {
     offer.create({ location, budget, from, until })
     .then( () => {
         this.props.getOffers()
+        this.props.renderOfferForm()
         this.setState({
           location:"",
           budget: "",
