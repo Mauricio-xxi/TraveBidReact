@@ -9,7 +9,7 @@ import OfferCard from "../offers/OfferCard";
 class Offers extends Component {
     state = {
         offers: [],
-        showCreateOfferForm: true,
+        showCreateOfferForm: false,
         showEditOfferForm: false,
         offerToEdit:{},
     }
@@ -30,9 +30,16 @@ class Offers extends Component {
   }
 
   renderOfferForm = (e) => {
-    this.setState({
-      showCreateOfferForm: !this.state.showCreateOfferForm
+    const { showCreateOfferForm } = this.state
+    if (showCreateOfferForm === false){
+       this.setState({
+       showCreateOfferForm: true
+      })
+    } else if (showCreateOfferForm === true ){
+      this.setState({
+      showCreateOfferForm: false
      })
+    }
   }
 
   renderEditOfferForm = (offer) => {
@@ -56,6 +63,13 @@ class Offers extends Component {
     return (
       <div>
 
+        <button onClick={this.renderOfferForm}> Create offer </button>
+        <p>------------------------</p>
+
+        { showCreateOfferForm ? 
+            <CreateOffer getOffers={()=>this.getOffers()} renderOfferForm={()=>this.renderOfferForm()}/> 
+        : <div></div> }
+
         <OfferCard 
           offers={offers}
           deleteOffer={this.deleteOffer}
@@ -69,16 +83,6 @@ class Offers extends Component {
             getOffers= {()=>this.getOffers() 
             }/> 
         : <div></div>}
-
-        <p>------------------------</p>
-
-        <button onClick={this.renderOfferForm}>
-        { showCreateOfferForm ? 'Create offer' : 'Hide'}
-        </button>
-
-        { !showCreateOfferForm ? 
-            <CreateOffer getOffers={()=>this.getOffers()}/> 
-        : <div></div> }
 
       </div>
     );
