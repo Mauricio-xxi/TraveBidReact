@@ -3,6 +3,9 @@ import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
 import OfferSearchResults from "./OfferSearchResults";
 import user from "../../lib/user-service";
+import { Button } from 'reactstrap';
+import '../../stylesheets/styles.css'
+
 
 
 
@@ -53,10 +56,10 @@ class SearchOffers extends Component {
   render() {
     const { showSearchResults, offers } = this.state;
     return (
-      <div>
-       <button onClick={this.handleShowSearchResults}>
+      <div className="centeredComponents">
+       <Button color= "warning" onClick={this.handleShowSearchResults}>
         { !showSearchResults ? 'View offers in your town' : 'Hide'}
-        </button>
+        </Button>
         { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       </div>
       
