@@ -25,7 +25,6 @@ class OfferSearchResults extends Component {
            </div>
          )
        })}
-       <p><strong>--------------------------------</strong></p>
      </div>
     )
   }
