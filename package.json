@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
     "firebase": "^5.11.1",
     "formik": "^1.5.4",
     "react": "^16.5.2",
@@ -12,7 +13,8 @@
     "react-map-gl": "^4.1.2",
     "react-map-gl-geocoder": "^2.0.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^2.1.8",
+    "reactstrap": "^8.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
