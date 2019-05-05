@@ -18,11 +18,9 @@ class BidsOnThisOffer extends Component {
 
   componentDidMount() {
     this.getBids();
-    console.log(this.state.aBidHasBeenAccepted)
   }
 
   getBids = () => {
-    console.log('llamadA GET BIDS')
     const ID = this.props.offerID;
     bid.getBids(ID)
     .then(responseData => {
@@ -42,7 +40,6 @@ class BidsOnThisOffer extends Component {
         showEditButton: true,
       })
     }
-    this.checkIfABidHasBeenAccepted(this.state.bids) 
   }
 
   checkIfUserBidded = async () => {
@@ -54,6 +51,7 @@ class BidsOnThisOffer extends Component {
           }) 
         }
       })
+      await this.checkIfABidHasBeenAccepted(bids);
   }
 
   renderBidForm = e => {
@@ -76,24 +74,25 @@ class BidsOnThisOffer extends Component {
     })
   }
 
-  // handleBidStatus = (bidID, description, value, Status, offerID) =>{
-  //   bid.editBid({ bidID, description, value, Status, offerID })
-  //   .then( () => {
-  //     this.getBids()
-  //   })
-  //   .catch( error => console.log(error) )
-  // }
-
-  handleBidStatus = (Status, offerID) =>{
-    bid.updateStatus({ Status, offerID })
+ 
+  acceptBid = (bidID, Status, offerID) =>{
+    bid.acceptBid({ bidID, Status, offerID })
     .then( () => {
       this.getBids()
     })
     .catch( error => console.log(error) )
   }
 
-  checkIfABidHasBeenAccepted = (bids) => {
-     bids.forEach((bid)=>{
+  declineBid = (bidID, Status) =>{
+    bid.declineBid({ bidID, Status })
+    .then( () => {
+      this.getBids()
+    })
+    .catch( error => console.log(error) )
+  }
+
+  checkIfABidHasBeenAccepted = async (bids) => {
+    await bids.forEach((bid)=>{
       if (bid.Status === 1){
        this.setState({
         aBidHasBeenAccepted: true,
@@ -121,14 +120,14 @@ class BidsOnThisOffer extends Component {
               { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={()=> this.getBids()} /> : <div></div>}
               
               { 
-                offerOwner === this.props.user._id && aBidHasBeenAccepted === false ? 
-                <button onClick= {()=>this.handleBidStatus(bid._id, bid.description, bid.value, 1, offerID)}> Accept</button> 
+                offerOwner === this.props.user._id && aBidHasBeenAccepted === false && bid.Status === 0 ? 
+                <button onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> Accept</button> 
                 : <div></div>  
               }
 
               { 
-                offerOwner === this.props.user._id && aBidHasBeenAccepted === false ? 
-                <button onClick={()=>this.handleBidStatus(bid._id, bid.description, bid.value, 2) }> Reject</button> 
+                offerOwner === this.props.user._id && aBidHasBeenAccepted === false  && bid.Status === 0 ? 
+                <button onClick={()=>this.declineBid(bid._id, 2) }> Decline</button> 
                 : <div></div> 
               } 
               <p>--------------------------------------------</p>
