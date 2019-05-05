@@ -22,7 +22,7 @@ class SearchOffers extends Component {
      })
   }
 
-  getUser(){
+  getUser = () => {
     user.getUser()
     .then(responseData=>{
       this.setState({
