@@ -2,29 +2,29 @@ import React, { Component } from 'react';
 import offer from '../../lib/offer-service';
 
 class EditOffer extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
-        budget: "",
-        from: "",
-        until:"",  
+      
+    state = {
+        budget: this.props.offer.budget,
+        from: this.props.offer.from,
+        until: this.props.offer.until, 
       };
-  }
+  
 
-  componentDidMount() {
-    this.setState({
-      budget: this.props.offer.budget,
-      from: this.props.offer.from,
-      until: this.props.offer.until, 
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     budget: this.props.offer.budget,
+  //     from: this.props.offer.from,
+  //     until: this.props.offer.until, 
+  //   });
+  // }
    
   handleFormSubmit = (event) => {
     event.preventDefault();
     const offerID = this.props.offerID;
     const { budget, from, until } = this.state;
     offer.editOffer({ offerID, budget, from, until })
-    .then( () => {
+    .then( (data) => {
+      console.log(data)
         this.props.getOffers()
         this.setState({
           budget: "",
