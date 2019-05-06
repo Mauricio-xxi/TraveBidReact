@@ -3,7 +3,7 @@ import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
 import CreateOffer from "../offers/CreateOffer";
 import EditOffer from "../offers/EditOffer";
-import OfferCard from "../offers/OfferCard";
+// import OfferCard from "../offers/OfferCard";
 import OfferCarousel from "../offers/OfferCarousel";
 import { Button } from 'reactstrap';
 
@@ -21,6 +21,7 @@ class Offers extends Component {
   }
 
   getOffers = () => {
+    console.log('we are getting offers')
     offer.showOfferList(this.props.user._id)
     .then(responseData => {
         this.setState({
@@ -82,15 +83,15 @@ class Offers extends Component {
             offers={offers} 
             deleteOffer={this.deleteOffer}
             showEditOfferForm={this.renderEditOfferForm}
-        />: <div></div> }
+        /> : <div></div> }
 
 
         {showEditOfferForm ? 
             <EditOffer 
             offer={offerToEdit} 
             offerID={offerToEdit._id} 
-            getOffers= {()=>this.getOffers() 
-            }/> 
+            getOffers= {()=>this.getOffers()}
+            /> 
         : <div></div>}
 
       </div>
