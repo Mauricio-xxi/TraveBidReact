@@ -40,14 +40,8 @@ class Offer {
     const { offerID, from, until, budget} = offer;
     return this.offers.put(`/offer/${offerID}`, {from, until, budget})
       .then(({ data }) => data)
+      .catch(error => console.log(error))
   }
-
-  // updateStatus(offer) {
-  //   const { offerID, Status} = offer;
-  //   return this.offers.put(`/offer/${offerID}/status`, { Status })
-  //     .then(({ data }) => data)
-  // }
-
 
 }
 
