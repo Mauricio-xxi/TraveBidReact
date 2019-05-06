@@ -117,7 +117,7 @@ class BidsOnThisOffer extends Component {
               <p>Value: {bid.value} </p>
               { bid.userID === currentUser ? <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> : <div></div> }
               { bid.userID === currentUser ? <button onClick={this.renderEditBidForm}>Edit</button>:  <div></div>  }
-              { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={()=> this.getBids()} /> : <div></div>}
+              { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={this.getBids} /> : <div></div>}
               
               { 
                 offerOwner === this.props.user._id && aBidHasBeenAccepted === false && bid.Status === 0 ? 
