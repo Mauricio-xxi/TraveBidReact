@@ -1,27 +1,66 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
-class Navbar extends Component {
+import { Nav, NavItem, Navbar, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, } from 'reactstrap';
+
+
+class NavbarTravel extends Component {
+    
+  state = {
+      dropdownOpen: false
+    }
+
+
+  toggle =  () => {
+    const dropDownState = this.state.dropdownOpen;
+    if (dropDownState === false){
+        this.setState({
+        dropdownOpen: true,
+      });
+    } else if (dropDownState === true){
+      this.setState({
+        dropdownOpen: false,
+      });
+    }
+  }
+
   render() {
     const { logout, isLoggedin } = this.props;
+
     return (
+
       <div>
-        {isLoggedin ? (
-          <>
-            <h1>TravelBID</h1>
-            {/* <h2>username: {user.username}</h2> */}
-            <button onClick={logout}>Logout</button>
-            <Link  to="/profile">Profile</Link>
-          </>
-        ) : (
-          <>
+      {isLoggedin ? (
+        <>
+        <Navbar color="light" light expand="md" fixed="top">
+          <Nav >
+            <NavItem>
+              <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                <DropdownToggle nav caret>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem><p onClick={logout}>Logout</p> </DropdownItem>
+                  <DropdownItem><Link  to="/profile">Profile</Link></DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            </NavItem>
+            <NavItem>
+              <h3>TravelBID</h3>
+            </NavItem>
+          </Nav>
+        </Navbar>
+        </>
+      ) : (
+        <> 
+          <Nav>
             <Link to="/login">Login</Link>
             <Link to="/signup">Signup</Link>
-          </>
-        )}
-      </div>
+          </Nav> 
+        </>
+      )}
+    </div>
     );
   }
 }
 
-export default withAuth(Navbar);
+export default withAuth(NavbarTravel);
