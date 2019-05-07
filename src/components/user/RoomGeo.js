@@ -40,7 +40,7 @@ class RoomGeo extends Component {
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     })
-    console.log(this.state.viewport.latitude, this.state.viewport.longitude)
+    this.props.getCoordinates([this.state.viewport.latitude, this.state.viewport.longitude])
   }
  
   handleGeocoderViewportChange = (viewport) => {
