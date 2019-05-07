@@ -34,7 +34,6 @@ class NavbarTravel extends Component {
         <>
         <Navbar color="light" light expand="md" fixed="top">
           <Nav >
-            <NavItem>
               <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
                 </DropdownToggle>
@@ -43,7 +42,6 @@ class NavbarTravel extends Component {
                   <DropdownItem><Link  to="/profile">Profile</Link></DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-            </NavItem>
             <NavItem>
               <h3>TravelBID</h3>
             </NavItem>
