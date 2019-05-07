@@ -11,8 +11,8 @@ class Room {
   create(room) {
     console.log(room)
     const type = "Point";
-    const { location, comodities, description } = room;
-    return this.rooms.post('/room', { location, comodities, description, type})
+    const { location, comodities, description, roomImage, coordinates } = room;
+    return this.rooms.post('/room', { location, comodities, description, type, roomImage, coordinates})
       .then(({ data }) => {
         return data
       })
