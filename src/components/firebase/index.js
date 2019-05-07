@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as firebase from 'firebase'
 
-firebase.initializeApp({
+firebase.initializeApp({ 
   apiKey: process.env.REACT_APP_APIKEY,
   authDomain: process.env.REACT_APP_AUTHDOMAIN,
   databaseURL: process.env.REACT_APP_DATABASEURL,
@@ -9,7 +9,8 @@ firebase.initializeApp({
   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
   appId: process.env.REACT_APP_APPID
- })
+})
+
 
 class FileUpload extends Component {
   constructor () {

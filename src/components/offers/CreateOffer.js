@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import offer from '../../lib/offer-service';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class CreateOffer extends Component {
   constructor(props) {
@@ -37,17 +38,26 @@ class CreateOffer extends Component {
   render() {
     return(
       <div>
-       <form onSubmit={this.handleFormSubmit}>
-         <label>Location:</label>
-         <input type="text" name="location" value={this.state.location} onChange={e => this.handleChange(e)}/>
-         <label>Budget:</label>
-         <input type="number" name="budget" value={this.state.budget} onChange={e => this.handleChange(e)} />
-         <label>From:</label>
-         <input type="date" name="from" value={this.state.from} onChange={e => this.handleChange(e)} />
-         <label>Until:</label>
-         <input type="date" name="until" value={this.state.until} onChange={e => this.handleChange(e)} />
-         <input type="submit" value="Submit" />
-       </form>
+       <Form onSubmit={this.handleFormSubmit}>
+          <FormGroup>
+            <Label>Location:</Label>
+            <Input type="text" name="location" value={this.state.location} onChange={e => this.handleChange(e)}/>
+          </FormGroup>
+          <FormGroup>
+            <Label>Budget:</Label>
+            <Input type="number" name="budget" value={this.state.budget} onChange={e => this.handleChange(e)} />
+          </FormGroup>
+          <FormGroup>
+            <Label>From:</Label>
+            <Input type="date" name="from" value={this.state.from} onChange={e => this.handleChange(e)} />
+          </FormGroup>
+          <FormGroup>
+            <Label>Until:</Label>
+            <Input type="date" name="until" value={this.state.until} onChange={e => this.handleChange(e)} />
+          </FormGroup>
+            <Button color= "success" type="submit" value="Submit"> Create</Button>
+            {/* <Input type="submit" value="Submit" /> */}
+       </Form>
       </div>
     )
   }

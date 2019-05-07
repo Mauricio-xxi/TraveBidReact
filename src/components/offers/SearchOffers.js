@@ -3,6 +3,9 @@ import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
 import OfferSearchResults from "./OfferSearchResults";
 import user from "../../lib/user-service";
+import { Button } from 'reactstrap';
+import '../../stylesheets/styles.css'
+
 
 
 
@@ -12,14 +15,19 @@ class SearchOffers extends Component {
         showSearchResults: false,
         user:{}
     }
-  
 
   handleShowSearchResults = async (e) => {
-    // const { showSearchResults } = this.state
-    await this.search();
-    await this.setState({
-      showSearchResults: true
-     })
+    await this.search()
+    const { showSearchResults } = this.state
+    if (showSearchResults === false) {
+      this.setState({
+        showSearchResults: true
+      })
+    } else if  (showSearchResults === true) {
+      this.setState({
+        showSearchResults: false
+      })
+    }
   }
 
   getUser = () => {
@@ -53,10 +61,10 @@ class SearchOffers extends Component {
   render() {
     const { showSearchResults, offers } = this.state;
     return (
-      <div>
-       <button onClick={this.handleShowSearchResults}>
-        { !showSearchResults ? 'View offers in your town' : 'Hide'}
-        </button>
+      <div className="centeredComponents">
+       <Button color= "warning" onClick={this.handleShowSearchResults}>
+        View offers in your town
+        </Button>
         { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       </div>
       

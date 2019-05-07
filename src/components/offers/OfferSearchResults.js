@@ -11,7 +11,6 @@ class OfferSearchResults extends Component {
     const { offers } = this.props;
     return (
      <div>
-       <h2>All offers in your town</h2>
        {offers.map((offer)=>{
          const from = transformDate(offer.from)
          const until = transformDate(offer.until)
@@ -25,7 +24,6 @@ class OfferSearchResults extends Component {
            </div>
          )
        })}
-       <p><strong>--------------------------------</strong></p>
      </div>
     )
   }

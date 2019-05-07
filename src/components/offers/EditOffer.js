@@ -1,36 +1,36 @@
 import React, { Component } from 'react';
 import offer from '../../lib/offer-service';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class EditOffer extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
-        budget: "",
-        from: "",
-        until:"",  
+      
+    state = {
+        budget: this.props.offer.budget,
+        from: this.props.offer.from,
+        until: this.props.offer.until, 
       };
-  }
+  
 
-  componentDidMount() {
-    this.setState({
-      budget: this.props.offer.budget,
-      from: this.props.offer.from,
-      until: this.props.offer.until, 
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     budget: this.props.offer.budget,
+  //     from: this.props.offer.from,
+  //     until: this.props.offer.until, 
+  //   });
+  // }
    
   handleFormSubmit = (event) => {
     event.preventDefault();
     const offerID = this.props.offerID;
     const { budget, from, until } = this.state;
     offer.editOffer({ offerID, budget, from, until })
-    .then( () => {
-        this.props.getOffers()
+    .then( (data) => {
+      console.log(data)
         this.setState({
           budget: "",
           from: "",
           until:"", 
-        })
+        }, () =>this.props.getOffers())
     })
     .catch( error => console.log(error) )
   }
@@ -43,15 +43,22 @@ class EditOffer extends Component {
   render() {
     return(
       <div>
-       <form onSubmit={this.handleFormSubmit}>
-         <label>Budget:</label>
-         <input type="number" name="budget"  onChange={e => this.handleChange(e)} />
-         <label>From:</label>
-         <input type="date" name="from" onChange={e => this.handleChange(e)} />
-         <label>Until:</label>
-         <input type="date" name="until"  onChange={e => this.handleChange(e)} />
-         <input type="submit" value="Submit" />
-       </form>
+       <Form onSubmit={this.handleFormSubmit}>
+        <FormGroup>
+          <Label>Budget:</Label>
+          <Input type="number" name="budget"  onChange={e => this.handleChange(e)} />
+        </FormGroup>
+        <FormGroup>
+          <Label>From:</Label>
+          <Input type="date" name="from" onChange={e => this.handleChange(e)} />
+        </FormGroup>
+        <FormGroup>
+          <Label>Until:</Label>
+          <Input type="date" name="until"  onChange={e => this.handleChange(e)} />
+        </FormGroup>
+          <Button color= "success" type="submit" value="Edit">Edit</Button>
+          {/* <input type="submit" value="Submit" /> */}
+       </Form>
       </div>
     )
   }

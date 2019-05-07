@@ -3,7 +3,9 @@ import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
 import CreateOffer from "../offers/CreateOffer";
 import EditOffer from "../offers/EditOffer";
-import OfferCard from "../offers/OfferCard";
+// import OfferCard from "../offers/OfferCard";
+import OfferCarousel from "../offers/OfferCarousel";
+import { Button } from 'reactstrap';
 
 
 class Offers extends Component {
@@ -18,11 +20,12 @@ class Offers extends Component {
     this.getOffers();
   }
 
+
   getOffers = () => {
     offer.showOfferList(this.props.user._id)
     .then(responseData => {
         this.setState({
-          offers: responseData,
+          offers: [...responseData],
           showEditOfferForm: false,
         })
     })
@@ -61,27 +64,34 @@ class Offers extends Component {
   render() {
     const { showCreateOfferForm, showEditOfferForm, offers, offerToEdit } = this.state;
     return (
-      <div>
+      <div className='centeredComponents'>
 
-        <button onClick={this.renderOfferForm}> Create offer </button>
-        <p>------------------------</p>
+        <Button className='centeredComponents' color= "primary"onClick={this.renderOfferForm}> Create offer </Button>
 
         { showCreateOfferForm ? 
-            <CreateOffer getOffers={()=>this.getOffers()} renderOfferForm={()=>this.renderOfferForm()}/> 
+            <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
         : <div></div> }
 
-        <OfferCard 
+        {/* <OfferCard 
           offers={offers}
           deleteOffer={this.deleteOffer}
           showEditOfferForm={this.renderEditOfferForm}
+        /> */}
+
+
+          <OfferCarousel 
+            offers={offers} 
+            deleteOffer={this.deleteOffer}
+            showEditOfferForm={this.renderEditOfferForm}
         />
+
 
         {showEditOfferForm ? 
             <EditOffer 
             offer={offerToEdit} 
             offerID={offerToEdit._id} 
-            getOffers= {()=>this.getOffers() 
-            }/> 
+            getOffers= {this.getOffers}
+            /> 
         : <div></div>}
 
       </div>

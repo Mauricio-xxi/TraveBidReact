@@ -12,11 +12,9 @@ class Private extends Component {
     return (
       <div>
         <Navbar />
-        <h1>Welcome {this.props.user.username}</h1>
+        <h2>Welcome {this.props.user.username}</h2>
         <SearchOffers />
-        <p>------------------------</p>
         <Offers />
-        <p>------------------------</p>
         <Bids/>
       </div>
     );

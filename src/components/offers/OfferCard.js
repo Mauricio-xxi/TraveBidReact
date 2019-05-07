@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import { Link } from "react-router-dom";
 import transformDate from "../../functions/dates"
+import { Button } from 'reactstrap';
+
 
 
 class OfferCard extends Component {
@@ -23,8 +25,9 @@ class OfferCard extends Component {
                 <p>Until: {until}</p> 
                 <p>Budget: {offer.budget}</p>
               </Link>
-              <button onClick={()=>deleteOffer(offer._id)}>Delete Offer</button> 
-              <button onClick={()=>showEditOfferForm(offer)}>Edit Offer</button>
+              {/* <Button onClick={()=>deleteOffer(offer._id)}>Delete Offer</Button> */}
+              <Button color="danger" onClick={()=>deleteOffer(offer._id)}>Delete Offer</Button>{' '}
+              <Button color="success" onClick={()=>showEditOfferForm(offer)}>Edit Offer</Button>{' '}
             </div>
           )
         })}
