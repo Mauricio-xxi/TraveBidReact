@@ -20,6 +20,10 @@ class Offers extends Component {
     this.getOffers();
   }
 
+  componentWillUnmount (){
+    console.log('component is unmounting')
+  }
+
   getOffers = () => {
     offer.showOfferList(this.props.user._id)
     .then(responseData => {

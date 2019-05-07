@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import offer from '../../lib/offer-service';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 class EditOffer extends Component {
       
@@ -43,15 +44,22 @@ class EditOffer extends Component {
   render() {
     return(
       <div>
-       <form onSubmit={this.handleFormSubmit}>
-         <label>Budget:</label>
-         <input type="number" name="budget"  onChange={e => this.handleChange(e)} />
-         <label>From:</label>
-         <input type="date" name="from" onChange={e => this.handleChange(e)} />
-         <label>Until:</label>
-         <input type="date" name="until"  onChange={e => this.handleChange(e)} />
-         <input type="submit" value="Submit" />
-       </form>
+       <Form onSubmit={this.handleFormSubmit}>
+        <FormGroup>
+          <Label>Budget:</Label>
+          <Input type="number" name="budget"  onChange={e => this.handleChange(e)} />
+        </FormGroup>
+        <FormGroup>
+          <Label>From:</Label>
+          <Input type="date" name="from" onChange={e => this.handleChange(e)} />
+        </FormGroup>
+        <FormGroup>
+          <Label>Until:</Label>
+          <Input type="date" name="until"  onChange={e => this.handleChange(e)} />
+        </FormGroup>
+          <Button color= "success" type="submit" value="Edit">Edit</Button>
+          {/* <input type="submit" value="Submit" /> */}
+       </Form>
       </div>
     )
   }

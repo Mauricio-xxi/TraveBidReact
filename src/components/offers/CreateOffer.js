@@ -55,8 +55,8 @@ class CreateOffer extends Component {
             <Label>Until:</Label>
             <Input type="date" name="until" value={this.state.until} onChange={e => this.handleChange(e)} />
           </FormGroup>
-            {/* <Button color= "success" type="submit" value="Submit"> Create</Button> */}
-            <Input type="submit" value="Submit" />
+            <Button color= "success" type="submit" value="Submit"> Create</Button>
+            {/* <Input type="submit" value="Submit" /> */}
        </Form>
       </div>
     )
