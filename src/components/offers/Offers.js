@@ -20,9 +20,6 @@ class Offers extends Component {
     this.getOffers();
   }
 
-  componentWillUnmount (){
-    console.log('component is unmounting')
-  }
 
   getOffers = () => {
     offer.showOfferList(this.props.user._id)
@@ -72,7 +69,7 @@ class Offers extends Component {
         <Button className='centeredComponents' color= "primary"onClick={this.renderOfferForm}> Create offer </Button>
 
         { showCreateOfferForm ? 
-            <CreateOffer getOffers={this.getOffers} renderOfferForm={()=>this.renderOfferForm()}/> 
+            <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
         : <div></div> }
 
         {/* <OfferCard 
@@ -81,19 +78,19 @@ class Offers extends Component {
           showEditOfferForm={this.renderEditOfferForm}
         /> */}
 
-        { offers.length >= 1 ? 
+
           <OfferCarousel 
             offers={offers} 
             deleteOffer={this.deleteOffer}
             showEditOfferForm={this.renderEditOfferForm}
-        /> : <div></div> }
+        />
 
 
         {showEditOfferForm ? 
             <EditOffer 
             offer={offerToEdit} 
             offerID={offerToEdit._id} 
-            getOffers= {()=>this.getOffers()}
+            getOffers= {this.getOffers}
             /> 
         : <div></div>}
 
