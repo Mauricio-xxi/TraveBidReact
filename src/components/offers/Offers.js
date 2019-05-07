@@ -28,7 +28,7 @@ class Offers extends Component {
     offer.showOfferList(this.props.user._id)
     .then(responseData => {
         this.setState({
-          offers: responseData,
+          offers: [...responseData],
           showEditOfferForm: false,
         })
     })
