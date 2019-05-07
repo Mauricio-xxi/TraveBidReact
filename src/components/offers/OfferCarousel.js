@@ -20,13 +20,6 @@ class OfferCarousel extends Component {
 
   state = {
     activeIndex: 0,
-    items: []
-  }
-
-  componentDidMount () {
-    this.setState({
-      items: this.props.offers
-    })
   }
 
   onExiting() {
@@ -38,14 +31,18 @@ class OfferCarousel extends Component {
 	}
 
   next = () => {
+    const items = this.props.offers;
+    const { activeIndex } = this.state
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === this.state.items.length - 1 ? 0 : this.state.activeIndex + 1;
+    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   }
 
   previous = () => {
+    const items = this.props.offers;
+    const { activeIndex } = this.state
     if (this.animating) return;
-    const nextIndex = this.state.activeIndex === 0 ? this.state.items.length - 1 : this.state.activeIndex - 1;
+    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   }
 
@@ -53,9 +50,14 @@ class OfferCarousel extends Component {
     this.setState({ activeIndex: this.state.activeIndex });
   }
 
+  onDelete = async (id) => {
+    await this.next()
+    this.props.deleteOffer(id)
+  }
+
   render() {
-    const items = this.state.items;
-    const { showEditOfferForm, deleteOffer } = this.props;
+    const items = this.props.offers;
+    const { showEditOfferForm } = this.props;
     const offers = items.map((item) => {
       const from = transformDate(item.from)
       const until = transformDate(item.until)
@@ -70,7 +72,7 @@ class OfferCarousel extends Component {
               <p>From: {from}</p> 
               <p>Until: {until}</p> 
             </Link>
-            <Button color="danger" onClick={()=>deleteOffer(item._id)}>Delete Offer</Button>{' '}
+            <Button color="danger" onClick={()=>this.onDelete(item._id)}>Delete Offer</Button>{' '}
             <Button color="success" onClick={()=>showEditOfferForm(item)}>Edit Offer</Button>{' '}
         </CarouselItem>
       );
