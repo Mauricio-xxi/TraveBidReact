@@ -26,12 +26,11 @@ class EditOffer extends Component {
     offer.editOffer({ offerID, budget, from, until })
     .then( (data) => {
       console.log(data)
-        this.props.getOffers()
         this.setState({
           budget: "",
           from: "",
           until:"", 
-        })
+        }, () =>this.props.getOffers())
     })
     .catch( error => console.log(error) )
   }
