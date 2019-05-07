@@ -10,12 +10,14 @@ class Room {
 
   create(room) {
     console.log(room)
+    const type = "Point";
     const { location, comodities, description } = room;
-    return this.rooms.post('/room', { location, comodities, description})
+    return this.rooms.post('/room', { location, comodities, description, type})
       .then(({ data }) => {
         return data
       })
   }
+  
 
   getRoom() {
     return this.rooms.get(`/room`)
