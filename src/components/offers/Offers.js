@@ -21,7 +21,6 @@ class Offers extends Component {
   }
 
   getOffers = () => {
-    console.log('we are getting offers')
     offer.showOfferList(this.props.user._id)
     .then(responseData => {
         this.setState({
@@ -69,7 +68,7 @@ class Offers extends Component {
         <Button className='centeredComponents' color= "primary"onClick={this.renderOfferForm}> Create offer </Button>
 
         { showCreateOfferForm ? 
-            <CreateOffer getOffers={()=>this.getOffers()} renderOfferForm={()=>this.renderOfferForm()}/> 
+            <CreateOffer getOffers={this.getOffers} renderOfferForm={()=>this.renderOfferForm()}/> 
         : <div></div> }
 
         {/* <OfferCard 

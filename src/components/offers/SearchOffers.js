@@ -15,14 +15,19 @@ class SearchOffers extends Component {
         showSearchResults: false,
         user:{}
     }
-  
 
   handleShowSearchResults = async (e) => {
-    // const { showSearchResults } = this.state
-    await this.search();
-    await this.setState({
-      showSearchResults: true
-     })
+    await this.search()
+    const { showSearchResults } = this.state
+    if (showSearchResults === false) {
+      this.setState({
+        showSearchResults: true
+      })
+    } else if  (showSearchResults === true) {
+      this.setState({
+        showSearchResults: false
+      })
+    }
   }
 
   getUser = () => {
@@ -58,7 +63,7 @@ class SearchOffers extends Component {
     return (
       <div className="centeredComponents">
        <Button color= "warning" onClick={this.handleShowSearchResults}>
-        { !showSearchResults ? 'View offers in your town' : 'Hide'}
+        View offers in your town
         </Button>
         { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       </div>
