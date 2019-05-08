@@ -9,10 +9,12 @@ class Room {
   }
 
   create(room) {
-    console.log(room)
+    const {privateRoom, sharedRoom, 
+      entireProperty, tv, wifi, air, garage, termo, washer, pool, privateBathroom, wheelchair, smoke, pet } = room
     const type = "Point";
-    const { location, comodities, description, roomImage, coordinates } = room;
-    return this.rooms.post('/room', { location, comodities, description, type, roomImage, coordinates})
+    const { location, description, roomImage, coordinates } = room;
+    return this.rooms.post('/room', { location, description, type, roomImage, coordinates, privateRoom, sharedRoom, 
+      entireProperty, tv, wifi, air, garage, termo, washer, pool, privateBathroom, wheelchair, smoke, pet})
       .then(({ data }) => {
         return data
       })
