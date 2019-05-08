@@ -4,7 +4,8 @@ import offer from '../../lib/offer-service';
 import CreateOffer from "../offers/CreateOffer";
 import EditOffer from "../offers/EditOffer";
 // import OfferCard from "../offers/OfferCard";
-import OfferCarousel from "../offers/OfferCarousel";
+// import OfferCarousel from "../offers/OfferCarousel";
+import Offercarousel2 from "../offers/Offercarousel2";
 import { Button } from 'reactstrap';
 
 
@@ -72,6 +73,8 @@ class Offers extends Component {
             <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
         : <div></div> }
 
+        <h5>Open Offers</h5>
+
         {/* <OfferCard 
           offers={offers}
           deleteOffer={this.deleteOffer}
@@ -79,7 +82,14 @@ class Offers extends Component {
         /> */}
 
 
-          <OfferCarousel 
+          {/* <OfferCarousel 
+            offers={offers} 
+            deleteOffer={this.deleteOffer}
+            showEditOfferForm={this.renderEditOfferForm}
+        /> */}
+
+
+        <Offercarousel2
             offers={offers} 
             deleteOffer={this.deleteOffer}
             showEditOfferForm={this.renderEditOfferForm}
