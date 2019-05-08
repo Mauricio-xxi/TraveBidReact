@@ -7,7 +7,20 @@ class RoomData extends Component {
   
   state = {
     room,
-    comodities: "",
+    privateRoom:"",
+    sharedRoom:"",
+    entireProperty:"",
+    tv:"",
+    wifi:"",
+    air:"",
+    garage:"",
+    termo:"",
+    washer:"",
+    pool:"",
+    privateBathroom:"",
+    wheelchair:"",
+    smoke:"",
+    pet:"",
     description:"",
     roomImage:"",
     coordinates:[],
@@ -64,10 +77,39 @@ handleChange = event => {
     <>
     <RoomGeo  getCoordinates={this.getCoordinates}></RoomGeo>
     <form>
-      <label>Comodities:</label>
-      <input  name = "comodities" type = "string" onChange ={this.handleChange}/>
       <label>Description:</label>
       <input name = "description" type = "string" onChange ={this.handleChange}/>
+      <label>Facilities:</label>
+      <label>Private Room:</label>
+      <input name = "privateRoom" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Shared Room:</label>
+      <input name = "sharedRoom" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Entire Property:</label>
+      <input name = "entireProperty" type = "checkbox" onChange ={this.handleChange}/>
+      <label>TV:</label>
+      <input name = "tv" type = "checkbox" onChange ={this.handleChange}/>
+      <label>WIFI:</label>
+      <input name = "wifi" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Air conditioner:</label>
+      <input name = "air" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Garage:</label>
+      <input name = "garage" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Hot Water:</label>
+      <input name = "termo" type = "checkbox" onChange ={this.handleChange}/>
+      <label>TV:</label>
+      <input name = "tv" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Washer:</label>
+      <input name = "washer" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Pool:</label>
+      <input name = "pool" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Private Bathroom:</label>
+      <input name = "privateBathroom" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Wheelchair:</label>
+      <input name = "wheelchair" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Smoke:</label>
+      <input name = "smoke" type = "checkbox" onChange ={this.handleChange}/>
+      <label>Pet:</label>
+      <input name = "pet" type = "checkbox" onChange ={this.handleChange}/>
     </form>
     <label>Upload Room Image</label>
     <FileUpload getUrl={this.getUrl }></FileUpload>
