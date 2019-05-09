@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import { Button } from 'reactstrap';
 import '../../stylesheets/styles.css'
+import { whileStatement } from '@babel/types';
 
 const OfferCarouselItem = styled.div`
   width: 70%;
@@ -26,8 +27,13 @@ const OfferInfo = styled.p`
   color: black;
 `;
 
+
  
 class Offercarousel2 extends Component {
+
+  styles = {backgroundColor: 'white',}
+
+  
     render() {
       const {offers} = this.props
       const { showEditOfferForm, deleteOffer } = this.props;
@@ -42,13 +48,15 @@ class Offercarousel2 extends Component {
             showStatus={false}
             infiniteLoop={true}
             showIndicators={false}
+            
+
             >
 
               {offers.map((offer)=>{
                 const from = transformDate(offer.from)
                 const until = transformDate(offer.until)
                 return (
-                  <OfferCarouselItem key={offer._id}>
+                  <OfferCarouselItem key={offer._id} style={this.styles}>
                   <Link to={`/Offer/${offer._id}`}>
                       <h5>{offer.location}</h5> 
                       <h5>${offer.budget}</h5>
