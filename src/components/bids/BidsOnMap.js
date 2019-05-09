@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import * as parkDate from "../components/data/skateboard-parks.json";
+// import * as parkDate from "../components/data/skateboard-parks.json";
+import room from "../../lib/room-service";
 
 export default function App() {
   const [viewport, setViewport] = useState({
@@ -13,24 +14,32 @@ export default function App() {
 
   const bids = this.props.bids;
 
-  const [selectedBid, setSelectedBid] = useState(null);
+  const roomIDs = bids.map((bid) => {
+    return room.getRooms(bid.roomID)
+  })
 
-  useEffect(() => {
-    const listener = e => {
-      if (e.key === "Escape") {
-        setSelectedBid(null);
-      }
-    };
-    window.addEventListener("keydown", listener);
+  console.log(roomIDs);
 
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, []);
+
+  // const [selectedBid, setSelectedBid] = useState(null);
+
+  // useEffect(() => {
+  //   const listener = e => {
+  //     if (e.key === "Escape") {
+  //       setSelectedBid(null);
+  //     }
+  //   };
+  //   window.addEventListener("keydown", listener);
+
+  //   return () => {
+  //     window.removeEventListener("keydown", listener);
+  //   };
+  // }, []);
 
   return (
     <div>
-      <ReactMapGL
+
+      {/* <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         // mapStyle="mapbox://styles/leighhalliday/cjufmjn1r2kic1fl9wxg7u1l4"
@@ -70,7 +79,7 @@ export default function App() {
             </div>
           </Popup>
         ) : null}
-      </ReactMapGL>
+      </ReactMapGL> */}
     </div>
   );
 }

@@ -110,7 +110,7 @@ class BidsOnThisOffer extends Component {
 
     return (
       <div>
-        {/* <BidsOnMap bids={bids}/> */}
+        <BidsOnMap bids={bids}/>
         {bids.map((bid)=> {
           return (
             <div key={bid._id}>
