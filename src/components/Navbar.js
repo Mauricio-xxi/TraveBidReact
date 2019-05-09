@@ -2,6 +2,21 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { Nav, NavItem, Navbar, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, } from 'reactstrap';
+import styled from 'styled-components';
+
+
+const NavElements = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  `;
+
+// const SearchButton = styled.button`
+//   padding: 0;
+//   margin:0;
+//   border:0;
+// `;
 
 
 class NavbarTravel extends Component {
@@ -32,8 +47,9 @@ class NavbarTravel extends Component {
       <div>
       {isLoggedin ? (
         <>
-        <Navbar color="light" light expand="md" fixed="top">
+        <Navbar color="light" light expand="lg" fixed="top">
           <Nav >
+          <NavElements>
               <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
                 </DropdownToggle>
@@ -42,9 +58,10 @@ class NavbarTravel extends Component {
                   <DropdownItem><Link  to="/profile">Profile</Link></DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-            <NavItem>
+              
               <h3>TravelBID</h3>
-            </NavItem>
+              <img width="9%" height="80%" src="/Search.png" alt="View offer in your town"/>
+              </NavElements>
           </Nav>
         </Navbar>
         </>

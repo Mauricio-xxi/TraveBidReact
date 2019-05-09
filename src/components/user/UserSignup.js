@@ -1,7 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, Button, FormGroup, Label, Input } from 'reactstrap';
+import styled from 'styled-components';
+
+
+const Container = styled.div`
+  margin-top: 10%;
+`;
+
+const LoginPhrase = styled.div`
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+`;
+
+
 
 class Signup extends Component {
   state = {
@@ -27,7 +41,7 @@ class Signup extends Component {
   render() {
     const { username, password, city , age, gender, email } = this.state;
     return (
-      <div>
+        <Container>
         <Form onSubmit={this.handleFormSubmit}>
           <FormGroup>
             <Label>Username:</Label>
@@ -83,13 +97,13 @@ class Signup extends Component {
               onChange={this.handleChange}
             />
           </FormGroup>
-          <Input type="submit" value="Signup" />
+          <Button color="primary" type="submit" value="Signup" >Signup</Button>
         </Form>
-        <p>
-          Already have account?
+        <LoginPhrase>
+         <p>Already have account?</p> 
           <Link to={"/login"}> Login</Link>
-        </p>
-      </div>
+        </LoginPhrase>
+        </Container>
     );
   }
 }

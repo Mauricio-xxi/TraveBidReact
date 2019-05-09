@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import { Form, FormGroup, Label, Input } from 'reactstrap';
+import styled from 'styled-components';
+
+
+const Container = styled.div`
+  margin-top: 10%;
+`;
 
 class UserLogin extends Component {
   state = {
@@ -39,6 +45,7 @@ class UserLogin extends Component {
       //   />
       //   <input type="submit" value="Login" />
       // </form>
+      <Container>
       <Form onSubmit={this.handleFormSubmit}>
         <FormGroup>
         <Label>Username:</Label>
@@ -60,6 +67,7 @@ class UserLogin extends Component {
         </FormGroup>
         <Input type="submit" value="Login" />
      </Form>
+     </Container>
     );
   }
 }
