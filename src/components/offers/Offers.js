@@ -65,9 +65,9 @@ class Offers extends Component {
   render() {
     const { showCreateOfferForm, showEditOfferForm, offers, offerToEdit } = this.state;
     return (
-      <div className='centeredComponents'>
+      <div>
 
-        <Button className='centeredComponents' color= "primary"onClick={this.renderOfferForm}> Create offer </Button>
+        <Button className='centeredComponents' color= "primary" onClick={this.renderOfferForm}> Create offer </Button>
 
         { showCreateOfferForm ? 
             <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
