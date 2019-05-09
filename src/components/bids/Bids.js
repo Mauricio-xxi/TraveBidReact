@@ -4,6 +4,8 @@ import bid from '../../lib/bid-service';
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import '../../stylesheets/styles.css'
+
 
 
 const BidCarouselItem = styled.div`
@@ -19,10 +21,6 @@ const BidCarouselItem = styled.div`
   padding-bottom: 5%;
   background-image: linear-gradient(222A68);
 `;
-
-  const BidInfo = styled.p`
-    color: black;
-  `;
 
 
 class Bids extends Component {
@@ -64,7 +62,7 @@ class Bids extends Component {
       //   <p>------------------------</p>
       // </div>
       <div>
-        <h5>Your open bids</h5>
+        <h5>Open Bids</h5>
         <Carousel 
         showThumbs={false} 
         showArrows={false} 
@@ -81,8 +79,8 @@ class Bids extends Component {
             console.log(bid)
             return (
               <BidCarouselItem key={bid._id}>
-              <Link to={`/Offer/${bid._id}`}>
-                  <h5>{bid.location}</h5> 
+              <Link to={`/Offer/${bid.offerID}`}>
+                  <h5>{bid.description}</h5> 
                   <h5>${bid.value}</h5>
                </Link>
             </BidCarouselItem>
