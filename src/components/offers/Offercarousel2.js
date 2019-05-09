@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 // import ReactDOM from 'react-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import { Button } from 'reactstrap';
 import '../../stylesheets/styles.css'
+import '../../stylesheets/carousel.css'
 
 const OfferCarouselItem = styled.div`
   width: 70%;
