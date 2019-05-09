@@ -3,6 +3,7 @@ import { withAuth } from "../../lib/AuthProvider";
 import EditBid from "../bids/EditBid";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
+import BidsOnMap from "../bids/BidsOnMap"
 
 
 class BidsOnThisOffer extends Component {
@@ -109,6 +110,7 @@ class BidsOnThisOffer extends Component {
 
     return (
       <div>
+        {/* <BidsOnMap bids={bids}/> */}
         {bids.map((bid)=> {
           return (
             <div key={bid._id}>
