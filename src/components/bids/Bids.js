@@ -5,12 +5,10 @@ import { Link } from "react-router-dom";
 
 
 class Bids extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
+    state = {
         bids: [],
     }
-  }
+  
 
   componentDidMount() {
     this.getUserBids();
