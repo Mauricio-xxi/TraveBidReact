@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import { withFormik, Field } from "formik";
 import user from "../../lib/user-service";
 import  FileUpload  from "../firebase/index";
-
+import { Form, Label, Input } from 'reactstrap';
 
 class ProfileForm extends Component {
     state = {
@@ -43,16 +43,16 @@ class ProfileForm extends Component {
         <label>Image</label>
         <FileUpload getUrl={this.getUrl }></FileUpload>
 
-      <form>
-        <label>Age:</label>
-        <input name = "age" type = "number" onChange={this.handleChange}/>
-        <label>Gender:</label>
-        <input  name = "gender" type = "string" onChange={this.handleChange}/>
-        <label>Description:</label>
-        <input name = "description" type = "string"  onChange={this.handleChange}/>
-        <label>City:</label>
-        <input name = "city" type = "string" onChange={this.handleChange}/>
-      </form>
+      <Form>
+        <Label>Age:</Label>
+        <Input name = "age" type = "number" onChange={this.handleChange}/>
+        <Label>Gender:</Label>
+        <Input  name = "gender" type = "string" onChange={this.handleChange}/>
+        <Label>Description:</Label>
+        <Input name = "description" type = "string"  onChange={this.handleChange}/>
+        <Label>City:</Label>
+        <Input name = "city" type = "string" onChange={this.handleChange}/>
+      </Form>
       <button type= "submit" onClick={this.submit}> Submit </button>
 
      </div>
