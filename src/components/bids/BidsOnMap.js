@@ -135,7 +135,7 @@ class BidsOnMap extends Component {
             </div>
           </Popup>
         ) : null} */}
-      </ReactMapGL> : <div>No bids yet</div> }
+      </ReactMapGL> : <div></div> }
             
       </div>
     )
