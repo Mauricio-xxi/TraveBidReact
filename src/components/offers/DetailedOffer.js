@@ -3,6 +3,12 @@ import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
 import transformDate from "../../functions/dates"
 import BidsOnThisOffer from "../bids/BidsOnThisOffer"
+import styled from 'styled-components';
+
+
+const OfferInfoConatiner = styled.div`
+  margin-top: 20%;
+`;
 
 
 
@@ -40,13 +46,13 @@ class OfferDetail extends Component {
     const { offerID } = this.props;
  
     return (
-      <div>
-        <h1>We are in offer detail</h1>
-        <h5>{budget}</h5>
-        <h5>{fromFormated }</h5>
-        <h5>{untilFormated}</h5>
+      <OfferInfoConatiner>
+        <h3>Offer Detail</h3>
+        <h5>${budget}</h5>
+        <h5>Arriving:{fromFormated }</h5>
+        <h5>Departing:{untilFormated}</h5>
         <BidsOnThisOffer offerID={offerID} offerOwner={offerOwner}/>
-      </div>
+      </OfferInfoConatiner>
     );
   }
 }
