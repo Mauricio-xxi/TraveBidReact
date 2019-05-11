@@ -50,15 +50,17 @@ class Signup extends Component {
               name="username"
               value={username}
               onChange={this.handleChange}
+              required
             />
           </FormGroup>
           <FormGroup>
             <Label>Email:</Label>
             <Input
-              type="text"
+              type="email"
               name="email"
               value={email}
               onChange={this.handleChange}
+              required
             />
           </FormGroup>
           <FormGroup>         
@@ -68,6 +70,7 @@ class Signup extends Component {
               name="password"
               value={password}
               onChange={this.handleChange}
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -77,12 +80,13 @@ class Signup extends Component {
               name="city"
               value={city}
               onChange={this.handleChange}
+              required
             />
           </FormGroup>
           <FormGroup>
             <Label>Age:</Label>
              <Input
-              type="text"
+              type="number"
               name="age"
               value={age}
               onChange={this.handleChange}
