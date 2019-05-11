@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import ReactMapGL, { Marker } from "react-map-gl";
 
 const RoomCardStyle = styled.div`
   width:100%;
@@ -21,8 +22,19 @@ const DescriptionArea = styled.div`
 `
 
 export default class RoomCard extends Component {
+  state = {
+    viewport: {
+      width: "100%",
+      height: "150px",
+      latitude: 41.3851,
+      longitude: 2.1734,
+      zoom: 11
+    },
+  }
+
   render() {
-    const {RoomImage, roomId, location, description } = this.props
+    const {RoomImage, roomId, latitude, description, longitude} = this.props
+    console.log(latitude,longitude)
     return (
       <div> 
          <RoomCardStyle>
@@ -31,8 +43,17 @@ export default class RoomCard extends Component {
         </div>
         <DescriptionArea>
           <h2>{description}</h2>
-          <p>{location}</p>
         </DescriptionArea>
+        <ReactMapGL
+        {...this.state.viewport}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/mapbox/streets-v9">
+          <Marker
+            key={1}
+            latitude={latitude}
+            longitude={longitude}
+          />
+          </ReactMapGL>
       </RoomCardStyle>
       </div>
     )

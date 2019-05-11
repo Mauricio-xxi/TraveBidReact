@@ -80,7 +80,7 @@ class Profile extends Component {
         <UserCard userImage={userImage} username={username} age={age} description={description} city={city}/>
           <Button style={{margin:"5px"}}onClick={this.showUserFormButton}>Update Profile</Button>
           {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} placeholder={this.state.user}/> : <div/> }
-        <RoomCard RoomImage={this.state.room.roomImage} description={this.state.room.description} alt={"hola"}/>
+        <RoomCard RoomImage={this.state.room.roomImage} description={this.state.room.description} latitude={10} longitude={10}alt={"hola"}/>
           <Button style={{margin:"5px"}}onClick={this.showRoomFormButton}>Update Room</Button>
           {this.state.showRoomForm? <RoomData/> : <div/> }
       </ProfileContainer>
