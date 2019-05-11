@@ -2,6 +2,19 @@ import React, {Component} from 'react'
 import room from "../../lib/room-service";
 import FileUpload from "../firebase/index";
 import RoomGeo from "./RoomGeo";
+import { Form, Label, Input, Button, FormGroup } from 'reactstrap';
+import styled from 'styled-components';
+
+const ProfileCardStyle = styled.div`
+  width:100%;
+  display:block;
+  color: #007bff;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: #007bff;
+  border-width: 1px;
+  padding: 5%;
+`;
 
 class RoomData extends Component {
   
@@ -74,47 +87,79 @@ handleChange = event => {
 
   render(){
   return (
-    <>
+    <ProfileCardStyle>
     <RoomGeo  getCoordinates={this.getCoordinates}></RoomGeo>
-    <form>
-      <label>Description:</label>
-      <input name = "description" type = "string" onChange ={this.handleChange}/>
-      <label>Facilities:</label>
-      <label>Private Room:</label>
-      <input name = "privateRoom" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Shared Room:</label>
-      <input name = "sharedRoom" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Entire Property:</label>
-      <input name = "entireProperty" type = "checkbox" onChange ={this.handleChange}/>
-      <label>TV:</label>
-      <input name = "tv" type = "checkbox" onChange ={this.handleChange}/>
-      <label>WIFI:</label>
-      <input name = "wifi" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Air conditioner:</label>
-      <input name = "air" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Garage:</label>
-      <input name = "garage" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Hot Water:</label>
-      <input name = "termo" type = "checkbox" onChange ={this.handleChange}/>
-      <label>TV:</label>
-      <input name = "tv" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Washer:</label>
-      <input name = "washer" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Pool:</label>
-      <input name = "pool" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Private Bathroom:</label>
-      <input name = "privateBathroom" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Wheelchair:</label>
-      <input name = "wheelchair" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Smoke:</label>
-      <input name = "smoke" type = "checkbox" onChange ={this.handleChange}/>
-      <label>Pet:</label>
-      <input name = "pet" type = "checkbox" onChange ={this.handleChange}/>
-    </form>
-    <label>Upload Room Image</label>
+    <Form>
+      <FormGroup>
+        <Label>Description:</Label>
+        <Input name = "description" type = "string" onChange ={this.handleChange}/>
+      </FormGroup>
+        <Label>Facilities:</Label>
+      <FormGroup>
+        <Label>Private Room:</Label>
+        <Input name = "privateRoom" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+      <FormGroup>  
+        <Label>Shared Room:</Label>
+        <Input name = "sharedRoom" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup> 
+      <FormGroup>
+        <Label>Entire Property:</Label>
+        <Input name = "entireProperty" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label>TV:</Label>
+        <Input name = "tv" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label>WIFI:</Label>
+        <Input name = "wifi" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label>Air conditioner:</Label>
+        <Input name = "air" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>  
+      <FormGroup>
+        <Label>Garage:</Label>
+        <Input name = "garage" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label>Hot Water:</Label>
+        <Input name = "termo" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label>TV:</Label>
+        <Input name = "tv" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label>Washer:</Label>
+        <Input name = "washer" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>   
+      <FormGroup>
+        <Label>Pool:</Label>
+        <Input name = "pool" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+      <FormGroup>
+        <Label>Private Bathroom:</Label>
+        <Input name = "privateBathroom" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup> 
+      <FormGroup>
+        <Label>Wheelchair:</Label>
+        <Input name = "wheelchair" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup> 
+      <FormGroup>
+        <Label>Smoke:</Label>
+        <Input name = "smoke" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup> 
+      <FormGroup>
+        <Label>Pet:</Label>
+        <Input name = "pet" type = "checkbox" onChange ={this.handleChange}/>
+      </FormGroup>
+    </Form>
+    <Label>Upload Room Image</Label>
     <FileUpload getUrl={this.getUrl }></FileUpload>
-    <button type= "submit" onClick={this.submit}> Submit </button>
-    </>
+    <Button type= "submit" onClick={this.submit}> Submit </Button>
+    </ProfileCardStyle>
   )    
 
   }

@@ -10,8 +10,8 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 class RoomGeo extends Component {
   state = {
     viewport: {
-      width: 400,
-      height: 400,
+      width: "100%",
+      height: 400,  
       latitude: 41.3851,
       longitude: 2.1734,
       zoom: 11
@@ -21,22 +21,23 @@ class RoomGeo extends Component {
   mapRef = React.createRef()
  
   componentDidMount() {
-    window.addEventListener('resize', this.resize)
-    this.resize()
+    // window.addEventListener('resize', this.resize)
+    // this.resize()
   }
  
   componentWillUnmount() {
-    window.removeEventListener('resize', this.resize)
+    // window.removeEventListener('resize', this.resize)
   }
  
   resize = () => {
-    this.handleViewportChange({
-      width: window.innerWidth,
-      height: window.innerHeight
-    })
+    // this.handleViewportChange({
+    //   width: window.innerWidth,
+    //   height: window.innerHeight
+    // })
   }
  
   handleViewportChange = (viewport) => {
+    viewport.width = 100%
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     })
@@ -54,10 +55,11 @@ class RoomGeo extends Component {
   render() {
     return (
       <MapGL
+        style={{width: "100%", height: "500px"}}
         ref={this.mapRef}
         {...this.state.viewport}
         mapStyle="mapbox://styles/mapbox/streets-v9"
-        // onViewportChange={this.handleViewportChange}
+        onViewportChange={this.handleViewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN} 
         >
         <Geocoder

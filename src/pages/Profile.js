@@ -4,7 +4,13 @@ import { withAuth } from "../lib/AuthProvider";
 import user from "../lib/user-service";
 import  ProfileForm   from "../components/profile/ProfileForm";
 import RoomData from "../components/user/RoomData";
+import UserCard from "../components/user/UserCard";
+import styled from 'styled-components';
+import { Button } from 'reactstrap';
 
+const ProfileContainer = styled.div`
+  display:block;
+`;
 
 
 class Profile extends Component {
@@ -55,20 +61,14 @@ class Profile extends Component {
   render() {
     const { username,age, description, city, userImage } = this.state.user;
     return (
-      <div>
+      <ProfileContainer>
         <Navbar/>
-        <img src={userImage} alt="profile avatar"></img>
-        <h1>Profile</h1>
-        <h2>{username}</h2>
-        <h2>{age}</h2>
-        <h2>{description}</h2>
-        <h2>{city}</h2>   
-        <button onClick={this.showUserFormButton}>Update Profile</button>
+        <UserCard userImage={userImage} username={username} age={age} description={description} city={city}/>
+        <Button onClick={this.showUserFormButton}>Update Profile</Button>
         {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} /> : <div/> }
-        <button onClick={this.showRoomFormButton}>Update Room</button>
+        <Button onClick={this.showRoomFormButton}>Update Room</Button>
         {this.state.showRoomForm? <RoomData/> : <div/> }
-        {/*  */}
-      </div>
+      </ProfileContainer>
     )
   }
 }
