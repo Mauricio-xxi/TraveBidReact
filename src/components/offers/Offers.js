@@ -3,10 +3,28 @@ import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
 import CreateOffer from "../offers/CreateOffer";
 import EditOffer from "../offers/EditOffer";
-// import OfferCard from "../offers/OfferCard";
-// import OfferCarousel from "../offers/OfferCarousel";
 import Offercarousel2 from "../offers/Offercarousel2";
-import { Button } from 'reactstrap';
+import styled from 'styled-components';
+
+
+const OffersectionHeader = styled.div`
+  display:flex;
+  flex-direction: row;
+`;
+
+const OfferTitle = styled.h5`
+  margin-top: 10%;
+`;
+
+const CreateOfferButton = styled.button`
+  background-color: white;
+  width:35%
+  padding: 0;
+  margin:0;
+  margin-top: 9%;
+  border:0;
+  cursor: pointer;
+`;
 
 
 class Offers extends Component {
@@ -67,27 +85,16 @@ class Offers extends Component {
     return (
       <div>
 
-        <Button className='centeredComponents' color= "primary" onClick={this.renderOfferForm}> Create offer </Button>
+        <OffersectionHeader>
+        <OfferTitle>Your Offers</OfferTitle>
+
+        <CreateOfferButton onClick={this.renderOfferForm}> <img src="/plus.svg" alt="Create a new offer"/> </CreateOfferButton>
 
         { showCreateOfferForm ? 
             <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
         : <div></div> }
 
-        <h5>Your Offers</h5>
-
-        {/* <OfferCard 
-          offers={offers}
-          deleteOffer={this.deleteOffer}
-          showEditOfferForm={this.renderEditOfferForm}
-        /> */}
-
-
-          {/* <OfferCarousel 
-            offers={offers} 
-            deleteOffer={this.deleteOffer}
-            showEditOfferForm={this.renderEditOfferForm}
-        /> */}
-
+        </OffersectionHeader>
 
         <Offercarousel2
             offers={offers} 
