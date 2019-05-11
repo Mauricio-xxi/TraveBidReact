@@ -107,10 +107,10 @@ class BidsOnThisOffer extends Component {
     const { bids, alreadyBidded, showBidForm, showEditBidForm, aBidHasBeenAccepted  } = this.state;
     const { offerOwner, offerID } = this.props;
     const currentUser = this.props.user._id;
-
+    console.log(bids)
     return (
       <div>
-        <BidsOnMap bids={bids}/>
+        <BidsOnMap bids={bids} offerID={this.props.offerID}/>
         {bids.map((bid)=> {
           return (
             <div key={bid._id}>

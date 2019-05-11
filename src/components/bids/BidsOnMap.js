@@ -1,24 +1,82 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import React, { Component } from 'react'
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 // import * as parkDate from "../components/data/skateboard-parks.json";
 import room from "../../lib/room-service";
+import bid from "../../lib/bid-service";
+// import { div } from 'gl-matrix/src/gl-matrix/vec2';
 
-export default function App() {
-  const [viewport, setViewport] = useState({
-    latitude: 45.4211,
-    longitude: -75.6903,
-    width: "100vw",
-    height: "70vh",
-    zoom: 10
-  });
+// export default function App() {
+//   const [viewport, setViewport] = useState({
+//     latitude: 45.4211,
+//     longitude: -75.6903,
+//     width: "100vw",
+//     height: "70vh",
+//     zoom: 10
+//   });
 
-  const bids = this.props.bids;
+class BidsOnMap extends Component {
+  state = {
+    viewport: {
+      width: "100vw",
+      height: "70vh",
+      latitude: 41.3851,
+      longitude: 2.1734,
+      zoom: 11
+    },
+    rooms:[],
+    bids:[]
+  }
 
-  const roomIDs = bids.map((bid) => {
-    return room.getRooms(bid.roomID)
-  })
+  handleViewportChange = (viewport) => {
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport }
+    })
+    // this.props.getCoordinates([this.state.viewport.latitude, this.state.viewport.longitude])
+  }
 
-  console.log(roomIDs);
+  getBids = () => {
+    const ID = this.props.offerID;
+    console.log(ID)
+    bid.getBids(ID)
+    .then(responseData => {
+      console.log(responseData)
+      this.setState({
+        bids: responseData,
+      })
+      this.getRooms()
+    })
+  }
+
+  getRooms = () => {
+    const bids = this.state.bids
+    bids.forEach((bid)=>{
+      room.getRooms(bid.roomID)
+      .then( (room) => {
+        console.log(room)
+        this.setState({
+          rooms: [...room]
+        })
+        console.log(this.state.rooms)
+      })
+      .catch( error => console.log(error) )
+    })
+  }
+  
+ 
+  componentDidMount (){
+    this.getBids()
+  }
+ 
+
+//   console.log(this.props.bids)
+//   const [bids, setBids] = useState(this.props.bids)
+
+//   const roomIDs = bids.map((bid) => {
+//     return room.getRooms(bid.roomID)
+//   })
+
+//   console.log(roomIDs);
 
 
   // const [selectedBid, setSelectedBid] = useState(null);
@@ -36,8 +94,58 @@ export default function App() {
   //   };
   // }, []);
 
-  return (
-    <div>
+
+  render (){
+    const rooms = this.state.rooms;
+    // console.log(rooms)
+    return (
+      <div>
+              <ReactMapGL
+        {...this.state.viewport}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+        onViewportChange={this.handleViewportChange}
+      >
+        {rooms.map(room => (
+          <Marker
+            key={room._id}
+            latitude={room.location.coordinates[1]}
+            longitude={room.location.coordinates[0]}
+          >
+            {/* <button
+              className="marker-btn"
+              onClick={e => {
+                e.preventDefault();
+                setSelectedBid(bid);
+              }}
+            >
+              <img src="/skateboarding.svg" alt="Skate Park Icon" />
+            </button> */}
+          </Marker>
+        ))}
+
+        {/* {selectedPark ? (
+          <Popup
+            latitude={selectedPark.geometry.coordinates[1]}
+            longitude={selectedPark.geometry.coordinates[0]}
+            onClose={() => {
+              setSelectedPark(null);
+            }}
+          >
+            <div>
+              <h2>{selectedPark.properties.NAME}</h2>
+              <p>{selectedPark.properties.DESCRIPTIO}</p>
+            </div>
+          </Popup>
+        ) : null} */}
+      </ReactMapGL>
+      </div>
+    )
+  }
+}
+
+  // return (
+  //   <div>
 
       {/* <ReactMapGL
         {...viewport}
@@ -80,6 +188,8 @@ export default function App() {
           </Popup>
         ) : null}
       </ReactMapGL> */}
-    </div>
-  );
-}
+//     </div>
+//   );
+// }
+
+export default BidsOnMap 

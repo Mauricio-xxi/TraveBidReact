@@ -27,6 +27,7 @@ class Room {
   }
 
   getRooms(roomID) {
+    console.log(`getRooms services with this ${roomID}`)
     return this.rooms.get(`/${roomID}`)
       .then(({ data }) => data)
   }
