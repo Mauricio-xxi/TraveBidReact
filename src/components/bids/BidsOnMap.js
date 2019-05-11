@@ -1,6 +1,6 @@
 // import React, { useState, useEffect } from "react";
 import React, { Component } from 'react'
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 // import * as parkDate from "../components/data/skateboard-parks.json";
 import room from "../../lib/room-service";
 import bid from "../../lib/bid-service";
@@ -145,7 +145,7 @@ class BidsOnMap extends Component {
   // return (
   //   <div>
 
-      {/* <ReactMapGL
+      /* <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         // mapStyle="mapbox://styles/leighhalliday/cjufmjn1r2kic1fl9wxg7u1l4"
@@ -185,7 +185,7 @@ class BidsOnMap extends Component {
             </div>
           </Popup>
         ) : null}
-      </ReactMapGL> */}
+      </ReactMapGL> */
 //     </div>
 //   );
 // }

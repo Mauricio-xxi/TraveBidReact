@@ -76,7 +76,6 @@ class Bids extends Component {
         >
   
           {bids.map((bid)=>{
-            console.log(bid)
             return (
               <BidCarouselItem key={bid._id}>
               <Link to={`/Offer/${bid.offerID}`}>

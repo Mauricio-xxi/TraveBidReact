@@ -24,7 +24,6 @@ class Profile extends Component {
   getUser = () => {
     user.getUser()
     .then(responseData=>{
-      console.log(responseData)
       this.setState({
         user:responseData
       })

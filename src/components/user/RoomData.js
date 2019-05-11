@@ -52,7 +52,6 @@ class RoomData extends Component {
   getRoom = () => {
     room.getRoom()
     .then(responseData=>{
-      console.log(responseData)
       this.setState({
         room:responseData
       })
@@ -62,7 +61,6 @@ class RoomData extends Component {
   createRoom = (value) => {
     room.create(value)
     .then(responseData=>{
-      console.log(responseData)
     })
  }
  getUrl = (url) => {

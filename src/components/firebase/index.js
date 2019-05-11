@@ -53,7 +53,7 @@ class FileUpload extends Component {
         <br />
         <input type='file' onChange={this.handleOnChange.bind(this)}/>
         <br />
-        <img width='90' src={this.state.picture} alt = "Upload Image"/>
+        <img width='90' src={this.state.picture} alt = "Uploaded"/>
       </div>
     )
   }

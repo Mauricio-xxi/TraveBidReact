@@ -8,7 +8,7 @@ const UserCardStyle = styled.div`
   border-style: solid;
   border-color: #007bff;
   border-width: 1px;
-  padding: 5%;
+  padding: 5%, 0%;
 `;
 const ImageStyle = styled.img`
   max-width: 100%;

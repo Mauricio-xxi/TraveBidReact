@@ -45,7 +45,6 @@ class SearchOffers extends Component {
     const city = this.state.user.city
     offer.searchOffers(city)
       .then(responseData => {
-        console.log(responseData)
         this.setState({
           offers: responseData
         })

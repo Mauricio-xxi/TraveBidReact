@@ -21,7 +21,6 @@ class ProfileForm extends Component {
   updateUser = (data) => {
       user.updateUser(data)
       .then(responseData=>{
-        console.log(responseData)
       })
       this.props.getUser()
    }

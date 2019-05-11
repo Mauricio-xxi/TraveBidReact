@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
-import { Nav, NavItem, Navbar, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, } from 'reactstrap';
+import { Nav, Navbar, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, } from 'reactstrap';
 import styled from 'styled-components';
 
 
