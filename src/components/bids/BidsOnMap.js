@@ -37,10 +37,8 @@ class BidsOnMap extends Component {
 
   getBids = () => {
     const ID = this.props.offerID;
-    console.log(ID)
     bid.getBids(ID)
     .then(responseData => {
-      console.log(responseData)
       this.setState({
         bids: responseData,
       })
@@ -53,9 +51,8 @@ class BidsOnMap extends Component {
     bids.forEach((bid)=>{
       room.getRooms(bid.roomID)
       .then( (room) => {
-        console.log(room)
         this.setState({
-          rooms: [...room]
+          rooms: [...this.state.rooms, room]
         })
         console.log(this.state.rooms)
       })
@@ -97,10 +94,10 @@ class BidsOnMap extends Component {
 
   render (){
     const rooms = this.state.rooms;
-    // console.log(rooms)
+    
     return (
       <div>
-              <ReactMapGL
+        {rooms.length >= 1 ?  <ReactMapGL
         {...this.state.viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/mapbox/streets-v9"
@@ -138,7 +135,8 @@ class BidsOnMap extends Component {
             </div>
           </Popup>
         ) : null} */}
-      </ReactMapGL>
+      </ReactMapGL> : <div>No bids yet</div> }
+            
       </div>
     )
   }
