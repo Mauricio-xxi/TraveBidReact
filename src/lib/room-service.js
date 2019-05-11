@@ -28,7 +28,7 @@ class Room {
 
   getRooms(roomID) {
     console.log(`getRooms services with this ${roomID}`)
-    return this.rooms.get(`/${roomID}`)
+    return this.rooms.get(`/room/${roomID}`)
       .then(({ data }) => data)
   }
 
