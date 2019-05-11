@@ -26,6 +26,12 @@ class Room {
       .then(({ data }) => data)
   }
 
+  getRooms(roomID) {
+    console.log(`getRooms services with this ${roomID}`)
+    return this.rooms.get(`/room/${roomID}`)
+      .then(({ data }) => data)
+  }
+
   deleteRoom(roomID) {
     return this.rooms.delete(`/room/${roomID}`)
       .then(({ data }) => data)

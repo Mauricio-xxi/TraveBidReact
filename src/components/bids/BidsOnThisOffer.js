@@ -3,6 +3,7 @@ import { withAuth } from "../../lib/AuthProvider";
 import EditBid from "../bids/EditBid";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
+import BidsOnMap from "../bids/BidsOnMap"
 
 
 class BidsOnThisOffer extends Component {
@@ -106,9 +107,9 @@ class BidsOnThisOffer extends Component {
     const { bids, alreadyBidded, showBidForm, showEditBidForm, aBidHasBeenAccepted  } = this.state;
     const { offerOwner, offerID } = this.props;
     const currentUser = this.props.user._id;
-
     return (
       <div>
+        <BidsOnMap bids={bids} offerID={this.props.offerID}/>
         {bids.map((bid)=> {
           return (
             <div key={bid._id}>
