@@ -91,7 +91,7 @@ handleChange = event => {
     <Form>
       <FormGroup>
         <h3>Description:</h3>
-        <Input name = "description" type = "string" onChange ={this.handleChange}/>
+        <Input name = "description" type = "string" onChange ={this.handleChange} required/>
       </FormGroup>
         <h3>Facilities:</h3>
       <FormGroup>

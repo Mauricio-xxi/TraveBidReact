@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { withFormik, Field } from "formik";
 import user from "../../lib/user-service";
 import  FileUpload  from "../firebase/index";
 import { Form, Label, Input } from 'reactstrap';
@@ -10,12 +9,13 @@ const ProfileFormStyle = styled.div`
 `
 
 class ProfileForm extends Component {
+  value = this.props.placeholder
     state = {
-      age: "",
-      gender:"",
-      city:"",
-      description:"",
-      userImage:""
+      age: this.value.age,
+      gender:this.value.gender,
+      city:this.value.city,
+      description:this.value.description,
+      userImage:this.value.userImage
     }
 
   submit = () => {
@@ -49,13 +49,13 @@ class ProfileForm extends Component {
 
       <Form>
         <Label>Age:</Label>
-        <Input name = "age" type = "number" onChange={this.handleChange}/>
+        <Input name = "age" type = "number" onChange={this.handleChange}required/>
         <Label>Gender:</Label>
-        <Input  name = "gender" type = "string" onChange={this.handleChange}/>
+        <Input  name = "gender" type = "string"  onChange={this.handleChange} required/>
         <Label>Description:</Label>
-        <Input name = "description" type = "string"  onChange={this.handleChange}/>
+        <Input name = "description" type = "textarea"  onChange={this.handleChange} required/>
         <Label>City:</Label>
-        <Input name = "city" type = "string" onChange={this.handleChange}/>
+        <Input name = "city" type = "string"  onChange={this.handleChange}  required/>
       </Form>
       <button type= "submit" onClick={this.submit}> Submit </button>
 
