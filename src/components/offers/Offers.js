@@ -90,11 +90,11 @@ class Offers extends Component {
 
         <CreateOfferButton onClick={this.renderOfferForm}> <img src="/plus.svg" alt="Create a new offer"/> </CreateOfferButton>
 
+        </OffersectionHeader>
+
         { showCreateOfferForm ? 
             <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
         : <div></div> }
-
-        </OffersectionHeader>
 
         <Offercarousel2
             offers={offers} 

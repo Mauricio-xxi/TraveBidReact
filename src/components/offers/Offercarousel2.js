@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import transformDate from "../../functions/dates"
-import { Button } from 'reactstrap';
 import '../../stylesheets/styles.css'
 import '../../stylesheets/carousel.css'
 
