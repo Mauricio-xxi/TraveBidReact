@@ -9,29 +9,42 @@ import { Button } from 'reactstrap';
 import '../../stylesheets/styles.css'
 import '../../stylesheets/carousel.css'
 
-const OfferCarouselItem = styled.div`
-  width: 70%;
+const OfferItemImage = styled.div`
+  background-image: url("/city.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  background-size: cover; 
+  width: 80%;
   height: 100%;
-  color: black;
-  background: ;
-  border-style: solid;
-  border-radius: 15px;
-  border-color: grey;
+  color: white;
   border-width: 1px;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  background-image: linear-gradient(222A68);
+  padding-top: 10%;
+  padding-bottom: 10%;
 `;
 
-const OfferInfo = styled.p`
-  color: black;
+const OfferItemContainer = styled.div`
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+`;
+
+
+const OfferMainInfo = styled.p`
+  color: white;
+  font-size: 20px;
+`;
+
+const OfferInfo = styled.div`
+width: 80%;
+height: 100%;
+padding-top: 4%;
+padding-bottom: 4%;
 `;
 
  
 class Offercarousel2 extends Component {
     render() {
-      const {offers} = this.props
-      const { showEditOfferForm, deleteOffer } = this.props;
+      const { showEditOfferForm, deleteOffer, offers } = this.props;
         return (
             <Carousel 
             showThumbs={false} 
@@ -49,18 +62,23 @@ class Offercarousel2 extends Component {
                 const from = transformDate(offer.from)
                 const until = transformDate(offer.until)
                 return (
-                  <OfferCarouselItem key={offer._id}>
-                  <Link to={`/Offer/${offer._id}`}>
-                      <h5>{offer.location}</h5> 
-                      <h5>${offer.budget}</h5>
-                      <OfferInfo>Arriving: {from}</OfferInfo> 
-                      <OfferInfo>Departing: {until}</OfferInfo> 
-                   </Link>
-                   <Button color="danger" onClick={()=>deleteOffer(offer._id)}> <img src="/delete_small.png" alt=""/> </Button>
-                   <Button color="success" onClick={()=>showEditOfferForm(offer)}> <img src="/edit_small.png" alt=""/> </Button>
-                </OfferCarouselItem>
+                  <OfferItemContainer key={offer._id}>
+                    <OfferItemImage>
+                      <Link to={`/Offer/${offer._id}`}>
+                          <OfferMainInfo>{offer.location}</OfferMainInfo> 
+                          <OfferMainInfo>${offer.budget}</OfferMainInfo>
+                      </Link>
+                    </OfferItemImage>
+                    <OfferInfo>
+                      <p>Arriving: {from}</p> 
+                      <p>Departing: {until}</p> 
+                      <Button color="danger" onClick={()=>deleteOffer(offer._id)}> Delete </Button>
+                      <Button color="success" onClick={()=>showEditOfferForm(offer)}> Edit </Button>
+                    </OfferInfo>
+                 </OfferItemContainer>
                 )
               })}
+              
             </Carousel>
         );
     }
