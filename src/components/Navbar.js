@@ -58,8 +58,8 @@ class NavbarTravel extends Component {
                   <DropdownItem><Link  to="/profile">Profile</Link></DropdownItem>
                 </DropdownMenu>
               </Dropdown>
+              <Link to="/private"><h3>TravelBID</h3></Link>
               
-              <h3>TravelBID</h3>
               <img width="9%" height="80%" src="/Search.png" alt="View offer in your town"/>
               </NavElements>
           </Nav>
