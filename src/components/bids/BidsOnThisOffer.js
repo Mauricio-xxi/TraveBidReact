@@ -4,6 +4,24 @@ import EditBid from "../bids/EditBid";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
 import BidsOnMap from "../bids/BidsOnMap"
+import { Button } from 'reactstrap';
+import { Carousel } from 'react-responsive-carousel';
+import styled from 'styled-components';
+import '../../stylesheets/styles.css'
+
+const BidCarouselItem = styled.div`
+  width: 70%;
+  height: 100%;
+  color: black;
+  background: ;
+  border-style: solid;
+  border-radius: 15px;
+  border-color: grey;
+  border-width: 1px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  background-image: linear-gradient(222A68);
+`;
 
 
 class BidsOnThisOffer extends Component {
@@ -109,33 +127,46 @@ class BidsOnThisOffer extends Component {
     const currentUser = this.props.user._id;
     return (
       <div>
-        <BidsOnMap bids={bids} offerID={this.props.offerID}/>
-        {bids.map((bid)=> {
-          return (
-            <div key={bid._id}>
-              <p>----------------------------------------</p>
-              <p>Description: {bid.description}</p>
-              <p>Value: {bid.value} </p>
-              { bid.userID === currentUser ? <button onClick={()=>this.deleteBid(bid._id)}>Delete</button> : <div></div> }
-              { bid.userID === currentUser ? <button onClick={this.renderEditBidForm}>Edit</button>:  <div></div>  }
+       <BidsOnMap bids={bids} offerID={this.props.offerID}/>
+        <Carousel 
+        showThumbs={false} 
+        showArrows={false} 
+        swipeable={true} 
+        emulateTouch={true} 
+        centerMode={true} 
+        centerSlidePercentage={80}
+        showStatus={false}
+        infiniteLoop={true}
+        showIndicators={false}
+        >
+  
+          {bids.map((bid)=>{
+            console.log(bid)
+            return (
+              <BidCarouselItem key={bid._id}>
+              <p> {bid.description}</p>
+              <p>${bid.value} </p>
+              { bid.userID === currentUser ? <Button color="danger" onClick={()=>this.deleteBid(bid._id)}>Delete</Button> : <div></div> }
+              { bid.userID === currentUser ? <Button color="success" onClick={this.renderEditBidForm}>Edit</Button>:  <div></div>  }
               { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={this.getBids} /> : <div></div>}
               
               { 
                 offerOwner === this.props.user._id && aBidHasBeenAccepted === false && bid.Status === 0 ? 
-                <button onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> Accept</button> 
+                <Button color="success" onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> Accept</Button> 
                 : <div></div>  
               }
 
               { 
                 offerOwner === this.props.user._id && aBidHasBeenAccepted === false  && bid.Status === 0 ? 
-                <button onClick={()=>this.declineBid(bid._id, 2) }> Decline</button> 
+                <Button color="danger" onClick={()=>this.declineBid(bid._id, 2) }> Decline</Button> 
                 : <div></div> 
               } 
-              <p>--------------------------------------------</p>
-            </div>
-          )
-        })}
-      { alreadyBidded === false && offerOwner !== currentUser ?  <button onClick={this.renderBidForm}>Bid</button> : <div></div>  }
+              </BidCarouselItem>
+            )
+          })}
+        </Carousel>
+
+      { alreadyBidded === false && offerOwner !== currentUser ?  <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
       { showBidForm ?  < CreateBid offerID={offerID} getBids={()=> this.getBids()} checkIfUserBidded={()=>this.checkIfUserBidded()}/> : <div></div> }
       </div>
     );
