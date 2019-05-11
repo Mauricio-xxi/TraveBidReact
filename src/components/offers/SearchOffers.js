@@ -8,7 +8,6 @@ import '../../stylesheets/styles.css'
 
 
 
-
 class SearchOffers extends Component {
     state = {
         offers: [],

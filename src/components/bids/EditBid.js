@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import bid from '../../lib/bid-service';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 
 class EditBid extends Component {
     
@@ -44,13 +45,13 @@ class EditBid extends Component {
   render() {
     return(
       <div>
-        <form onSubmit={this.handleFormSubmit}>
-         <label>Description:</label>
-         <input type="text" name="description"  onChange={e => this.handleChange(e)}/>
-         <label>Value:</label>
-         <input type="number" name="value" onChange={e => this.handleChange(e)} />
-         <input type="submit" value="Submit" />
-       </form>
+        <Form onSubmit={this.handleFormSubmit}>
+         <Label>Description:</Label>
+         <Input type="text" name="description"  onChange={e => this.handleChange(e)} />
+         <Label>Value:</Label>
+         <Input type="number" name="value" onChange={e => this.handleChange(e)} />
+         <Input type="submit" value="Submit" />
+       </Form>
       </div>
     )
   }

@@ -48,9 +48,9 @@ class OfferDetail extends Component {
     return (
       <OfferInfoConatiner>
         <h3>Offer Detail</h3>
-        <h5>{budget}</h5>
-        <h5>{fromFormated }</h5>
-        <h5>{untilFormated}</h5>
+        <h5>${budget}</h5>
+        <h5>Arriving:{fromFormated }</h5>
+        <h5>Departing:{untilFormated}</h5>
         <BidsOnThisOffer offerID={offerID} offerOwner={offerOwner}/>
       </OfferInfoConatiner>
     );

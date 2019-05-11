@@ -3,6 +3,11 @@ import React, { Component } from "react";
 import user from "../../lib/user-service";
 import  FileUpload  from "../firebase/index";
 import { Form, Label, Input } from 'reactstrap';
+import styled from 'styled-components';
+
+const ProfileFormStyle = styled.div`
+  display:block;
+`
 
 class ProfileForm extends Component {
     state = {
@@ -38,7 +43,7 @@ class ProfileForm extends Component {
 
   render () {
     return (
-     <div>
+     <ProfileFormStyle>
         <label>Image</label>
         <FileUpload getUrl={this.getUrl }></FileUpload>
 
@@ -54,7 +59,7 @@ class ProfileForm extends Component {
       </Form>
       <button type= "submit" onClick={this.submit}> Submit </button>
 
-     </div>
+     </ProfileFormStyle>
     )
   } 
 }

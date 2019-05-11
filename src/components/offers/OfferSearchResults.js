@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import transformDate from "../../functions/dates"
 
 
-
 class OfferSearchResults extends Component {
   
   render() {
@@ -15,11 +14,10 @@ class OfferSearchResults extends Component {
          const from = transformDate(offer.from)
          const until = transformDate(offer.until)
          return(
-           <div key={offer._id}>
+           <div style={{ boxShadow: "5px  5px 5px grey",  }} key={offer._id}>
              <Link to={`/Offer/${offer._id}`}>
                <h4>{offer.budget}</h4>
-               <p>{from}</p> 
-               <p>{until}</p> 
+               <p>{from}  to  {until}</p> 
              </Link>
            </div>
          )
