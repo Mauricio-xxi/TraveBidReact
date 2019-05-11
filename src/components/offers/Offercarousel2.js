@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-// import ReactDOM from 'react-dom';
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import transformDate from "../../functions/dates"
@@ -60,53 +57,51 @@ const OfferInfo = styled.div`
   padding-left: 10%;
 `;
 
+const HandleOfferButtons = styled.button`
+  background-color: white;
+  width:35%
+  height:25%;
+  padding: 0;
+  margin:0;
+  margin-left: 10%;
+  border:0;
+  cursor: pointer;
+`;
+
+const HandleOfferIcons = styled.img`
+  width: 50%
+  height:12%;
+`;
+
 
  
 class Offercarousel2 extends Component {
-
-  styles = {backgroundColor: 'white',}
-
   
     render() {
       const { showEditOfferForm, deleteOffer, offers } = this.props;
         return (
-            // <Carousel 
-            // showThumbs={false} 
-            // showArrows={false} 
-            // swipeable={true} 
-            // emulateTouch={true} 
-            // centerMode={true} 
-            // centerSlidePercentage={80}
-            // showStatus={false}
-            // infiniteLoop={true}
-            // showIndicators={false}
-            
-
-            // >
-              <OfferSilderWrapper>
-              {offers.map((offer)=>{
-                const from = transformDate(offer.from)
-                const until = transformDate(offer.until)
-                return (
-                  <OfferItemContainer key={offer._id}>
-                    <OfferItemImage>
-                      <Link to={`/Offer/${offer._id}`}>
-                          <OfferMainInfo>{offer.location}</OfferMainInfo> 
-                          <OfferMainInfo>${offer.budget}</OfferMainInfo>
-                      </Link>
-                    </OfferItemImage>
-                    <OfferInfo>
-                      <p>Arriving: {from}</p> 
-                      <p>Departing: {until}</p> 
-                      <Button color="danger" onClick={()=>deleteOffer(offer._id)}> Delete </Button>
-                      <Button color="success" onClick={()=>showEditOfferForm(offer)}> Edit </Button>
-                    </OfferInfo>
-                 </OfferItemContainer>
-                )
-              })}
-            </OfferSilderWrapper>
-              
-            // {/* </Carousel> */}
+          <OfferSilderWrapper>
+           {offers.map((offer)=>{
+             const from = transformDate(offer.from)
+             const until = transformDate(offer.until)
+             return (
+               <OfferItemContainer key={offer._id}>
+                 <OfferItemImage>
+                   <Link to={`/Offer/${offer._id}`}>
+                       <OfferMainInfo>{offer.location}</OfferMainInfo> 
+                       <OfferMainInfo>${offer.budget}</OfferMainInfo>
+                   </Link>
+                 </OfferItemImage>
+                 <OfferInfo>
+                   <p>Arriving: <strong>{from}</strong> </p> 
+                   <p>Departing: <strong>{until}</strong> </p> 
+                   <HandleOfferButtons  onClick={()=>deleteOffer(offer._id)}> <HandleOfferIcons src="/trash.svg"/> </HandleOfferButtons>
+                   <HandleOfferButtons  onClick={()=>showEditOfferForm(offer)}> <HandleOfferIcons src="/edit.svg"/> </HandleOfferButtons>
+                 </OfferInfo>
+              </OfferItemContainer>
+             )
+           })}
+         </OfferSilderWrapper>
         );
     }
 };
