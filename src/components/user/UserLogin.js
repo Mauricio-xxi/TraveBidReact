@@ -54,6 +54,7 @@ class UserLogin extends Component {
           name="username"
           value={username}
           onChange={this.handleChange}
+          required
         />
         </FormGroup>
         <FormGroup>
@@ -63,6 +64,7 @@ class UserLogin extends Component {
           name="password"
           value={password}
           onChange={this.handleChange}
+          required
         />
         </FormGroup>
         <Input type="submit" value="Login" />
