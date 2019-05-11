@@ -7,6 +7,8 @@ import RoomData from "../components/user/RoomData";
 import UserCard from "../components/user/UserCard";
 import styled from 'styled-components';
 import { Button } from 'reactstrap';
+import room from "../lib/room-service";
+import RoomCard from "../components/user/RoomCard";
 
 const ProfileContainer = styled.div`
   display:block;
@@ -18,6 +20,7 @@ class Profile extends Component {
 
   state = {
     user,
+    room,
     showUserForm: false,
     showRoomForm: false,
   }
@@ -31,8 +34,19 @@ class Profile extends Component {
     })
   }
 
+  getRoom = () => {
+    room.getRoom()
+    .then(responseData=>{
+      console.log(responseData)
+      this.setState({
+        room:responseData
+      })
+    })
+  }
+
  componentDidMount(){
    this.getUser()
+   this.getRoom()
  }
 
  showUserFormButton = (e) => {
@@ -66,6 +80,7 @@ class Profile extends Component {
         <UserCard userImage={userImage} username={username} age={age} description={description} city={city}/>
           <Button style={{margin:"5px"}}onClick={this.showUserFormButton}>Update Profile</Button>
           {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} /> : <div/> }
+        <RoomCard RoomImage={this.state.room.roomImage} description={this.state.room.description} alt={"hola"}/>
           <Button style={{margin:"5px"}}onClick={this.showRoomFormButton}>Update Room</Button>
           {this.state.showRoomForm? <RoomData/> : <div/> }
       </ProfileContainer>
