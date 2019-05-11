@@ -13,7 +13,6 @@ class Private extends Component {
       <div>
         <Navbar />
         <h2>Welcome {this.props.user.username}</h2>
-        <SearchOffers />
         <Offers />
         <Bids/>
       </div>
