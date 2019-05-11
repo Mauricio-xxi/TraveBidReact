@@ -1,6 +1,6 @@
 .carousel {
-  background-color:#DFDFDF;
-  color: white;
+  background-color: white;
+  background:white;
   text-align: center;
   padding: 5%;
   padding-bottom: 8%;
@@ -13,10 +13,6 @@
   margin-bottom: 5%;
 }
 
-.carousel {
-  background-color: white;
-  background:white;
-}
 
 .slide {
   background-color: white;
