@@ -62,7 +62,7 @@ class Bids extends Component {
       //   <p>------------------------</p>
       // </div>
       <div>
-        <h5>Open Bids</h5>
+        <h5>Your Bids</h5>
         <Carousel 
         showThumbs={false} 
         showArrows={false} 

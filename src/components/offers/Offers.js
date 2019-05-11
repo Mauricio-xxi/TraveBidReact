@@ -73,7 +73,7 @@ class Offers extends Component {
             <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
         : <div></div> }
 
-        <h5>Open Offers</h5>
+        <h5>Your Offers</h5>
 
         {/* <OfferCard 
           offers={offers}
