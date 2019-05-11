@@ -13,6 +13,7 @@ const ProfileContainer = styled.div`
 `;
 
 
+
 class Profile extends Component {
 
   state = {
@@ -63,10 +64,10 @@ class Profile extends Component {
       <ProfileContainer>
         <Navbar/>
         <UserCard userImage={userImage} username={username} age={age} description={description} city={city}/>
-        <Button onClick={this.showUserFormButton}>Update Profile</Button>
-        {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} /> : <div/> }
-        <Button onClick={this.showRoomFormButton}>Update Room</Button>
-        {this.state.showRoomForm? <RoomData/> : <div/> }
+          <Button style={{margin:"5px"}}onClick={this.showUserFormButton}>Update Profile</Button>
+          {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} /> : <div/> }
+          <Button style={{margin:"5px"}}onClick={this.showRoomFormButton}>Update Room</Button>
+          {this.state.showRoomForm? <RoomData/> : <div/> }
       </ProfileContainer>
     )
   }
