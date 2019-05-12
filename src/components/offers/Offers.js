@@ -65,10 +65,17 @@ class Offers extends Component {
   }
 
   renderEditOfferForm = (offer) => {
-    this.setState({
+    if(this.state.showEditOfferForm === false ){
+      this.setState({
       showEditOfferForm: true,
       offerToEdit: offer,
      })
+    } else if (this.state.showEditOfferForm === true){
+      this.setState({
+        showEditOfferForm: false,
+        offerToEdit: offer,
+       })
+    }
   }
 
   deleteOffer = (offerID) => {
