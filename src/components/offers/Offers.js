@@ -5,6 +5,8 @@ import CreateOffer from "../offers/CreateOffer";
 import EditOffer from "../offers/EditOffer";
 import Offercarousel2 from "../offers/Offercarousel2";
 import styled from 'styled-components';
+import {CSSTransition} from 'react-transition-group';
+import '../../stylesheets/transitions.css'
 
 
 const OffersectionHeader = styled.div`
@@ -99,8 +101,15 @@ class Offers extends Component {
 
         </OffersectionHeader>
 
-        { showCreateOfferForm ? 
+        { showCreateOfferForm ?
+          <CSSTransition 
+            in={showCreateOfferForm}
+            appear={true}
+            timeout={500}
+            classNames="fade"
+          >
             <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
+          </CSSTransition> 
         : <div></div> }
 
         <Offercarousel2
