@@ -18,7 +18,7 @@ const OfferSilderWrapper = styled.div`
 
 const OfferItemContainer = styled.div`
   display: inline-block;
-  width: 60%;
+  width: 80%;
   padding:0;
   margin-right: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
