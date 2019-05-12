@@ -32,9 +32,17 @@ export default class RoomCard extends Component {
     },
   }
 
+  handleViewportChange = (viewport) => {
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport }
+    })
+    // this.props.getCoordinates([this.state.viewport.latitude, this.state.viewport.longitude])
+  }
+
+
   render() {
-    const {RoomImage, roomId, latitude, description, longitude} = this.props
-    console.log(latitude,longitude)
+    const {RoomImage, roomId, location, description} = this.props
+    console.log(location)
     return (
       <div> 
          <RoomCardStyle>
@@ -47,12 +55,14 @@ export default class RoomCard extends Component {
         <ReactMapGL
         {...this.state.viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/mapbox/streets-v9">
-          <Marker
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+        onViewportChange={this.handleViewportChange}
+        > {(location)=>{ return( 
+        <Marker
             key={1}
-            latitude={latitude}
-            longitude={longitude}
-          />
+            latitude={41.3851}
+            longitude={2.1734}
+          />)}}
           </ReactMapGL>
       </RoomCardStyle>
       </div>
