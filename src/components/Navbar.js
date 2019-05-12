@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { withAuth } from "../lib/AuthProvider";
 import { Nav, Navbar, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, } from 'reactstrap';
 import styled from 'styled-components';
+import SearchOffers from '../components/offers/SearchOffers'
 
 
 const NavElements = styled.div`
@@ -11,13 +12,6 @@ const NavElements = styled.div`
     flex-wrap: nowrap;
     justify-content: space-between;
   `;
-
-// const SearchButton = styled.button`
-//   padding: 0;
-//   margin:0;
-//   border:0;
-// `;
-
 
 class NavbarTravel extends Component {
     
@@ -59,8 +53,7 @@ class NavbarTravel extends Component {
                 </DropdownMenu>
               </Dropdown>
               <Link to="/private"><h3>TravelBID</h3></Link>
-              
-              <img width="9%" height="80%" src="/Search.png" alt="View offer in your town"/>
+              <SearchOffers />
               </NavElements>
           </Nav>
         </Navbar>

@@ -3,8 +3,23 @@ import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
 import OfferSearchResults from "./OfferSearchResults";
 import user from "../../lib/user-service";
-import { Button } from 'reactstrap';
-import '../../stylesheets/styles.css'
+import styled from 'styled-components';
+
+
+const SearchButton = styled.button`
+  background-color: #F8F9FA;
+  width:35%
+  padding: 0;
+  margin:0;
+  margin-left: 60%;
+  border:0;
+  cursor: pointer;
+`;
+
+const SearchIcon = styled.img`
+  width: 50%
+  height:12%;
+`;
 
 
 
@@ -59,10 +74,8 @@ class SearchOffers extends Component {
   render() {
     const { showSearchResults, offers } = this.state;
     return (
-      <div className="centeredComponents">
-       <Button color= "warning" onClick={this.handleShowSearchResults}>
-        View offers in your town
-        </Button>
+      <div>
+        <SearchButton onClick={this.handleShowSearchResults}><SearchIcon src="/Search.png" alt="View offer in your town"/></SearchButton>
         { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       </div>
       

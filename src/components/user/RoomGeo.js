@@ -1,8 +1,9 @@
 import 'mapbox-gl/dist/mapbox-gl.css'
 import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
 import React, { Component } from 'react'
-import MapGL from 'react-map-gl'
+import MapGL, {Marker} from 'react-map-gl'
 import Geocoder from 'react-map-gl-geocoder'
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css'
  
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
@@ -60,15 +61,18 @@ class RoomGeo extends Component {
         {...this.state.viewport}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         onViewportChange={this.handleViewportChange}
-        mapboxApiAccessToken={MAPBOX_TOKEN} 
+        mapboxApiAccessToken={MAPBOX_TOKEN}
+        children={this.props.children} 
         >
+        <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude }> <img src="/location.svg" alt=""/> </Marker>
         <Geocoder
           mapRef={this.mapRef}
           onViewportChange={this.handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
-          // onResult={(results) => {
-          //   console.log("test", results);
-          // }}
+          onResult={(results) => {
+            console.log("test", results);
+          }}
+          
           // onError={(error) =>{
           //   console.log(error);
           // }}

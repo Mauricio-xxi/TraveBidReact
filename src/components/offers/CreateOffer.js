@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import offer from '../../lib/offer-service';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import styled from 'styled-components';
+
+const CreateOfferForm = styled.div`
+  display:block;
+  margin-top: 5%;
+  width: 100%;
+`
 
 class CreateOffer extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
+  state = {
         location: "", 
         budget: "",
         from: "",
         until:"",  
       };
-  }
    
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +41,7 @@ class CreateOffer extends Component {
 
   render() {
     return(
-      <div>
+      <CreateOfferForm>
        <Form onSubmit={this.handleFormSubmit}>
           <FormGroup>
             <Label>Location:</Label>
@@ -58,7 +62,7 @@ class CreateOffer extends Component {
             <Button color= "success" type="submit" value="Submit"> Create</Button>
             {/* <Input type="submit" value="Submit" /> */}
        </Form>
-      </div>
+      </CreateOfferForm>
     )
   }
 }

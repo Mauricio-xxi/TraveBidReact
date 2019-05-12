@@ -3,7 +3,6 @@ import { withAuth } from "../lib/AuthProvider";
 import Navbar from "../components/Navbar";
 import Offers from "../components/offers/Offers";
 import Bids from "../components/bids/Bids";
-import SearchOffers from "../components/offers/SearchOffers";
 
 
 class Private extends Component {
@@ -13,7 +12,6 @@ class Private extends Component {
       <div>
         <Navbar />
         <h2>Welcome {this.props.user.username}</h2>
-        <SearchOffers />
         <Offers />
         <Bids/>
       </div>
