@@ -3,24 +3,28 @@ import { withAuth } from "../../lib/AuthProvider";
 import EditBid from "../bids/EditBid";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
-import BidsOnMap from "../bids/BidsOnMap"
+// import BidsOnMap from "../bids/BidsOnMap"
 import { Button } from 'reactstrap';
-import { Carousel } from 'react-responsive-carousel';
 import styled from 'styled-components';
 import '../../stylesheets/styles.css'
 
+const BidSilderWrapper = styled.div`
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  padding-bottom: 10%;
+`;
+
 const BidCarouselItem = styled.div`
-  width: 70%;
-  height: 100%;
-  color: black;
-  background: ;
-  border-style: solid;
+  display: inline-block;
+  width: 80%;
+  padding:0;
+  margin-right: 10%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 15px;
-  border-color: grey;
-  border-width: 1px;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  background-image: linear-gradient(222A68);
 `;
 
 
@@ -43,6 +47,7 @@ class BidsOnThisOffer extends Component {
     const ID = this.props.offerID;
     bid.getBids(ID)
     .then(responseData => {
+      //Bids are populated with user owner info
       this.setState({
         bids: responseData,
         showBidForm: false,
@@ -127,19 +132,9 @@ class BidsOnThisOffer extends Component {
     const currentUser = this.props.user._id;
     return (
       <div>
-       <BidsOnMap bids={bids} offerID={this.props.offerID}/>
-        <Carousel 
-        showThumbs={false} 
-        showArrows={false} 
-        swipeable={true} 
-        emulateTouch={true} 
-        centerMode={true} 
-        centerSlidePercentage={80}
-        showStatus={false}
-        infiniteLoop={true}
-        showIndicators={false}
-        >
-  
+       {/* <BidsOnMap bids={bids} offerID={this.props.offerID}/> */}
+
+       <BidSilderWrapper>
           {bids.map((bid)=>{
             console.log(bid)
             return (
@@ -164,7 +159,7 @@ class BidsOnThisOffer extends Component {
               </BidCarouselItem>
             )
           })}
-        </Carousel>
+        </BidSilderWrapper>
 
       { alreadyBidded === false && offerOwner !== currentUser ?  <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
       { showBidForm ?  < CreateBid offerID={offerID} getBids={()=> this.getBids()} checkIfUserBidded={()=>this.checkIfUserBidded()}/> : <div></div> }
