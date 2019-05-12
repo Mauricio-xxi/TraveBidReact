@@ -10,7 +10,7 @@ const BidSilderWrapper = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 5%;
   margin-left: 5%;
   padding-bottom: 10%;
@@ -67,29 +67,32 @@ class Bids extends Component {
     const { bids } = this.state;
     return (
 
-      <BidSilderWrapper>
-          {bids.map((bid)=>{
-            const from = transformDate(bid.offerID.from)
-            const until = transformDate(bid.offerID.until)
-            const {budget} = bid.offerID
-            return (
-              <BidCarouselItem key={bid._id}>
-                <InfoWrapper>
-                   <BidValue>
-                      <Link to={`/Offer/${bid.offerID}`}>
-                         <h3>${bid.value}</h3>
-                      </Link>
-                   </BidValue>
-                   <OfferInfo>
-                     <h5>Offer: ${budget}</h5>
-                     <p>Arriving:{from}</p>
-                     <p>Departing:{until}</p>
-                   </OfferInfo>
-                </InfoWrapper>
-              </BidCarouselItem>
-            )
-          })}
-      </BidSilderWrapper>
+      <div>
+        <h5>Your Bids</h5>
+        <BidSilderWrapper>
+            {bids.map((bid)=>{
+              const from = transformDate(bid.offerID.from)
+              const until = transformDate(bid.offerID.until)
+              const {budget} = bid.offerID
+              return (
+                <BidCarouselItem key={bid._id}>
+                  <InfoWrapper>
+                     <BidValue>
+                        <Link to={`/Offer/${bid.offerID}`}>
+                           <h3>${bid.value}</h3>
+                        </Link>
+                     </BidValue>
+                     <OfferInfo>
+                       <h5>Offer: ${budget}</h5>
+                       <p>Arriving:{from}</p>
+                       <p>Departing:{until}</p>
+                     </OfferInfo>
+                  </InfoWrapper>
+                </BidCarouselItem>
+              )
+            })}
+        </BidSilderWrapper>
+      </div>
     );
   }
 }
