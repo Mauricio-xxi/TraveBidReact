@@ -5,6 +5,7 @@ import RoomGeo from "./RoomGeo";
 import { Form, Label, Input, Button, FormGroup } from 'reactstrap';
 import styled from 'styled-components';
 
+
 const ProfileCardStyle = styled.div`
   width:100%;
   display:block;
@@ -52,6 +53,7 @@ class RoomData extends Component {
   getRoom = () => {
     room.getRoom()
     .then(responseData=>{
+      console.log(responseData)
       this.setState({
         room:responseData
       })
@@ -83,16 +85,16 @@ handleChange = event => {
   this.setState({ [name]: value });
 }
 
-  render(){
+  render(){ 
   return (
     <ProfileCardStyle>
     <RoomGeo  getCoordinates={this.getCoordinates}></RoomGeo>
     <Form>
       <FormGroup>
-        <Label>Description:</Label>
-        <Input name = "description" type = "string" onChange ={this.handleChange}/>
+        <h3>Description:</h3>
+        <Input name = "description" type = "string" onChange ={this.handleChange} required/>
       </FormGroup>
-        <Label>Facilities:</Label>
+        <h3>Facilities:</h3>
       <FormGroup>
         <Label>Private Room:</Label>
         <Input name = "privateRoom" type = "checkbox" onChange ={this.handleChange}/>
