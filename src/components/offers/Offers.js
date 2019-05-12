@@ -95,22 +95,22 @@ class Offers extends Component {
       <div>
 
         <OffersectionHeader>
-        <OfferTitle>Your Offers</OfferTitle>
-
-        <CreateOfferButton onClick={this.renderOfferForm}> <img src="/plus.svg" alt="Create a new offer"/> </CreateOfferButton>
-
+          <OfferTitle>Your Offers</OfferTitle>
+          <CreateOfferButton onClick={this.renderOfferForm}> <img src="/plus.svg" alt="Create a new offer"/> </CreateOfferButton>
         </OffersectionHeader>
 
-        { showCreateOfferForm ?
-          <CSSTransition 
-            in={showCreateOfferForm}
-            appear={true}
-            timeout={500}
-            classNames="fade"
-          >
-            <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
-          </CSSTransition> 
-        : <div></div> }
+        <CSSTransition 
+         in={showCreateOfferForm}
+         appear={true}
+         timeout={{enter: 300, exit:300}}
+         classNames="fade"
+        >
+          { showCreateOfferForm ?
+
+              <CreateOffer getOffers={this.getOffers} renderOfferForm={this.renderOfferForm}/> 
+
+          : <div></div> }
+        </CSSTransition> 
 
         <Offercarousel2
             offers={offers} 
