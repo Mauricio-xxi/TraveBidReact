@@ -24,6 +24,7 @@ class OfferDetail extends Component {
     const offerID = this.props.offerID;
     offer.getOffer(offerID)
     .then(responseData => {
+      //populated with userInfo
         this.setState({
           budget: responseData.budget,
           from: responseData.from,
