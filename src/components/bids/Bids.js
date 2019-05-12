@@ -1,25 +1,40 @@
 import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import bid from '../../lib/bid-service';
-import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import '../../stylesheets/styles.css'
 
-
+const BidSilderWrapper = styled.div`
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin-top: 10%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  padding-bottom: 10%;
+`;
 
 const BidCarouselItem = styled.div`
-  width: 70%;
-  height: 100%;
-  color: black;
-  background: ;
-  border-style: solid;
+  display: inline-block;
+  width: 60%;
+  padding:0;
+  margin-right: 10%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 15px;
-  border-color: grey;
-  border-width: 1px;
-  padding-top: 5%;
-  padding-bottom: 5%;
-  background-image: linear-gradient(222A68);
+`;
+
+const InfoWrapper = styled.div`
+  display:flex;
+  flex-direction:row;
+`;
+
+const BidValue = styled.div`
+  padding: 5%;
+`;
+
+const OfferInfo = styled.div`
+  padding-left:8%;
 `;
 
 
@@ -48,45 +63,25 @@ class Bids extends Component {
   render() {
     const { bids } = this.state;
     return (
-      // <div>
-      //   {this.state.bids.map((bid) => {
-      //     return(
-      //       <div key={bid._id}>
-      //         <Link to={`/Offer/${bid.offerID}`}>
-      //         <p>{bid.value}</p> 
-      //         <p>Budget: {bid.description}</p>
-      //         </Link>
-      //       </div>
-      //     )
-      //   })}
-      //   <p>------------------------</p>
-      // </div>
-      <div>
-        <h5>Your Bids</h5>
-        <Carousel 
-        showThumbs={false} 
-        showArrows={false} 
-        swipeable={true} 
-        emulateTouch={true} 
-        centerMode={true} 
-        centerSlidePercentage={80}
-        showStatus={false}
-        infiniteLoop={true}
-        showIndicators={false}
-        >
-  
+
+      <BidSilderWrapper>
           {bids.map((bid)=>{
             return (
               <BidCarouselItem key={bid._id}>
-              <Link to={`/Offer/${bid.offerID}`}>
-                  <h5>{bid.description}</h5> 
-                  <h5>${bid.value}</h5>
-               </Link>
-            </BidCarouselItem>
+                <InfoWrapper>
+                   <BidValue>
+                      <Link to={`/Offer/${bid.offerID}`}>
+                         <h3>${bid.value}</h3>
+                      </Link>
+                   </BidValue>
+                   <OfferInfo>
+                     <p>Offer Info</p>
+                   </OfferInfo>
+                </InfoWrapper>
+              </BidCarouselItem>
             )
           })}
-        </Carousel>
-      </div>
+      </BidSilderWrapper>
     );
   }
 }
