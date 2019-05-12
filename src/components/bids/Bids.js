@@ -3,6 +3,7 @@ import { withAuth } from "../../lib/AuthProvider";
 import bid from '../../lib/bid-service';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
 
 const BidSilderWrapper = styled.div`
@@ -17,7 +18,7 @@ const BidSilderWrapper = styled.div`
 
 const BidCarouselItem = styled.div`
   display: inline-block;
-  width: 60%;
+  width: 80%;
   padding:0;
   margin-right: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -31,10 +32,11 @@ const InfoWrapper = styled.div`
 
 const BidValue = styled.div`
   padding: 5%;
+  padding-top:20%
 `;
 
 const OfferInfo = styled.div`
-  padding-left:8%;
+  padding:5%;
 `;
 
 
@@ -52,8 +54,9 @@ class Bids extends Component {
   getUserBids = () => {
     bid.getUserBids(this.props.user._id)
     .then(responseData => {
+      console.log(responseData)
         this.setState({
-          bids: [...responseData],
+          bids: [...responseData.bids],
         })
     })
     .catch( error => console.log(error) )
@@ -66,6 +69,9 @@ class Bids extends Component {
 
       <BidSilderWrapper>
           {bids.map((bid)=>{
+            const from = transformDate(bid.offerID.from)
+            const until = transformDate(bid.offerID.until)
+            const {budget} = bid.offerID
             return (
               <BidCarouselItem key={bid._id}>
                 <InfoWrapper>
@@ -75,7 +81,9 @@ class Bids extends Component {
                       </Link>
                    </BidValue>
                    <OfferInfo>
-                     <p>Offer Info</p>
+                     <h5>Offer: ${budget}</h5>
+                     <p>Arriving:{from}</p>
+                     <p>Departing:{until}</p>
                    </OfferInfo>
                 </InfoWrapper>
               </BidCarouselItem>
