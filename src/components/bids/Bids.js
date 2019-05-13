@@ -64,7 +64,6 @@ class Bids extends Component {
 
   render() {
     const { bids } = this.state;
-    console.log(bids);
     return (
       <div>
         <h5>Your Bids</h5>
@@ -78,7 +77,7 @@ class Bids extends Component {
                 <BidCarouselItem key={bid._id}>
                   <InfoWrapper>
                      <BidValue>
-                        <Link to={`/Offer/${bid.offerID}`}>
+                        <Link to={`/Offer/${bid.offerID._id}`}>
                            <h3>${bid.value}</h3>
                         </Link>
                      </BidValue>
