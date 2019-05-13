@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
 import '../../stylesheets/carousel.css'
+// import { div } from 'gl-matrix/src/gl-matrix/vec2';
 
 
 const OfferSilderWrapper = styled.div`
@@ -79,6 +80,8 @@ class Offercarousel2 extends Component {
     render() {
       const { showEditOfferForm, deleteOffer, offers } = this.props;
         return (
+          <div>
+          {offers.length !== 0 ? 
           <OfferSilderWrapper>
            {offers.map((offer)=>{
              const from = transformDate(offer.from)
@@ -101,6 +104,8 @@ class Offercarousel2 extends Component {
              )
            })}
          </OfferSilderWrapper>
+         : <div><h5>You have no offers, create one!</h5></div>}
+         </div>
         );
     }
 };
