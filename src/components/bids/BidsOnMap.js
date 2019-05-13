@@ -5,8 +5,8 @@ import bid from "../../lib/bid-service";
 class BidsOnMap extends Component {
   state = {
     viewport: {
-      width: "100vw",
-      height: "70vh",
+      width: "100%",
+      height: "300px",
       latitude: 41.3851,
       longitude: 2.1734,
       zoom: 11
@@ -52,6 +52,7 @@ class BidsOnMap extends Component {
         {bids.length !== 0 ?  
         <ReactMapGL
         {...this.state.viewport}
+        
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/mapbox/streets-v9"
         onViewportChange={this.handleViewportChange}
