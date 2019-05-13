@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import bid from '../../lib/bid-service';
+import EditBid from "../bids/EditBid";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import transformDate from "../../functions/dates"
@@ -35,6 +36,22 @@ const BidValue = styled.div`
   padding-top:20%
 `;
 
+const HandleBidButtons = styled.button`
+  background-color: white;
+  width:50%
+  height:30%;
+  padding: 0;
+  margin:0;
+  margin-left: 10%;
+  border:0;
+  cursor: pointer;
+`;
+
+const HandleBidIcons = styled.img`
+  width: 100%
+  height:100%;
+`;
+
 const OfferInfo = styled.div`
   padding:5%;
 `;
@@ -43,6 +60,8 @@ const OfferInfo = styled.div`
 class Bids extends Component {
     state = {
         bids: [],
+        showEditButton: false,//button to edit bid
+        showEditBidForm: false,//bid edit form
     }
   
 
@@ -56,20 +75,36 @@ class Bids extends Component {
     .then(responseData => {
         this.setState({
           bids: [...responseData.bids],
+          showEditBidForm: false,
         })
     })
     .catch( error => console.log(error) )
   }
+
+  renderEditBidForm = (e) => {
+    this.setState({
+      showEditBidForm: true,
+     })
+  }
+
+  deleteBid = (bidID) => {
+    bid.deleteBid(bidID)
+    .then(()=>{
+      this.getBids()
+    })
+  }
   
 
   render() {
-    const { bids } = this.state;
+    const { bids, showEditBidForm  } = this.state;
+    const currentUser = this.props.user._id;
     return (
       <div>
         <h5>Your Bids</h5>
         {bids.length !== 0 && bids[0].offerID !== null ? 
         <BidSilderWrapper>
             {bids.map((bid)=>{
+              console.log(bid)
               const from = transformDate(bid.offerID.from)
               const until = transformDate(bid.offerID.until)
               const {budget} = bid.offerID
@@ -80,6 +115,9 @@ class Bids extends Component {
                         <Link to={`/Offer/${bid.offerID._id}`}>
                            <h3>${bid.value}</h3>
                         </Link>
+                          { bid.userID._id === currentUser ? <HandleBidButtons onClick={()=>this.deleteBid(bid._id)}> <HandleBidIcons src="/trash.svg"/> </HandleBidButtons> : <div></div> }
+                          { bid.userID._id === currentUser ? <HandleBidButtons onClick={this.renderEditBidForm}> <HandleBidIcons src="/edit.svg"/> </HandleBidButtons>:  <div></div>  }
+                          { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={this.getUserBids} /> : <div></div>}
                      </BidValue>
                      <OfferInfo>
                        <h5>Offer: ${budget}</h5>
