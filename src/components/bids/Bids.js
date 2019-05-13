@@ -54,7 +54,6 @@ class Bids extends Component {
   getUserBids = () => {
     bid.getUserBids(this.props.user._id)
     .then(responseData => {
-      console.log(responseData)
         this.setState({
           bids: [...responseData.bids],
         })
@@ -65,10 +64,11 @@ class Bids extends Component {
 
   render() {
     const { bids } = this.state;
+    console.log(bids);
     return (
-
       <div>
         <h5>Your Bids</h5>
+        {bids.length !== 0 && bids[0].offerID !== null ? 
         <BidSilderWrapper>
             {bids.map((bid)=>{
               const from = transformDate(bid.offerID.from)
@@ -92,6 +92,7 @@ class Bids extends Component {
               )
             })}
         </BidSilderWrapper>
+        : <div><h5>You have no bids, create one!</h5></div>}
       </div>
     );
   }
