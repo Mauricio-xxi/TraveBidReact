@@ -59,11 +59,11 @@ const OfferInfo = styled.div`
 
 const HandleOfferButtons = styled.button`
   background-color: white;
-  width:35%
-  height:25%;
+  width:25%
+  height:20%;
   padding: 0;
   margin:0;
-  margin-left: 10%;
+  margin-left: 5%;
   border:0;
   cursor: pointer;
 `;
@@ -71,6 +71,8 @@ const HandleOfferButtons = styled.button`
 const HandleOfferIcons = styled.img`
   width: 50%
   height:12%;
+  padding:0;
+  margin:0;
 `;
 
 
