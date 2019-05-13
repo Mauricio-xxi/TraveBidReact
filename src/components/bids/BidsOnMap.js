@@ -1,38 +1,29 @@
-// import React, { useState, useEffect } from "react";
 import React, { Component } from 'react'
-import ReactMapGL, { Marker } from "react-map-gl";
-// import * as parkDate from "../components/data/skateboard-parks.json";
-import room from "../../lib/room-service";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import bid from "../../lib/bid-service";
-// import { div } from 'gl-matrix/src/gl-matrix/vec2';
-
-// export default function App() {
-//   const [viewport, setViewport] = useState({
-//     latitude: 45.4211,
-//     longitude: -75.6903,
-//     width: "100vw",
-//     height: "70vh",
-//     zoom: 10
-//   });
 
 class BidsOnMap extends Component {
   state = {
     viewport: {
-      width: "100vw",
-      height: "70vh",
+      width: "100%",
+      height: "300px",
       latitude: 41.3851,
       longitude: 2.1734,
       zoom: 11
     },
-    rooms:[],
-    bids:[]
+    bids:[],
+    selectedBid: null,
   }
+
+  componentDidMount (){
+    this.getBids()
+  }
+ 
 
   handleViewportChange = (viewport) => {
     this.setState({
       viewport: { ...this.state.viewport, ...viewport }
     })
-    // this.props.getCoordinates([this.state.viewport.latitude, this.state.viewport.longitude])
   }
 
   getBids = () => {
@@ -42,152 +33,72 @@ class BidsOnMap extends Component {
       this.setState({
         bids: responseData,
       })
-      this.getRooms()
     })
   }
 
-  getRooms = () => {
-    const bids = this.state.bids
-    bids.forEach((bid)=>{
-      room.getRooms(bid.roomID)
-      .then( (room) => {
-        this.setState({
-          rooms: [...this.state.rooms, room]
-        })
-        console.log(this.state.rooms)
-      })
-      .catch( error => console.log(error) )
+  handleViewportChange = (viewport) => {
+    viewport.width = 100%
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport }
     })
   }
-  
- 
-  componentDidMount (){
-    this.getBids()
+
+  selectBid = (e, bid) => {
+    e.preventDefault();
+    this.setState({
+      selectedBid: bid,
+    })
   }
- 
 
-//   console.log(this.props.bids)
-//   const [bids, setBids] = useState(this.props.bids)
-
-//   const roomIDs = bids.map((bid) => {
-//     return room.getRooms(bid.roomID)
-//   })
-
-//   console.log(roomIDs);
-
-
-  // const [selectedBid, setSelectedBid] = useState(null);
-
-  // useEffect(() => {
-  //   const listener = e => {
-  //     if (e.key === "Escape") {
-  //       setSelectedBid(null);
-  //     }
-  //   };
-  //   window.addEventListener("keydown", listener);
-
-  //   return () => {
-  //     window.removeEventListener("keydown", listener);
-  //   };
-  // }, []);
-
+  unSelectBid = () => {
+    this.setState({
+      selectedBid: null,
+    })
+  }
 
   render (){
-    const rooms = this.state.rooms;
-    
+    const  { bids, selectedBid } = this.state;
     return (
       <div>
-        {rooms.length >= 1 ?  <ReactMapGL
-        {...this.state.viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-        onViewportChange={this.handleViewportChange}
-      >
-        {rooms.map(room => (
-          <Marker
-            key={room._id}
-            latitude={room.location.coordinates[1]}
-            longitude={room.location.coordinates[0]}
-          >
-            {/* <button
-              className="marker-btn"
-              onClick={e => {
-                e.preventDefault();
-                setSelectedBid(bid);
-              }}
-            >
-              <img src="/skateboarding.svg" alt="Skate Park Icon" />
-            </button> */}
-          </Marker>
-        ))}
+        {bids.length !== 0 ?  
+          <ReactMapGL
+            {...this.state.viewport}
 
-        {/* {selectedPark ? (
-          <Popup
-            latitude={selectedPark.geometry.coordinates[1]}
-            longitude={selectedPark.geometry.coordinates[0]}
-            onClose={() => {
-              setSelectedPark(null);
-            }}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            mapStyle="mapbox://styles/mapbox/streets-v9"
+            onViewportChange={this.handleViewportChange}
           >
-            <div>
-              <h2>{selectedPark.properties.NAME}</h2>
-              <p>{selectedPark.properties.DESCRIPTIO}</p>
-            </div>
-          </Popup>
-        ) : null} */}
-      </ReactMapGL> : <div></div> }
+            {bids.map(bid => (
+              <Marker
+                key={bid._id}
+                latitude={bid.roomID.location.coordinates[0]}
+                longitude={bid.roomID.location.coordinates[1]}
+              >
+                <button onClick={ e =>  this.selectBid(e, bid)}>
+                  <img src="/location.svg" alt=""/>
+                </button>
+              </Marker>
+            ))}
+
+            { selectedBid !== null ? (
+              <Popup
+                latitude={selectedBid.roomID.location.coordinates[0]}
+                longitude={selectedBid.roomID.location.coordinates[1]}
+                closeButton={true} closeOnClick={true}
+                onClose={this.unSelectBid }
+              >
+                <div>
+                  <h2>{selectedBid.description}</h2>
+                  <h2>{selectedBid.value}</h2>
+                </div>
+               </Popup>
+             ) : null}
+           </ReactMapGL> 
+      : <div></div> }
             
       </div>
     )
   }
 }
-
-  // return (
-  //   <div>
-
-      /* <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        // mapStyle="mapbox://styles/leighhalliday/cjufmjn1r2kic1fl9wxg7u1l4"
-        onViewportChange={viewport => {
-          setViewport(viewport);
-        }}
-      >
-        {bids.map(bid => (
-          <Marker
-            key={park.properties.PARK_ID}
-            latitude={park.geometry.coordinates[1]}
-            longitude={park.geometry.coordinates[0]}
-          >
-            <button
-              className="marker-btn"
-              onClick={e => {
-                e.preventDefault();
-                setSelectedBid(bid);
-              }}
-            >
-              <img src="/skateboarding.svg" alt="Skate Park Icon" />
-            </button>
-          </Marker>
-        ))}
-
-        {selectedPark ? (
-          <Popup
-            latitude={selectedPark.geometry.coordinates[1]}
-            longitude={selectedPark.geometry.coordinates[0]}
-            onClose={() => {
-              setSelectedPark(null);
-            }}
-          >
-            <div>
-              <h2>{selectedPark.properties.NAME}</h2>
-              <p>{selectedPark.properties.DESCRIPTIO}</p>
-            </div>
-          </Popup>
-        ) : null}
-      </ReactMapGL> */
-//     </div>
-//   );
-// }
 
 export default BidsOnMap 

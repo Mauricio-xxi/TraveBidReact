@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import bid from '../../lib/bid-service';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, Label, Input } from 'reactstrap';
 
 class CreateBid extends Component {
   constructor(props) {
@@ -18,11 +18,11 @@ class CreateBid extends Component {
     bid.create({ description, value, offerID })
     .then( () => {
         this.props.getBids()
-        this.props.checkIfUserBidded()
         this.setState({
           description:"",
           value: "",
         })
+        this.props.checkIfUserBidded()
     })
     .catch( error => console.log(error) )
   }

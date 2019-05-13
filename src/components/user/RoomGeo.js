@@ -64,7 +64,14 @@ class RoomGeo extends Component {
         mapboxApiAccessToken={MAPBOX_TOKEN}
         children={this.props.children} 
         >
-        <Marker latitude={this.state.viewport.latitude} longitude={this.state.viewport.longitude }> <img src="/location.svg" alt=""/> </Marker>
+        
+        <Marker 
+          latitude={this.state.viewport.latitude} 
+          longitude={this.state.viewport.longitude }
+        > 
+          <img src="/location.svg" alt=""/> 
+        </Marker>
+
         <Geocoder
           mapRef={this.mapRef}
           onViewportChange={this.handleGeocoderViewportChange}
