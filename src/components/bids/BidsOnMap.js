@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import bid from "../../lib/bid-service";
 
 class BidsOnMap extends Component {
@@ -11,7 +11,8 @@ class BidsOnMap extends Component {
       longitude: 2.1734,
       zoom: 11
     },
-    bids:[]
+    bids:[],
+    selectedBid: null,
   }
 
   componentDidMount (){
@@ -29,7 +30,6 @@ class BidsOnMap extends Component {
     const ID = this.props.offerID;
     bid.getBids(ID)
     .then(responseData => {
-      console.log(responseData);
       this.setState({
         bids: responseData,
       })
@@ -43,10 +43,21 @@ class BidsOnMap extends Component {
     })
   }
 
+  selectBid = (e, bid) => {
+    e.preventDefault();
+    this.setState({
+      selectedBid: bid,
+    })
+  }
+
+  unSelectBid = () => {
+    this.setState({
+      selectedBid: null,
+    })
+  }
+
   render (){
-    const bids = this.state.bids;
-    console.log(bids)
-    
+    const  { bids, selectedBid } = this.state;
     return (
       <div>
         {bids.length !== 0 ?  
@@ -63,33 +74,26 @@ class BidsOnMap extends Component {
             latitude={bid.roomID.location.coordinates[0]}
             longitude={bid.roomID.location.coordinates[1]}
           >
-          <img src="/location.svg" alt=""/>
-            {/* <button
-              className="marker-btn"
-              onClick={e => {
-                e.preventDefault();
-                setSelectedBid(bid);
-              }}
-            >
-              <img src="/skateboarding.svg" alt="Skate Park Icon" />
-            </button> */}
+            <button onClick={ e =>  this.selectBid(e, bid)}>
+              <img src="/location.svg" alt=""/>
+            </button>
           </Marker>
         ))}
 
-        {/* {selectedPark ? (
+        { selectedBid !== null ? (
           <Popup
-            latitude={selectedPark.geometry.coordinates[1]}
-            longitude={selectedPark.geometry.coordinates[0]}
-            onClose={() => {
-              setSelectedPark(null);
-            }}
+            latitude={selectedBid.roomID.location.coordinates[0]}
+            longitude={selectedBid.roomID.location.coordinates[1]}
+            closeButton={true} closeOnClick={true}
+            onClose={this.unSelectBid }
           >
             <div>
-              <h2>{selectedPark.properties.NAME}</h2>
-              <p>{selectedPark.properties.DESCRIPTIO}</p>
+              <h2>{selectedBid.description}</h2>
+              <h2>{selectedBid.value}</h2>
             </div>
           </Popup>
-        ) : null} */}
+        ) : null}
+
       </ReactMapGL> : <div></div> }
             
       </div>
