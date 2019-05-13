@@ -3,7 +3,7 @@ import { withAuth } from "../../lib/AuthProvider";
 import EditBid from "../bids/EditBid";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
-// import BidsOnMap from "../bids/BidsOnMap"
+import BidsOnMap from "../bids/BidsOnMap"
 import { Button } from 'reactstrap';
 import styled from 'styled-components';
 import '../../stylesheets/styles.css'
@@ -46,15 +46,15 @@ class BidsOnThisOffer extends Component {
   getBids = () => {
     const ID = this.props.offerID;
     bid.getBids(ID)
-    .then(responseData => {
+    .then((responseData) => {
       //Bids are populated with user owner info
-      this.setState({
+    this.setState({
         bids: responseData,
         showBidForm: false,
         showEditBidForm: false,
       })
-      this.checkIfUserBidded();
     })
+    this.checkIfUserBidded();
     if (this.state.offerOwner !== this.props.user._id){
       this.setState({
         showBidButton: true,
@@ -64,10 +64,13 @@ class BidsOnThisOffer extends Component {
         showEditButton: true,
       })
     }
+    
   }
 
   checkIfUserBidded = async () => {
+    console.log(this.state.alreadyBidded)
       let bids = this.state.bids;
+      console.log(bids)
       await bids.forEach((bid)=>{
           if (this.props.user._id === bid.userID){
            this.setState({
@@ -75,6 +78,7 @@ class BidsOnThisOffer extends Component {
           }) 
         }
       })
+      console.log(this.state.alreadyBidded)
       await this.checkIfABidHasBeenAccepted(bids);
   }
 
@@ -132,7 +136,7 @@ class BidsOnThisOffer extends Component {
     const currentUser = this.props.user._id;
     return (
       <div>
-       {/* <BidsOnMap bids={bids} offerID={this.props.offerID}/> */}
+       <BidsOnMap bids={bids} offerID={this.props.offerID}/>
 
        <BidSilderWrapper>
           {bids.map((bid)=>{
@@ -162,7 +166,7 @@ class BidsOnThisOffer extends Component {
         </BidSilderWrapper>
 
       { alreadyBidded === false && offerOwner !== currentUser ?  <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
-      { showBidForm ?  < CreateBid offerID={offerID} getBids={()=> this.getBids()} checkIfUserBidded={()=>this.checkIfUserBidded()}/> : <div></div> }
+      { showBidForm ?  < CreateBid offerID={offerID} getBids={this.getBids} checkIfUserBidded={this.checkIfUserBidded}/> : <div></div> }
       </div>
     );
   }
