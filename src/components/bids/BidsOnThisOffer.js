@@ -68,9 +68,9 @@ class BidsOnThisOffer extends Component {
   }
 
   checkIfUserBidded = async () => {
-    console.log(this.state.alreadyBidded)
+    // console.log(this.state.alreadyBidded)
       let bids = this.state.bids;
-      console.log(bids)
+      // console.log(bids)
       await bids.forEach((bid)=>{
           if (this.props.user._id === bid.userID){
            this.setState({
@@ -78,7 +78,7 @@ class BidsOnThisOffer extends Component {
           }) 
         }
       })
-      console.log(this.state.alreadyBidded)
+      // console.log(this.state.alreadyBidded)
       await this.checkIfABidHasBeenAccepted(bids);
   }
 
