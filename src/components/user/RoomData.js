@@ -91,7 +91,7 @@ handleChange = event => {
     <RoomGeo  getCoordinates={this.getCoordinates}></RoomGeo>
     <Form>
       <FormGroup>
-        <h3>Description:</h3>
+        <Label ><h3>Description:</h3></Label>
         <Input name = "description" type = "string" onChange ={this.handleChange} required/>
       </FormGroup>
         <h3>Facilities:</h3>
