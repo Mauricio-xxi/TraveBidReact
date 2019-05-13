@@ -45,10 +45,11 @@ class BidsOnMap extends Component {
 
   render (){
     const bids = this.state.bids;
+    console.log(bids)
     
     return (
       <div>
-        {bids.length >= 1 ?  
+        {bids.length !== 0 ?  
         <ReactMapGL
         {...this.state.viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
