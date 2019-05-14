@@ -37,9 +37,9 @@ class CreateBid extends Component {
       <div>
        <Form onSubmit={this.handleFormSubmit}>
          <Label>Description:</Label>
-         <Input type="text" name="description" value={this.state.description} onChange={e => this.handleChange(e)}/>
+         <Input type="text" name="description" value={this.state.description} onChange={e => this.handleChange(e)} required/>
          <Label>Value:</Label>
-         <Input type="number" name="value" value={this.state.value} onChange={e => this.handleChange(e)} />
+         <Input type="number" name="value" value={this.state.value} onChange={e => this.handleChange(e)} required />
          <Input type="submit" value="Submit" />
        </Form>
       </div>
