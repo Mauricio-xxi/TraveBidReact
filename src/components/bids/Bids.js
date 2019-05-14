@@ -103,7 +103,6 @@ class Bids extends Component {
         {bids.length !== 0 && bids[0].offerID !== null ? 
         <BidSilderWrapper>
             {bids.map((bid)=>{
-              console.log(bid)
               const from = transformDate(bid.offerID.from)
               const until = transformDate(bid.offerID.until)
               const {budget} = bid.offerID
