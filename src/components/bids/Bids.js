@@ -33,7 +33,7 @@ const InfoWrapper = styled.div`
 
 const BidValue = styled.div`
   padding: 5%;
-  padding-top:20%
+  padding-top:15%
 `;
 
 const HandleBidButtons = styled.button`
@@ -49,7 +49,6 @@ const HandleBidButtons = styled.button`
 
 const HandleBidIcons = styled.img`
   width: 100%
-  height:100%;
 `;
 
 const OfferInfo = styled.div`
@@ -90,7 +89,7 @@ class Bids extends Component {
   deleteBid = (bidID) => {
     bid.deleteBid(bidID)
     .then(()=>{
-      this.getBids()
+      this.getUserBids()
     })
   }
   
