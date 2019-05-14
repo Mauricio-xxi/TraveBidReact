@@ -60,6 +60,7 @@ class BidsOnMap extends Component {
     const  { bids, selectedBid } = this.state;
     return (
       <div>
+        
         {bids.length !== 0 ?  
           <ReactMapGL
             {...this.state.viewport}
