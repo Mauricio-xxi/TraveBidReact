@@ -22,14 +22,14 @@ class CreateOffer extends Component {
     const { location, budget, from, until } = this.state;
     offer.create({ location, budget, from, until })
     .then( () => {
-        this.props.getOffers()
-        this.props.renderOfferForm()
         this.setState({
           location:"",
           budget: "",
           from: "",
           until:"", 
         })
+      this.props.getOffers()
+      this.props.renderOfferForm()
     })
     .catch( error => console.log(error) )
   }
