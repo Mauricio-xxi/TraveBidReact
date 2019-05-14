@@ -31,7 +31,7 @@ const CreateOfferButton = styled.button`
 
 class Offers extends Component {
     state = {
-        offers: [],
+        offers:[],
         showCreateOfferForm: false,
         showEditOfferForm: false,
         offerToEdit:{},
