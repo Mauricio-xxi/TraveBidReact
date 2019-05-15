@@ -5,11 +5,11 @@ import bid from "../../lib/bid-service";
 class BidsOnMap extends Component {
   state = {
     viewport: {
-      width: "100%",
-      height: "300px",
-      latitude: 41.3851,
-      longitude: 2.1734,
-      zoom: 11
+      width: "",
+      height: "",
+      latitude: 0,
+      longitude: 0,
+      zoom: 0
     },
     bids:[],
     selectedBid: null,
@@ -34,6 +34,20 @@ class BidsOnMap extends Component {
         bids: responseData,
       })
     })
+    .then(()=>{
+      console.log(this.state.bids)
+        this.setState({
+          viewport: {
+            width: "100%",
+            height: "300px",
+            longitude: this.state.bids[0].roomID.location.coordinates[1],  
+            latitude: this.state.bids[0].roomID.location.coordinates[0],
+            zoom: 11
+          }
+        })
+      }
+    )
+    this.handleViewportChange(this.state.viewport)
   }
 
   handleViewportChange = (viewport) => {
@@ -57,13 +71,13 @@ class BidsOnMap extends Component {
   }
 
   render (){
-    const  { bids, selectedBid } = this.state;
+    const  { bids, selectedBid, viewport } = this.state;
     return (
       <div>
         
         {bids.length !== 0 ?  
           <ReactMapGL
-            {...this.state.viewport}
+            {...viewport}
 
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             mapStyle="mapbox://styles/mapbox/streets-v9"
