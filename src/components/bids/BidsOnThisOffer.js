@@ -48,7 +48,7 @@ const UserImageContainer = styled.div`
 
 const RoomImage = styled.img`
   width: 100%;
-  border: 1px solid blue
+  border: 1px solid grey
   height: 100%;
   margin:0;
 
@@ -56,13 +56,30 @@ const RoomImage = styled.img`
 
 const UserImage = styled.img`
   width: 60%;
-  border: 1px solid blue
+  border: 1px solid grey
   border-radius: 50%;
   height: auto;
 `;
 
 const UserBidInfo = styled.div`
   padding:2%;
+`;
+
+const HandleBidButtons = styled.button`
+  background-color: white;
+  width:25%
+  height:20%;
+  padding: 0;
+  margin:0;
+  margin-left: 5%;
+  border:0;
+  cursor: pointer;
+`;
+
+const HandleBidIcons = styled.img`
+  width: 80%
+  padding:0;
+  margin:0;
 `;
 
 
@@ -184,13 +201,13 @@ class BidsOnThisOffer extends Component {
  
                         { 
                           offerOwner._id === this.props.user._id && aBidHasBeenAccepted === false && bid.Status === 0 ? 
-                          <Button color="success" onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> Accept</Button> 
+                          <HandleBidButtons onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> <HandleBidIcons src="/check.svg"/> </HandleBidButtons> 
                           : <div></div>  
                         }
  
                         { 
                           offerOwner._id === this.props.user._id && aBidHasBeenAccepted === false  && bid.Status === 0 ? 
-                          <Button color="danger" onClick={()=>this.declineBid(bid._id, 2) }> Decline</Button> 
+                          <HandleBidButtons onClick={()=>this.declineBid(bid._id, 2) }> <HandleBidIcons src="/x_mark.svg" /> </HandleBidButtons> 
                           : <div></div> 
                         }
                       </UserBidInfo>
