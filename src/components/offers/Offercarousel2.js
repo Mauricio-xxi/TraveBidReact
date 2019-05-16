@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
 import '../../stylesheets/carousel.css'
-// import { div } from 'gl-matrix/src/gl-matrix/vec2';
-
 
 const OfferSilderWrapper = styled.div`
   overflow-x: scroll;
