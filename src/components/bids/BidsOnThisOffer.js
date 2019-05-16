@@ -23,6 +23,7 @@ const BidCarouselItem = styled.div`
   padding:0;
   margin-right: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: ${ ({ status }) =>  status === 1 ? '2px solid green' : status === 2 ? '2px solid red' : '' };
 `;
 
 const ItemSections = styled.div`
@@ -34,8 +35,6 @@ const ItemSections = styled.div`
 const RoomImageContainer = styled.div`
   margin:0;
   padding:0;
-  margin:0;
-  padding:0;
 `;
 
 const UserImageContainer = styled.div`
@@ -43,22 +42,20 @@ const UserImageContainer = styled.div`
   padding:0;
   margin-left: 10%;
   padding-top: 8%;
-  width: 80%;
+  width: 80px;
 `;
 
 const RoomImage = styled.img`
   width: 100%;
-  border: 1px solid grey
-  height: 100%;
+  height:100%;
+  border: 1px solid grey;
   margin:0;
-
 `;
 
 const UserImage = styled.img`
   width: 60%;
-  border: 1px solid grey
+  border: 1px solid grey;
   border-radius: 50%;
-  height: auto;
 `;
 
 const UserBidInfo = styled.div`
@@ -67,8 +64,7 @@ const UserBidInfo = styled.div`
 
 const HandleBidButtons = styled.button`
   background-color: white;
-  width:25%
-  height:20%;
+  width:30%;
   padding: 0;
   margin:0;
   margin-left: 5%;
@@ -77,7 +73,7 @@ const HandleBidButtons = styled.button`
 `;
 
 const HandleBidIcons = styled.img`
-  width: 80%
+  width: 80%;
   padding:0;
   margin:0;
 `;
@@ -187,7 +183,7 @@ class BidsOnThisOffer extends Component {
            <BidSilderWrapper>
               {bids.map((bid)=>{
                 return (
-                  <BidCarouselItem key={bid._id}>
+                  <BidCarouselItem status={ bid.Status } key={bid._id}>
                     <ItemSections>
                       <RoomImageContainer>
                         <RoomImage src={bid.roomID.roomImage} alt="roomImage"/>
