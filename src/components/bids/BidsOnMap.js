@@ -18,7 +18,6 @@ class BidsOnMap extends Component {
   componentDidMount (){
     this.getBids()
   }
- 
 
   handleViewportChange = (viewport) => {
     this.setState({
@@ -72,9 +71,9 @@ class BidsOnMap extends Component {
 
   render (){
     const  { bids, selectedBid, viewport } = this.state;
+    console.log(bids)
     return (
       <div>
-        
         {bids.length !== 0 ?  
           <ReactMapGL
             {...viewport}
