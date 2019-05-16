@@ -4,19 +4,22 @@ import { withAuth } from "../lib/AuthProvider";
 import { Nav, Navbar, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, } from 'reactstrap';
 import styled from 'styled-components';
 import SearchOffers from '../components/offers/SearchOffers'
-
+import '../stylesheets/nav.css'
 
 const NavElements = styled.div`
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
   `;
+
+const TitleLinkToHome = styled.div`
+  width: 40%;
+`;
 
 class NavbarTravel extends Component {
     
   state = {
-      dropdownOpen: false
+      dropdownOpen: false,
     }
 
 
@@ -42,7 +45,7 @@ class NavbarTravel extends Component {
       {isLoggedin ? (
         <>
         <Navbar color="light" light expand="lg" fixed="top">
-          <Nav >
+          <Nav>
           <NavElements>
               <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
@@ -52,11 +55,13 @@ class NavbarTravel extends Component {
                   <DropdownItem><Link  to="/profile">Profile</Link></DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <Link to="/private"><h3>TravelBID</h3></Link>
+              <TitleLinkToHome><Link to="/private"><h3>TravelBID</h3></Link></TitleLinkToHome> 
               <SearchOffers />
               </NavElements>
+              
           </Nav>
         </Navbar>
+        
         </>
       ) : (
         <> 
