@@ -16,16 +16,16 @@ class App extends Component {
   render() {
     return (
       <AuthProvider>
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <AnonRoute path="/signup" component={Signup} />
-            <AnonRoute path="/login" component={Login} />
-            <PrivateRoute path="/private" component={Private} />
-            <PrivateRoute path="/profile" component={Profile} />
-            <PrivateRoute exact path="/offer/:id" component={OfferDetail} />
-          </Switch>
-        </div>
+          <div className="container">
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <AnonRoute path="/signup" component={Signup} />
+              <AnonRoute path="/login" component={Login} />
+              <PrivateRoute path="/private" component={Private} />
+              <PrivateRoute path="/profile" component={Profile} />
+              <PrivateRoute exact path="/offer/:id" component={OfferDetail} />
+            </Switch>
+          </div>
       </AuthProvider>
     );
   }
