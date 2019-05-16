@@ -193,6 +193,7 @@ class BidsOnThisOffer extends Component {
             )
           })}
         </BidSilderWrapper>
+        {console.log(offerOwner)}
 
       { alreadyBidded === false && offerOwner !== currentUser ?  <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
       { showBidForm ?  < CreateBid offerID={offerID} getBids={this.getBids} checkIfUserBidded={this.checkIfUserBidded}/> : <div></div> }

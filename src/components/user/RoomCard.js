@@ -58,12 +58,12 @@ export default class RoomCard extends Component {
  
 
   render() {
-    const {RoomImage, roomId, description, longitude, latitude} = this.props
+    const {roomImage, roomId, description, longitude, latitude} = this.props
     return (
       <div> 
         <RoomCardStyle>
           <div>
-            <ImageStyle src={RoomImage} alt={roomId}></ImageStyle>
+            <ImageStyle src={roomImage} alt={roomId}></ImageStyle>
           </div>
           <DescriptionArea>
             <h2>{description}</h2>

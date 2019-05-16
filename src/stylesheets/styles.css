@@ -18,6 +18,14 @@
   background-color: white;
   background:white;
 }
+.checkboxInputs{
+  display: block;
+  height: 50px;
+  width: 50px;
+}
+.noneCheckbox{
+  display: none;
+}
 
 
 

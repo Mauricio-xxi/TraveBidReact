@@ -83,10 +83,10 @@ class Profile extends Component {
         
         {this.state.room !== null ? 
           <RoomCard 
-          RoomImage={this.state.room.roomImage} 
+          roomImage={this.state.room.roomImage} 
           description={this.state.room.description} 
           longitude={41.397800000000025} 
-          latitude={2.190348999999946} alt={"hola"}
+          latitude={2.190348999999946}
           />
         : <div></div> }
         
