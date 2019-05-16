@@ -30,6 +30,11 @@ const ProfileCardStyle = styled.div`
 const FacilitiesStyle = styled.div`
   padding:5%;
 `
+const InputsStyle = styled.div`
+  display:flex;
+  flex-wrap:wrap;
+`
+
 
 
 class RoomData extends Component {
@@ -115,64 +120,66 @@ handleChange = event => {
         <h3>Facilities:</h3>
       <FormGroup>
         <Label>Private Room:</Label>
-        <Input name = "privateRoom" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "privateRoom" type = "radio" onChange ={this.handleChange}/>
       </FormGroup>
       <FormGroup>  
         <Label>Shared Room:</Label>
-        <Input name = "sharedRoom" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "sharedRoom" type = "radio" onChange ={this.handleChange}/>
       </FormGroup> 
       <FormGroup>
         <Label>Entire Property:</Label>
-        <Input name = "entireProperty" type = "checkbox"  onChange ={this.handleChange}/>
+        <Input name = "entireProperty" type = "radio"  onChange ={this.handleChange}/>
       </FormGroup>
+      <InputsStyle>
       <FormGroup>
-        <Label for="tv" className="checkboxInputs"> <TV/></Label>
         <Input name ="tv" id="tv" type = "checkbox" value="True" className="noneCheckbox" onChange ={this.handleChange}/>
+        <Label for="tv" className="checkboxInputs"> <TV/></Label>
       </FormGroup>
       <FormGroup>
-        <Label for ="wifi" className="checkboxInputs"><Wifi/></Label>
         <Input name = "wifi" id="wifi" type = "checkbox"value="True" className="noneCheckbox" onChange ={this.handleChange}/>
+        <Label for ="wifi" className="checkboxInputs"><Wifi/></Label>
       </FormGroup>
       <FormGroup>
-        <Label for="air" className="checkboxInputs"><Air/></Label>
         <Input name = "air" id="air" type = "checkbox"className="noneCheckbox"value="True" onChange ={this.handleChange}/>
+        <Label for="air" className="checkboxInputs"><Air/></Label>
       </FormGroup>  
       <FormGroup>
-        <Label for="garage" className="checkboxInputs"><Garage/></Label>
         <Input name = "garage" id="garage" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="garage" className="checkboxInputs"><Garage/></Label>
       </FormGroup>
       <FormGroup>
-        <Label for ="termo"className="checkboxInputs"><HotWater/></Label>
         <Input name = "termo" id="termo" type="checkbox"className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for ="termo"className="checkboxInputs"><HotWater/></Label>
       </FormGroup>
       <FormGroup>
-        <Label for="washer" className="checkboxInputs"><Washer/></Label>
         <Input name = "washer" id="washer" type = "checkbox"className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="washer" className="checkboxInputs"><Washer/></Label>
       </FormGroup>   
       <FormGroup>
-        <Label for="pool" className="checkboxInputs"><Pool/></Label>
         <Input name = "pool" id="pool" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="pool" className="checkboxInputs"><Pool/></Label>
       </FormGroup>
       <FormGroup>
-        <Label for="privateBathroom" className="checkboxInputs"><PrivateBathroom/></Label>
         <Input name = "privateBathroom" id="privateBathroom" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="privateBathroom" className="checkboxInputs"><PrivateBathroom/></Label>
       </FormGroup> 
       <FormGroup>
-        <Label for="wheelchair" className="checkboxInputs"><Wheelchair/></Label>
         <Input name = "wheelchair" id="wheelchair" type = "checkbox"className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="wheelchair" className="checkboxInputs"><Wheelchair/></Label>
       </FormGroup> 
       <FormGroup>
-        <Label for="smoke" className="checkboxInputs"><Smoke/></Label>
         <Input name = "smoke" id="smoke" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="smoke" className="checkboxInputs"><Smoke/></Label>
       </FormGroup> 
       <FormGroup>
-        <Label for="pet" className="checkboxInputs"><Pet/></Label>
         <Input name = "pet" id="pet" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="pet" className="checkboxInputs"><Pet/></Label>
       </FormGroup>
       <FormGroup>
-        <Label for="couples" className="checkboxInputs"><Couples/></Label>
         <Input name = "couples" id="couples" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="couples" className="checkboxInputs"><Couples/></Label>
       </FormGroup>
+      </InputsStyle>
     </Form>
     </FacilitiesStyle>
     <Label>Upload Room Image</Label>
