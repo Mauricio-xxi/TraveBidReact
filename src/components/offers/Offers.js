@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import {CSSTransition} from 'react-transition-group';
 import '../../stylesheets/transitions.css'
 
-
 const OffersectionHeader = styled.div`
   display:flex;
   flex-direction: row;
@@ -20,7 +19,7 @@ const OfferTitle = styled.h5`
 
 const CreateOfferButton = styled.button`
   background-color: white;
-  width:35%
+  width:35%;
   padding: 0;
   margin:0;
   margin-top: 9%;
@@ -87,7 +86,6 @@ class Offers extends Component {
   })
     .catch( error => console.log(error) )
   }
-  
 
   render() {
     const { showCreateOfferForm, showEditOfferForm, offers, offerToEdit } = this.state;
