@@ -7,6 +7,7 @@ import Offercarousel2 from "../offers/Offercarousel2";
 import styled from 'styled-components';
 import {CSSTransition} from 'react-transition-group';
 import '../../stylesheets/transitions.css'
+import Loader from 'react-loader-spinner'
 
 const OffersectionHeader = styled.div`
   display:flex;
@@ -34,10 +35,17 @@ class Offers extends Component {
         showCreateOfferForm: false,
         showEditOfferForm: false,
         offerToEdit:{},
+        loaded: false,
     }
 
   componentDidMount() {
     this.getOffers();
+  }
+
+  componentWillUnmount(){
+    this.setState({
+      loaded: false,
+    })
   }
 
 
@@ -47,6 +55,7 @@ class Offers extends Component {
         this.setState({
           offers: [...responseData],
           showEditOfferForm: false,
+          loaded: true,
         })
     })
     .catch( error => console.log(error) )
@@ -88,7 +97,7 @@ class Offers extends Component {
   }
 
   render() {
-    const { showCreateOfferForm, showEditOfferForm, offers, offerToEdit } = this.state;
+    const { showCreateOfferForm, showEditOfferForm, offers, offerToEdit, loaded } = this.state;
     return (
       <div>
 
@@ -109,13 +118,22 @@ class Offers extends Component {
 
           : <div></div> }
         </CSSTransition> 
-
-        <Offercarousel2
-            offers={offers} 
-            deleteOffer={this.deleteOffer}
-            showEditOfferForm={this.renderEditOfferForm}
-        />
-
+        {loaded === false ? 
+          <div>
+              <Loader 
+                type="Puff"
+                color="lightblue"
+                height="60"	
+                width="60"
+              /> 
+          </div>  :
+          <div>
+          <Offercarousel2
+              offers={offers} 
+              deleteOffer={this.deleteOffer}
+              showEditOfferForm={this.renderEditOfferForm}
+          />
+          </div> }
 
         {showEditOfferForm ? 
             <EditOffer 
