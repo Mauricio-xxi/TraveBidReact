@@ -33,12 +33,12 @@ const InfoWrapper = styled.div`
 
 const BidValue = styled.div`
   padding: 5%;
-  padding-top:15%
+  padding-top:15%;
 `;
 
 const HandleBidButtons = styled.button`
   background-color: white;
-  width:50%
+  width:50%;
   height:30%;
   padding: 0;
   margin:0;
@@ -48,13 +48,18 @@ const HandleBidButtons = styled.button`
 `;
 
 const HandleBidIcons = styled.img`
-  width: 100%
+  width: 100%;
 `;
 
 const OfferInfo = styled.div`
   padding:5%;
 `;
 
+const NoBidMessage = styled.h6`
+  padding-top: 8%;
+  padding-bottom:10%;
+  margin-left: 5%;
+`;
 
 class Bids extends Component {
     state = {
@@ -127,7 +132,7 @@ class Bids extends Component {
               )
             })}
         </BidSilderWrapper>
-        : <div><h5>You have no bids, create one!</h5></div>}
+        : <div><NoBidMessage>You have no bids, create one!</NoBidMessage></div>}
       </div>
     );
   }
