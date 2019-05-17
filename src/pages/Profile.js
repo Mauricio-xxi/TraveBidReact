@@ -9,6 +9,7 @@ import styled from 'styled-components';
 import { Button } from 'reactstrap';
 import room from "../lib/room-service";
 import RoomCard from "../components/user/RoomCard";
+import { ReactComponent as Edit } from "../assets/edit.svg";
 
 const ProfileContainer = styled.div`
   display:block;
@@ -87,10 +88,11 @@ class Profile extends Component {
           description={this.state.room.description} 
           longitude={41.397800000000025} 
           latitude={2.190348999999946}
+          facilities={this.state.room.facilities}
           />
         : <div></div> }
         
-          <Button style={{margin:"5px"}}onClick={this.showRoomFormButton}>Update Room</Button>
+          <Button style={{margin:"5px"}}onClick={this.showRoomFormButton}><Edit/></Button>
           {this.state.showRoomForm? <RoomData/> : <div/> }
       </ProfileContainer>
     )
