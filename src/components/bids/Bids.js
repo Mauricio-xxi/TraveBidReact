@@ -66,6 +66,7 @@ class Bids extends Component {
         bids: [],
         showEditButton: false,//button to edit bid
         showEditBidForm: false,//bid edit form
+        bidtoEdit:{}
     }
   
 
@@ -85,10 +86,19 @@ class Bids extends Component {
     .catch( error => console.log(error) )
   }
 
-  renderEditBidForm = (e) => {
-    this.setState({
-      showEditBidForm: true,
+  renderEditBidForm = (bid) => {
+    const { showEditBidForm } = this.state
+    if (showEditBidForm === false){
+       this.setState({
+       showEditBidForm: true,
+       bidtoEdit: bid,
+      })
+    } else if (showEditBidForm === true ){
+      this.setState({
+      showEditBidForm: false,
+      bidtoEdit: bid,
      })
+    }
   }
 
   deleteBid = (bidID) => {
@@ -100,7 +110,7 @@ class Bids extends Component {
   
 
   render() {
-    const { bids, showEditBidForm  } = this.state;
+    const { bids, showEditBidForm, bidtoEdit  } = this.state;
     const currentUser = this.props.user._id;
     return (
       <div>
@@ -119,8 +129,8 @@ class Bids extends Component {
                            <h3>${bid.value}</h3>
                         </Link>
                           { bid.userID._id === currentUser ? <HandleBidButtons onClick={()=>this.deleteBid(bid._id)}> <HandleBidIcons src="/trash.svg"/> </HandleBidButtons> : <div></div> }
-                          { bid.userID._id === currentUser ? <HandleBidButtons onClick={this.renderEditBidForm}> <HandleBidIcons src="/edit.svg"/> </HandleBidButtons>:  <div></div>  }
-                          { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={this.getUserBids} /> : <div></div>}
+                          { bid.userID._id === currentUser ? <HandleBidButtons onClick={()=>this.renderEditBidForm(bid)}> <HandleBidIcons src="/edit.svg"/> </HandleBidButtons>:  <div></div>  }
+                          {/* { showEditBidForm ? <EditBid bidID={bid._id} description={bid.description} value={bid.value} Status={bid.Status} getBids={this.getUserBids} /> : <div></div>} */}
                      </BidValue>
                      <OfferInfo>
                        <h5>Offer: ${budget}</h5>
@@ -131,6 +141,7 @@ class Bids extends Component {
                 </BidCarouselItem>
               )
             })}
+            { showEditBidForm ? <EditBid bidID={bidtoEdit._id} description={bidtoEdit.description} value={bidtoEdit.value} Status={bidtoEdit.Status} getBids={this.getUserBids} /> : <div></div>}
         </BidSilderWrapper>
         : <div><NoBidMessage>You have no bids, create one!</NoBidMessage></div>}
       </div>
