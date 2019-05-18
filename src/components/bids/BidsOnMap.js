@@ -1,23 +1,23 @@
 import React, { Component } from 'react'
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import bid from "../../lib/bid-service";
 
 class BidsOnMap extends Component {
   state = {
     viewport: {
-      width: "100vw",
-      height: "70vh",
-      latitude: 41.3851,
-      longitude: 2.1734,
-      zoom: 11
+      width: "",
+      height: "",
+      latitude: 0,
+      longitude: 0,
+      zoom: 3
     },
-    bids:[]
+    bids:[],
+    selectedBid: null,
   }
 
   componentDidMount (){
     this.getBids()
   }
- 
 
   handleViewportChange = (viewport) => {
     this.setState({
@@ -29,11 +29,26 @@ class BidsOnMap extends Component {
     const ID = this.props.offerID;
     bid.getBids(ID)
     .then(responseData => {
-      console.log(responseData);
       this.setState({
         bids: responseData,
       })
     })
+    .then(()=>{
+      const { bids } = this.state
+        if (bids !== undefined ){
+          this.setState({
+            viewport: {
+              width: "100%",
+              height: "300px",
+              longitude: bids[0].roomID.location.coordinates[1],  
+              latitude: bids[0].roomID.location.coordinates[0],
+              zoom: 11
+            }
+          })
+        }; 
+      }
+    )
+    this.handleViewportChange(this.state.viewport)
   }
 
   handleViewportChange = (viewport) => {
@@ -43,52 +58,58 @@ class BidsOnMap extends Component {
     })
   }
 
+  selectBid = (e, bid) => {
+    e.preventDefault();
+    this.setState({
+      selectedBid: bid,
+    })
+  }
+
+  unSelectBid = () => {
+    this.setState({
+      selectedBid: null,
+    })
+  }
+
   render (){
-    const bids = this.state.bids;
-    
+    const  { bids, selectedBid, viewport } = this.state;
     return (
       <div>
-        {bids.length >= 1 ?  
-        <ReactMapGL
-        {...this.state.viewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-        onViewportChange={this.handleViewportChange}
-      >
-        {bids.map(bid => (
-          <Marker
-            key={bid._id}
-            latitude={bid.roomID.location.coordinates[0]}
-            longitude={bid.roomID.location.coordinates[1]}
-          >
-          <img src="/location.svg" alt=""/>
-            {/* <button
-              className="marker-btn"
-              onClick={e => {
-                e.preventDefault();
-                setSelectedBid(bid);
-              }}
-            >
-              <img src="/skateboarding.svg" alt="Skate Park Icon" />
-            </button> */}
-          </Marker>
-        ))}
+        {bids.length !== 0 ?  
+          <ReactMapGL
+            {...viewport}
 
-        {/* {selectedPark ? (
-          <Popup
-            latitude={selectedPark.geometry.coordinates[1]}
-            longitude={selectedPark.geometry.coordinates[0]}
-            onClose={() => {
-              setSelectedPark(null);
-            }}
+            mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            mapStyle="mapbox://styles/mapbox/streets-v9"
+            onViewportChange={this.handleViewportChange}
           >
-            <div>
-              <h2>{selectedPark.properties.NAME}</h2>
-              <p>{selectedPark.properties.DESCRIPTIO}</p>
-            </div>
-          </Popup>
-        ) : null} */}
-      </ReactMapGL> : <div></div> }
+            {bids.map(bid => (
+              <Marker
+                key={bid._id}
+                latitude={bid.roomID.location.coordinates[0]}
+                longitude={bid.roomID.location.coordinates[1]}
+              >
+                <button onClick={ e =>  this.selectBid(e, bid)}>
+                  <img src="/location.svg" alt=""/>
+                </button>
+              </Marker>
+            ))}
+
+            { selectedBid !== null ? (
+              <Popup
+                latitude={selectedBid.roomID.location.coordinates[0]}
+                longitude={selectedBid.roomID.location.coordinates[1]}
+                closeButton={true} closeOnClick={true}
+                onClose={this.unSelectBid }
+              >
+                <div>
+                  <h2>{selectedBid.description}</h2>
+                  <h2>{selectedBid.value}</h2>
+                </div>
+               </Popup>
+             ) : null}
+           </ReactMapGL> 
+      : <div></div> }
             
       </div>
     )

@@ -5,30 +5,47 @@ import OfferSearchResults from "./OfferSearchResults";
 import user from "../../lib/user-service";
 import styled from 'styled-components';
 
-
+const SideBarContainer = styled.div`
+  width:100%;
+  margin:0;
+`;
 const SearchButton = styled.button`
   background-color: #F8F9FA;
-  width:35%
+  width:40%;
+  float:right;
   padding: 0;
   margin:0;
-  margin-left: 60%;
   border:0;
   cursor: pointer;
 `;
 
 const SearchIcon = styled.img`
-  width: 50%
-  height:12%;
+  width: 35%;
+  margin-top: 10%;
+  margin-bottom: 11%;
 `;
-
 
 
 class SearchOffers extends Component {
     state = {
         offers: [],
         showSearchResults: false,
-        user:{}
+        user:{},
+        sideBarSearchOpen: false
     }
+
+    componentDidMount = ()=> {
+      this.getUser();
+    }
+
+    getUser = () => {
+      user.getUser()
+      .then(responseData=>{
+        this.setState({
+          user:responseData
+        })
+      })
+   }
 
   handleShowSearchResults = async (e) => {
     await this.search()
@@ -44,16 +61,6 @@ class SearchOffers extends Component {
     }
   }
 
-  getUser = () => {
-    user.getUser()
-    .then(responseData=>{
-      this.setState({
-        user:responseData
-      })
-    })
- }
-
-  
   search = () => {
     // Protect, verify city that user has city
     const city = this.state.user.city
@@ -66,19 +73,13 @@ class SearchOffers extends Component {
       .catch( error => console.log(error) )
   }
 
-
-  componentDidMount = ()=> {
-    this.getUser();
-  }
-
   render() {
     const { showSearchResults, offers } = this.state;
     return (
-      <div>
+      <SideBarContainer>
         <SearchButton onClick={this.handleShowSearchResults}><SearchIcon src="/Search.png" alt="View offer in your town"/></SearchButton>
         { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
-      </div>
-      
+      </SideBarContainer>
     );
   }
 }

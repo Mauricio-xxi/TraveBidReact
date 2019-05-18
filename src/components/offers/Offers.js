@@ -7,7 +7,7 @@ import Offercarousel2 from "../offers/Offercarousel2";
 import styled from 'styled-components';
 import {CSSTransition} from 'react-transition-group';
 import '../../stylesheets/transitions.css'
-
+import Loader from 'react-loader-spinner'
 
 const OffersectionHeader = styled.div`
   display:flex;
@@ -20,7 +20,7 @@ const OfferTitle = styled.h5`
 
 const CreateOfferButton = styled.button`
   background-color: white;
-  width:35%
+  width:35%;
   padding: 0;
   margin:0;
   margin-top: 9%;
@@ -31,14 +31,21 @@ const CreateOfferButton = styled.button`
 
 class Offers extends Component {
     state = {
-        offers: [],
+        offers:[],
         showCreateOfferForm: false,
         showEditOfferForm: false,
         offerToEdit:{},
+        loaded: false,
     }
 
   componentDidMount() {
     this.getOffers();
+  }
+
+  componentWillUnmount(){
+    this.setState({
+      loaded: false,
+    })
   }
 
 
@@ -48,6 +55,7 @@ class Offers extends Component {
         this.setState({
           offers: [...responseData],
           showEditOfferForm: false,
+          loaded: true,
         })
     })
     .catch( error => console.log(error) )
@@ -87,10 +95,9 @@ class Offers extends Component {
   })
     .catch( error => console.log(error) )
   }
-  
 
   render() {
-    const { showCreateOfferForm, showEditOfferForm, offers, offerToEdit } = this.state;
+    const { showCreateOfferForm, showEditOfferForm, offers, offerToEdit, loaded } = this.state;
     return (
       <div>
 
@@ -111,13 +118,22 @@ class Offers extends Component {
 
           : <div></div> }
         </CSSTransition> 
-
-        <Offercarousel2
-            offers={offers} 
-            deleteOffer={this.deleteOffer}
-            showEditOfferForm={this.renderEditOfferForm}
-        />
-
+        {loaded === false ? 
+          <div>
+              <Loader 
+                type="Puff"
+                color="lightblue"
+                height="60"	
+                width="60"
+              /> 
+          </div>  :
+          <div>
+          <Offercarousel2
+              offers={offers} 
+              deleteOffer={this.deleteOffer}
+              showEditOfferForm={this.renderEditOfferForm}
+          />
+          </div> }
 
         {showEditOfferForm ? 
             <EditOffer 

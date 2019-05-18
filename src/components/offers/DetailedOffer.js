@@ -6,10 +6,32 @@ import BidsOnThisOffer from "../bids/BidsOnThisOffer"
 import styled from 'styled-components';
 
 
-const OfferInfoConatiner = styled.div`
+const Container = styled.div`
   margin-top: 20%;
 `;
 
+const OfferContainer = styled.div`
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap;
+  justify-content:space-between;
+`;
+
+const OfferInfo = styled.div`
+  width:100%;
+  padding:3%;
+`;
+
+const UserInfo = styled.div`
+  padding:3%;
+  width:100%;
+  margin-left:20%;
+`;
+
+const UserImage = styled.img`
+  border-radius: 50%;
+  width:65%;
+`;
 
 
 class OfferDetail extends Component {
@@ -17,7 +39,7 @@ class OfferDetail extends Component {
       budget: "",
       from: "",
       until:"",
-      offerOwner:"" 
+      offerOwner:{}
   }
 
   getOffer = () => {
@@ -31,7 +53,6 @@ class OfferDetail extends Component {
           until: responseData.until,
           offerOwner: responseData.userID,
         })
-        
     })
     .catch( error => console.log(error) )
   }
@@ -47,13 +68,20 @@ class OfferDetail extends Component {
     const { offerID } = this.props;
  
     return (
-      <OfferInfoConatiner>
-        <h3>Offer Detail</h3>
-        <h5>${budget}</h5>
-        <h5>Arriving:{fromFormated }</h5>
-        <h5>Departing:{untilFormated}</h5>
+      <Container>
+        <OfferContainer>
+          <OfferInfo>
+            <h3>${budget}</h3>
+            <p>{fromFormated }</p>
+            <p>{untilFormated}</p>
+          </OfferInfo>
+          <UserInfo>
+            <UserImage src={offerOwner.userImage} alt="userImage"></UserImage>
+            <p> <strong>{offerOwner.username}, {offerOwner.age}</strong> </p>
+          </UserInfo>
+        </OfferContainer>
         <BidsOnThisOffer offerID={offerID} offerOwner={offerOwner}/>
-      </OfferInfoConatiner>
+      </Container>
     );
   }
 }
