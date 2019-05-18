@@ -9,7 +9,7 @@ class BidsOnMap extends Component {
       height: "",
       latitude: 0,
       longitude: 0,
-      zoom: 0
+      zoom: 3
     },
     bids:[],
     selectedBid: null,
@@ -34,16 +34,18 @@ class BidsOnMap extends Component {
       })
     })
     .then(()=>{
-      console.log(this.state.bids)
-        this.setState({
-          viewport: {
-            width: "100%",
-            height: "300px",
-            longitude: this.state.bids[0].roomID.location.coordinates[1],  
-            latitude: this.state.bids[0].roomID.location.coordinates[0],
-            zoom: 11
-          }
-        })
+      const { bids } = this.state
+        if (bids !== undefined ){
+          this.setState({
+            viewport: {
+              width: "100%",
+              height: "300px",
+              longitude: bids[0].roomID.location.coordinates[1],  
+              latitude: bids[0].roomID.location.coordinates[0],
+              zoom: 11
+            }
+          })
+        }; 
       }
     )
     this.handleViewportChange(this.state.viewport)
@@ -71,7 +73,6 @@ class BidsOnMap extends Component {
 
   render (){
     const  { bids, selectedBid, viewport } = this.state;
-    console.log(bids)
     return (
       <div>
         {bids.length !== 0 ?  

@@ -78,10 +78,8 @@ class SearchOffers extends Component {
     return (
       <SideBarContainer>
         <SearchButton onClick={this.handleShowSearchResults}><SearchIcon src="/Search.png" alt="View offer in your town"/></SearchButton>
-        {/* { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> } */}
-         <OfferSearchResults offers={offers} isOpen={showSearchResults}/>
+        { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       </SideBarContainer>
-      
     );
   }
 }
