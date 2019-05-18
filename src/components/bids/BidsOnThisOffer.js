@@ -6,6 +6,7 @@ import BidsOnMap from "../bids/BidsOnMap"
 import { Button } from 'reactstrap';
 import styled from 'styled-components';
 import '../../stylesheets/styles.css'
+import { Link } from "react-router-dom";
 
 const BidSilderWrapper = styled.div`
   overflow-x: scroll;
@@ -186,6 +187,7 @@ class BidsOnThisOffer extends Component {
             return (
               <BidCarouselItem key={bid._id}>
                 <ItemSections>
+                  <Link to = {`/bid/${bid._id}`} >
                   <RoomImageContainer>
                     <RoomImage src={bid.roomID.roomImage} alt="roomImage"/>
                   </RoomImageContainer>
@@ -208,6 +210,7 @@ class BidsOnThisOffer extends Component {
                       : <div></div> 
                     }
                   </UserBidInfo>
+                  </Link>
                 </ItemSections> 
               </BidCarouselItem>
             )
