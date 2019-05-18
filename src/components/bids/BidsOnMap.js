@@ -27,8 +27,10 @@ class BidsOnMap extends Component {
 
   getBids = () => {
     const ID = this.props.offerID;
+    console.log(ID)
     bid.getBids(ID)
     .then(responseData => {
+      console.log(responseData)
       this.setState({
         bids: responseData,
         viewport: {
