@@ -5,11 +5,11 @@ import bid from "../../lib/bid-service";
 class BidsOnMap extends Component {
   state = {
     viewport: {
-      width: "",
-      height: "",
+      width: "100%",
+      height: "300px",
       latitude: 0,
       longitude: 0,
-      zoom: 3
+      zoom: 1
     },
     bids:[],
     selectedBid: null,
@@ -31,21 +31,15 @@ class BidsOnMap extends Component {
     .then(responseData => {
       this.setState({
         bids: responseData,
+        viewport: {
+          width: "100%",
+          height: "300px",
+          longitude: responseData[0].roomID.location.coordinates[1],  
+          latitude: responseData[0].roomID.location.coordinates[0],
+          zoom: 11
+        }
       })
-    },()=>{
-      const { bids } = this.state
-        if (bids === [] ){
-          this.setState({
-            viewport: {
-              width: "100%",
-              height: "300px",
-              longitude: bids[0].roomID.location.coordinates[1],  
-              latitude: bids[0].roomID.location.coordinates[0],
-              zoom: 11
-            }
-          })
-        }; 
-      })
+    })
     this.handleViewportChange(this.state.viewport)
   }
 
@@ -71,9 +65,10 @@ class BidsOnMap extends Component {
 
   render (){
     const  { bids, selectedBid, viewport } = this.state;
+    console.log(bids)
     return (
       <div>
-        {bids.length !== 0 ?  
+        {bids.length >= 1 ?  
           <ReactMapGL
             {...viewport}
 
@@ -107,7 +102,7 @@ class BidsOnMap extends Component {
                </Popup>
              ) : null}
            </ReactMapGL> 
-      : <div></div> }
+       : <div></div> } 
             
       </div>
     )
