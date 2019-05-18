@@ -30,7 +30,7 @@ const UserInfo = styled.div`
 
 const UserImage = styled.img`
   border-radius: 50%;
-  width:50%;
+  width:65%;
 `;
 
 
@@ -39,7 +39,7 @@ class OfferDetail extends Component {
       budget: "",
       from: "",
       until:"",
-      offerOwner:{} 
+      offerOwner:{}
   }
 
   getOffer = () => {
@@ -53,7 +53,6 @@ class OfferDetail extends Component {
           until: responseData.until,
           offerOwner: responseData.userID,
         })
-        
     })
     .catch( error => console.log(error) )
   }
@@ -78,8 +77,7 @@ class OfferDetail extends Component {
           </OfferInfo>
           <UserInfo>
             <UserImage src={offerOwner.userImage} alt="userImage"></UserImage>
-            <p> <strong>{offerOwner.username}</strong> </p>
-            <p>{offerOwner.age}</p>
+            <p> <strong>{offerOwner.username}, {offerOwner.age}</strong> </p>
           </UserInfo>
         </OfferContainer>
         <BidsOnThisOffer offerID={offerID} offerOwner={offerOwner}/>

@@ -23,6 +23,7 @@ const BidCarouselItem = styled.div`
   padding:0;
   margin-right: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: ${ ({ status }) =>  status === 1 ? '2px solid green' : status === 2 ? '2px solid red' : '' };
 `;
 
 const ItemSections = styled.div`
@@ -34,8 +35,6 @@ const ItemSections = styled.div`
 const RoomImageContainer = styled.div`
   margin:0;
   padding:0;
-  margin:0;
-  padding:0;
 `;
 
 const UserImageContainer = styled.div`
@@ -43,26 +42,40 @@ const UserImageContainer = styled.div`
   padding:0;
   margin-left: 10%;
   padding-top: 8%;
-  width: 80%;
+  width: 80px;
 `;
 
 const RoomImage = styled.img`
   width: 100%;
-  border: 1px solid blue
-  height: 100%;
+  height:100%;
+  border: 1px solid grey;
   margin:0;
-
 `;
 
 const UserImage = styled.img`
   width: 60%;
-  border: 1px solid blue
+  border: 1px solid grey;
   border-radius: 50%;
-  height: auto;
 `;
 
 const UserBidInfo = styled.div`
   padding:2%;
+`;
+
+const HandleBidButtons = styled.button`
+  background-color: white;
+  width:30%;
+  padding: 0;
+  margin:0;
+  margin-left: 5%;
+  border:0;
+  cursor: pointer;
+`;
+
+const HandleBidIcons = styled.img`
+  width: 80%;
+  padding:0;
+  margin:0;
 `;
 
 
@@ -76,8 +89,7 @@ class BidsOnThisOffer extends Component {
   }
 
   componentDidMount() {
-    this.getBids();
-    this.checkIfUserBidded();
+    this.getBids()
   }
 
   getBids = () => {
@@ -91,7 +103,9 @@ class BidsOnThisOffer extends Component {
         showEditBidForm: false,
       })
     })
-    
+    .then(()=>{
+      this.checkIfUserBidded();
+    })
     if (this.state.offerOwner !== this.props.user._id){
       this.setState({
         showBidButton: true,
@@ -105,24 +119,30 @@ class BidsOnThisOffer extends Component {
   }
 
   checkIfUserBidded = async () => {
-    // console.log(this.state.alreadyBidded)
       let bids = this.state.bids;
-      // console.log(bids)
       await bids.forEach((bid)=>{
-          if (this.props.user._id === bid.userID){
-           this.setState({
-            alreadyBidded: true,
-          }) 
+          if (this.props.user._id === bid.userID._id){
+              this.setState({
+                alreadyBidded: true,
+              }) 
         }
       })
-      // console.log(this.state.alreadyBidded)
       await this.checkIfABidHasBeenAccepted(bids);
   }
 
+
+
   renderBidForm = e => {
-    this.setState({
-      showBidForm: true,
-     })
+    const { showBidForm } = this.state
+    if (showBidForm === false ){
+      this.setState({
+        showBidForm: true,
+       })
+    } else if (showBidForm === true ){
+      this.setState({
+        showBidForm: false,
+       })
+    }
   }
  
   acceptBid = (bidID, Status, offerID) =>{

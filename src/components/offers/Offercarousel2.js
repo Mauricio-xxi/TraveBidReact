@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
 import '../../stylesheets/carousel.css'
-// import { div } from 'gl-matrix/src/gl-matrix/vec2';
-
 
 const OfferSilderWrapper = styled.div`
   overflow-x: scroll;
@@ -59,7 +57,7 @@ const OfferInfo = styled.div`
 
 const HandleOfferButtons = styled.button`
   background-color: white;
-  width:25%
+  width:25%;
   height:20%;
   padding: 0;
   margin:0;
@@ -69,10 +67,16 @@ const HandleOfferButtons = styled.button`
 `;
 
 const HandleOfferIcons = styled.img`
-  width: 50%
+  width: 50%;
   height:12%;
   padding:0;
   margin:0;
+`;
+
+const NoOfferMessage = styled.h6`
+  padding-top: 8%;
+  padding-bottom:10%;
+  margin-left: 5%;
 `;
 
 
@@ -106,7 +110,7 @@ class Offercarousel2 extends Component {
              )
            })}
          </OfferSilderWrapper>
-         : <div><h5>You have no offers, create one!</h5></div>}
+         : <div><NoOfferMessage>You have no offers, create one!</NoOfferMessage></div>}
          </div>
         );
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import bid from '../../lib/bid-service';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, Label, Input } from 'reactstrap';
 
 class EditBid extends Component {
     
@@ -10,23 +10,12 @@ class EditBid extends Component {
       Status: this.props.Status  
     };
 
-
-  // componentDidMount() {
-  //   this.setState({
-  //     description: this.props.description, 
-  //     value: this.props.value,
-  //     Status: this.props.Status  
-  //   });
-  // }
-   
   handleFormSubmit = (event) => {
     event.preventDefault();
     const bidID = this.props.bidID;
     const { description, value, Status } = this.state;
-    console.log(Status)
      bid.editBid({ bidID, description, value, Status  })
      .then((data)=>{
-       console.log(data)
         this.props.getBids()
         this.setState({
           description: "", 

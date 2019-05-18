@@ -3,13 +3,11 @@ import bid from '../../lib/bid-service';
 import { Form, Label, Input } from 'reactstrap';
 
 class CreateBid extends Component {
-  constructor(props) {
-      super(props);
-      this.state = {
+    state = {
         description: "", 
         value: "",
       };
-  }
+  
    
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -17,12 +15,13 @@ class CreateBid extends Component {
     const offerID = this.props.offerID;
     bid.create({ description, value, offerID })
     .then( () => {
-        this.props.getBids()
         this.setState({
           description:"",
           value: "",
         })
+        this.props.getBids()
         this.props.checkIfUserBidded()
+        this.props.renderBidForm()
     })
     .catch( error => console.log(error) )
   }
@@ -37,9 +36,9 @@ class CreateBid extends Component {
       <div>
        <Form onSubmit={this.handleFormSubmit}>
          <Label>Description:</Label>
-         <Input type="text" name="description" value={this.state.description} onChange={e => this.handleChange(e)}/>
+         <Input type="text" name="description" value={this.state.description} onChange={e => this.handleChange(e)} required/>
          <Label>Value:</Label>
-         <Input type="number" name="value" value={this.state.value} onChange={e => this.handleChange(e)} />
+         <Input type="number" name="value" value={this.state.value} onChange={e => this.handleChange(e)} required />
          <Input type="submit" value="Submit" />
        </Form>
       </div>

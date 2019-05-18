@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import auth from "./auth-service";
+import Loader from 'react-loader-spinner'
+import styled from 'styled-components';
 const { Consumer, Provider } = React.createContext();
+
+const SpinnerContainer = styled.div`
+  width: 100%;
+  display:flex;
+  justify-content: center;
+  margin-top: 30%;
+`;
 
 export { Consumer };
 
@@ -97,7 +106,14 @@ class AuthProvider extends Component {
   render() {
     const { isLoading, isLoggedin, user } = this.state;
     return isLoading ? (
-      <div>Loading</div>
+      <SpinnerContainer>
+        <Loader 
+        type="Plane"
+        color="#00BFFF"
+        height="100"	
+        width="100"
+        /> 
+      </SpinnerContainer> 
     ) : (
       <Provider
         value={{
