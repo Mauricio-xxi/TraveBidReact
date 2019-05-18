@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import bid from '../../lib/bid-service';
 import EditBid from "../bids/EditBid";
-import { Link } from "react-router-dom";
 import styled from 'styled-components';
-import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
 import Loader from 'react-loader-spinner'
 import BidCarousel from "../bids/BidCarousel";
