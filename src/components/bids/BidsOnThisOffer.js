@@ -176,13 +176,13 @@ class BidsOnThisOffer extends Component {
     const { bids, alreadyBidded, showBidForm, aBidHasBeenAccepted  } = this.state;
     const { offerOwner, offerID } = this.props;
     const currentUser = this.props.user._id;
+    console.log(offerOwner)
     return (
       <div>
-       <BidsOnMap bids={bids} offerID={this.props.offerID}/>
-
+       <BidsOnMap offerID={this.props.offerID}/>
+       { bids.length !== 0 ?
        <BidSilderWrapper>
           {bids.map((bid)=>{
-            console.log(bid)
             return (
               <BidCarouselItem key={bid._id}>
                 <ItemSections>
@@ -213,8 +213,7 @@ class BidsOnThisOffer extends Component {
             )
           })}
         </BidSilderWrapper>
-        {console.log(offerOwner)}
-
+        : <h6>No bids yet</h6> }
       { alreadyBidded === false && offerOwner !== currentUser ?  <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
       { showBidForm ?  < CreateBid offerID={offerID} getBids={this.getBids} checkIfUserBidded={this.checkIfUserBidded}/> : <div></div> }
       </div>
