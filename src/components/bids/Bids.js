@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
-// import Loader from 'react-loader-spinner'
+import Loader from 'react-loader-spinner'
 
 
 
@@ -87,9 +87,9 @@ class Bids extends Component {
   getUserBids = () => {
     bid.getUserBids(this.props.user._id)
     .then(responseData => {
-      console.log(responseData)
+      console.log('this is response data:',responseData)
         this.setState({
-          bids: [...responseData.bids],
+          bids: responseData.bids,
           showEditBidForm: false,
           loaded: true,
         })
@@ -128,7 +128,7 @@ class Bids extends Component {
       <div>
         <h5>Your Bids</h5>
         {/* <BidCarousel bids={bids}deleteBid= {this.deleteBid} renderEditBidForm={this.renderEditBidForm} /> */}
-        {/* {loaded === false ? 
+        {/* {bids.length === 0 || bids === null || bids === undefined ? 
         <div>
             <Loader 
               type="Puff"
@@ -151,8 +151,8 @@ class Bids extends Component {
                           <Link to={`/Offer/${bid.offerID._id}`}>
                              <h3>${bid.value}</h3>
                           </Link>
-                            { bid.userID._id === currentUser ? <HandleBidButtons onClick={()=>this.deleteBid(bid._id)}> <HandleBidIcons src="/trash.svg"/> </HandleBidButtons> : <div></div> }
-                            { bid.userID._id === currentUser ? <HandleBidButtons onClick={()=>this.renderEditBidForm(bid)}> <HandleBidIcons src="/edit.svg"/> </HandleBidButtons>:  <div></div>  }
+                            { bid.userID === currentUser ? <HandleBidButtons onClick={()=>this.deleteBid(bid._id)}> <HandleBidIcons src="/trash.svg"/> </HandleBidButtons> : <div></div> }
+                            { bid.userID === currentUser ? <HandleBidButtons onClick={()=>this.renderEditBidForm(bid)}> <HandleBidIcons src="/edit.svg"/> </HandleBidButtons>:  <div></div>  }
                        </BidValue>
                        <OfferInfo>
                          <h5>Offer: ${budget}</h5>

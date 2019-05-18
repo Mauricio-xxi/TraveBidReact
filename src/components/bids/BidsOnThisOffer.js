@@ -35,6 +35,8 @@ const ItemSections = styled.div`
 const RoomImageContainer = styled.div`
   margin:0;
   padding:0;
+  width: auto;
+  max-height: 130px;
 `;
 
 const UserImageContainer = styled.div`
@@ -42,7 +44,7 @@ const UserImageContainer = styled.div`
   padding:0;
   margin-left: 10%;
   padding-top: 8%;
-  width: 80px;
+  width: 100px;
 `;
 
 const RoomImage = styled.img`
@@ -53,7 +55,7 @@ const RoomImage = styled.img`
 `;
 
 const UserImage = styled.img`
-  width: 60%;
+  width: 50%;
   border: 1px solid grey;
   border-radius: 50%;
 `;
@@ -106,16 +108,6 @@ class BidsOnThisOffer extends Component {
     .then(()=>{
       this.checkIfUserBidded();
     })
-    // if (this.state.offerOwner !== this.props.user._id){
-    //   this.setState({
-    //     showBidButton: true,
-    //   })
-    // } else if (this.state.offerOwner === this.props.user._id) {
-    //   this.setState({
-    //     showEditButton: true,
-    //   })
-    // }
-    
   }
 
   checkIfUserBidded = async () => {
@@ -173,7 +165,7 @@ class BidsOnThisOffer extends Component {
 
 
   render() {
-    const { bids, alreadyBidded, showBidForm, aBidHasBeenAccepted, showBidButton  } = this.state;
+    const { bids, alreadyBidded, showBidForm, aBidHasBeenAccepted  } = this.state;
     const { offerOwner, offerID } = this.props;
     const currentUser = this.props.user._id;
     console.log(offerOwner)
@@ -186,7 +178,7 @@ class BidsOnThisOffer extends Component {
        <BidSilderWrapper>
           {bids.map((bid)=>{
             return (
-              <BidCarouselItem key={bid._id}>
+              <BidCarouselItem status={ bid.Status } key={bid._id}>
                 <ItemSections>
                   <RoomImageContainer>
                     <RoomImage src={bid.roomID.roomImage} alt="roomImage"/>
@@ -199,14 +191,16 @@ class BidsOnThisOffer extends Component {
                     <p> <strong>{bid.userID.username} / ${bid.value}</strong> </p>
 
                     { 
-                      offerOwner._id === this.props.user._id && aBidHasBeenAccepted === false && bid.Status === 0 ? 
-                      <Button color="success" onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> Accept</Button> 
+                      offerOwner._id === currentUser && aBidHasBeenAccepted === false && bid.Status === 0 ? 
+                      // <Button color="success" onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> Accept</Button> 
+                      <HandleBidButtons onClick= {()=>this.acceptBid(bid._id, 1, offerID)} > <HandleBidIcons src="/check.svg" alt=""/> </HandleBidButtons>
                       : <div></div>  
                     }
 
                     { 
-                      offerOwner._id === this.props.user._id && aBidHasBeenAccepted === false  && bid.Status === 0 ? 
-                      <Button color="danger" onClick={()=>this.declineBid(bid._id, 2) }> Decline</Button> 
+                      offerOwner._id === currentUser && aBidHasBeenAccepted === false  && bid.Status === 0 ? 
+                      // <Button color="danger" onClick={()=>this.declineBid(bid._id, 2) }> Decline</Button> 
+                      <HandleBidButtons onClick={()=>this.declineBid(bid._id, 2)} > <HandleBidIcons src="/x_mark.svg" alt=""/> </HandleBidButtons>
                       : <div></div> 
                     }
                   </UserBidInfo>
