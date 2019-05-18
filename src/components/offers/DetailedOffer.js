@@ -53,6 +53,7 @@ class OfferDetail extends Component {
           until: responseData.until,
           offerOwner: responseData.userID,
         })
+        console.log(responseData.userID)
     })
     .catch( error => console.log(error) )
   }
@@ -63,10 +64,10 @@ class OfferDetail extends Component {
 
   render() {
     const { from, until, offerOwner, budget } = this.state;
+    console.log('offerowner:', offerOwner)
     const fromFormated = transformDate(from)
     const untilFormated = transformDate(until)
     const { offerID } = this.props;
- 
     return (
       <Container>
         <OfferContainer>
