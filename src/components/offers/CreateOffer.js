@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import offer from '../../lib/offer-service';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import styled from 'styled-components';
+import {notify} from '../notifications/index'
+
 
 const CreateOfferForm = styled.div`
   display:block;
@@ -22,6 +24,7 @@ class CreateOffer extends Component {
     const { location, budget, from, until } = this.state;
     offer.create({ location, budget, from, until })
     .then( () => {
+        notify('Your Offer was created!!!')
         this.setState({
           location:"",
           budget: "",

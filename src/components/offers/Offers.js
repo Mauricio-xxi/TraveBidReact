@@ -8,6 +8,8 @@ import styled from 'styled-components';
 import {CSSTransition} from 'react-transition-group';
 import '../../stylesheets/transitions.css'
 import Loader from 'react-loader-spinner'
+import {notify} from '../notifications/index'
+
 
 const OffersectionHeader = styled.div`
   display:flex;
@@ -91,6 +93,7 @@ class Offers extends Component {
   deleteOffer = (offerID) => {
     offer.deleteOffer(offerID)
     .then(() => {
+      notify('Your Offer was deleted!!!')
       this.getOffers()
   })
     .catch( error => console.log(error) )

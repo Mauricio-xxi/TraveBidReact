@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import '../../stylesheets/styles.css'
 import Loader from 'react-loader-spinner'
 import BidCarousel from "../bids/BidCarousel";
+import {notify} from '../notifications/index'
 
 
 const NoBidMessage = styled.h6`
@@ -65,6 +66,7 @@ class Bids extends Component {
   deleteBid = (bidID) => {
     bid.deleteBid(bidID)
     .then(()=>{
+      notify('your bid was deleted')
       this.getUserBids()
     })
   }

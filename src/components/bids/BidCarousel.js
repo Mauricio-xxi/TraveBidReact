@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 
-
 const BidSilderWrapper = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
