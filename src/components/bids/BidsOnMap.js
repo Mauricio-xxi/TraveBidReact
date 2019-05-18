@@ -32,10 +32,9 @@ class BidsOnMap extends Component {
       this.setState({
         bids: responseData,
       })
-    })
-    .then(()=>{
+    },()=>{
       const { bids } = this.state
-        if (bids !== undefined ){
+        if (bids === [] ){
           this.setState({
             viewport: {
               width: "100%",
@@ -46,8 +45,7 @@ class BidsOnMap extends Component {
             }
           })
         }; 
-      }
-    )
+      })
     this.handleViewportChange(this.state.viewport)
   }
 
