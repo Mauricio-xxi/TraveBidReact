@@ -71,7 +71,7 @@ export default class RoomCard extends Component {
           {roomImage? <ImageStyle src={roomImage} alt={roomId}/>:<Spinner/> } 
           </div>
           <DescriptionArea>
-          {description? <h3>{description}</h3>:<Spinner/> } 
+          {description? <h5>{description}</h5>:<Spinner/> } 
               {facilities? <Comodities icons={facilities}/>:<Spinner/> }
           </DescriptionArea>
           <ReactMapGL

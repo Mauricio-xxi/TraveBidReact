@@ -24,7 +24,6 @@ export default class Comodities extends Component {
 
   render() {
     const { tv, air, garage, pet, pool, privateBathroom, smoke, termo, wheelchair, wifi, washer, couples } = this.props.icons
-    console.log(this.props.icons)
     return (
       <FacilitiesStyle>
         {tv === "True" ? <TV/>:<></>}

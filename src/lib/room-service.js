@@ -37,9 +37,8 @@ class Room {
       .then(({ data }) => data)
   }
 
-  updateRoom(roomID) {
-    const { location, facilities} = room;
-    return this.rooms.put(`/room/${roomID}`, { location, facilities})
+  updateRoom(Data) {
+    return this.rooms.put(`/room/`, { Data})
       .then(({ data }) => data)
   }
 

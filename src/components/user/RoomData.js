@@ -60,12 +60,6 @@ class RoomData extends Component {
     coordinates:[],
   }
 
-  // location: {
-  //   type: {
-  //     type: String,
-  //   },
-  //   coordinates: [Number],
-
   componentDidMount(){
     this.getRoom()
   }
@@ -85,13 +79,27 @@ class RoomData extends Component {
     .then(responseData=>{
     })
  }
+
+ updateRoom = (value) => {
+   console.log(value)
+  room.updateRoom(value)
+  .then(responseData=> {
+    console.log(responseData)
+  })
+ }
+
  getUrl = (url) => {
   this.setState({
     roomImage: url,
   })
 }
 submit = () => {
-  this.createRoom(this.state)
+  if(this.state.room === null){
+   this.createRoom(this.state) 
+  } else {
+    this.updateRoom(this.state)
+  }
+
 }
 
 getCoordinates =(coordinates) => {

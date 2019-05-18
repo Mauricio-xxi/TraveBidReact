@@ -6,7 +6,7 @@ import  ProfileForm   from "../components/profile/ProfileForm";
 import RoomData from "../components/user/RoomData";
 import UserCard from "../components/user/UserCard";
 import styled from 'styled-components';
-import { Button } from 'reactstrap';
+import { Button  } from 'reactstrap';
 import room from "../lib/room-service";
 import RoomCard from "../components/user/RoomCard";
 import { ReactComponent as Edit } from "../assets/edit.svg";
