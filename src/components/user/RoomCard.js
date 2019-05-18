@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
 import ReactMapGL, { Marker } from "react-map-gl";
+import { Spinner } from 'reactstrap';
+import Comodities from "./Comodities";
 
 const RoomCardStyle = styled.div`
   width:100%;
@@ -19,6 +21,10 @@ const ImageStyle = styled.img`
 `
 const DescriptionArea = styled.div`
   padding: 1.5em;
+`
+const IconsStyle = styled.div`
+  display:flex;
+  flex-wrap:wrap;
 `
 
 export default class RoomCard extends Component {
@@ -55,18 +61,18 @@ export default class RoomCard extends Component {
       ...geocoderDefaultOverrides
     })
   }
- 
 
   render() {
-    const {RoomImage, roomId, description, longitude, latitude} = this.props
+    const {roomImage, roomId, description, longitude, latitude, facilities} = this.props
     return (
       <div> 
         <RoomCardStyle>
           <div>
-            <ImageStyle src={RoomImage} alt={roomId}></ImageStyle>
+          {roomImage? <ImageStyle src={roomImage} alt={roomId}/>:<Spinner/> } 
           </div>
           <DescriptionArea>
-            <h2>{description}</h2>
+          {description? <h5>{description}</h5>:<Spinner/> } 
+              {facilities? <Comodities icons={facilities}/>:<Spinner/> }
           </DescriptionArea>
           <ReactMapGL
             ref={this.mapRef}

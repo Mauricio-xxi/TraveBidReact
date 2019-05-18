@@ -178,53 +178,45 @@ class BidsOnThisOffer extends Component {
     const currentUser = this.props.user._id;
     return (
       <div>
-        <BidsOnMap bids={bids} offerID={this.props.offerID}/>
-        {bids.length !== 0 ? 
-           <BidSilderWrapper>
-              {bids.map((bid)=>{
-                return (
-                  <BidCarouselItem status={ bid.Status } key={bid._id}>
-                    <ItemSections>
-                      <RoomImageContainer>
-                        <RoomImage src={bid.roomID.roomImage} alt="roomImage"/>
-                      </RoomImageContainer>
- 
-                      <UserBidInfo>
-                        <UserImageContainer>
-                          <UserImage src={bid.userID.userImage} alt="userImage"/>
-                        </UserImageContainer>
-                        <p> <strong>{bid.userID.username} / ${bid.value}</strong> </p>
- 
-                        { 
-                          offerOwner._id === this.props.user._id && aBidHasBeenAccepted === false && bid.Status === 0 ? 
-                          <HandleBidButtons onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> <HandleBidIcons src="/check.svg"/> </HandleBidButtons> 
-                          : <div></div>  
-                        }
- 
-                        { 
-                          offerOwner._id === this.props.user._id && aBidHasBeenAccepted === false  && bid.Status === 0 ? 
-                          <HandleBidButtons onClick={()=>this.declineBid(bid._id, 2) }> <HandleBidIcons src="/x_mark.svg" /> </HandleBidButtons> 
-                          : <div></div> 
-                        }
-                      </UserBidInfo>
-                    </ItemSections> 
-                  </BidCarouselItem>
-                )
-              })}
-            </BidSilderWrapper>
-          : <div><h3>There are no bids yet</h3></div> }
-         
+       <BidsOnMap bids={bids} offerID={this.props.offerID}/>
 
-      { alreadyBidded === false && offerOwner._id !== currentUser ?  <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
-      
-      { showBidForm ?  
-        < CreateBid 
-        offerID={offerID} 
-        getBids={this.getBids} 
-        checkIfUserBidded={this.checkIfUserBidded}
-        closeBidForm={this.renderBidForm}
-        /> 
-      : <div></div> }
+       <BidSilderWrapper>
+          {bids.map((bid)=>{
+            console.log(bid)
+            return (
+              <BidCarouselItem key={bid._id}>
+                <ItemSections>
+                  <RoomImageContainer>
+                    <RoomImage src={bid.roomID.roomImage} alt="roomImage"/>
+                  </RoomImageContainer>
+                  
+                  <UserBidInfo>
+                    <UserImageContainer>
+                      <UserImage src={bid.userID.userImage} alt="userImage"/>
+                    </UserImageContainer>
+                    <p> <strong>{bid.userID.username} / ${bid.value}</strong> </p>
+
+                    { 
+                      offerOwner === this.props.user._id && aBidHasBeenAccepted === false && bid.Status === 0 ? 
+                      <Button color="success" onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> Accept</Button> 
+                      : <div></div>  
+                    }
+
+                    { 
+                      offerOwner === this.props.user._id && aBidHasBeenAccepted === false  && bid.Status === 0 ? 
+                      <Button color="danger" onClick={()=>this.declineBid(bid._id, 2) }> Decline</Button> 
+                      : <div></div> 
+                    }
+                  </UserBidInfo>
+                </ItemSections> 
+              </BidCarouselItem>
+            )
+          })}
+        </BidSilderWrapper>
+        {console.log(offerOwner)}
+
+      { alreadyBidded === false && offerOwner !== currentUser ?  <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
+      { showBidForm ?  < CreateBid offerID={offerID} getBids={this.getBids} checkIfUserBidded={this.checkIfUserBidded}/> : <div></div> }
       </div>
     );
   }

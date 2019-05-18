@@ -11,21 +11,24 @@ import PrivateRoute from "./components/PrivateRoute";
 import AnonRoute from "./components/AnonRoute";
 import AuthProvider from "./lib/AuthProvider";
 import OfferDetail from "./pages/OfferDetail";
+import  NotFoundPage  from "./components/404";
 
 class App extends Component {
   render() {
     return (
       <AuthProvider>
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <AnonRoute path="/signup" component={Signup} />
-              <AnonRoute path="/login" component={Login} />
-              <PrivateRoute path="/private" component={Private} />
-              <PrivateRoute path="/profile" component={Profile} />
-              <PrivateRoute exact path="/offer/:id" component={OfferDetail} />
-            </Switch>
-          </div>
+        <div className="container">
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <AnonRoute path="/signup" component={Signup} />
+            <AnonRoute path="/login" component={Login} />
+            <PrivateRoute path="/private" component={Private} />
+            <PrivateRoute path="/profile" component={Profile} />
+            <PrivateRoute exact path="/offer/:id" component={OfferDetail} />
+            <Route path="/"  component={NotFoundPage}/>
+          </Switch>
+        </div>
+
       </AuthProvider>
     );
   }

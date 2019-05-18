@@ -4,7 +4,18 @@ import FileUpload from "../firebase/index";
 import RoomGeo from "./RoomGeo";
 import { Form, Label, Input, Button, FormGroup } from 'reactstrap';
 import styled from 'styled-components';
-
+import { ReactComponent as TV } from "../../../src/assets/television.svg";
+import { ReactComponent as Wifi } from "../../../src/assets/wifi.svg";
+import { ReactComponent as Air } from "../../../src/assets/acondicionador-de-aire.svg";
+import { ReactComponent as Garage } from "../../../src/assets/garaje.svg";
+import { ReactComponent as HotWater } from "../../../src/assets/termometro.svg";
+import { ReactComponent as Washer } from "../../../src/assets/lavadora.svg";
+import { ReactComponent as Pool } from "../../../src/assets/piscina.svg";
+import { ReactComponent as PrivateBathroom } from "../../../src/assets/ducha.svg";
+import { ReactComponent as Wheelchair } from "../../../src/assets/silla-de-ruedas.svg";
+import { ReactComponent as Smoke } from "../../../src/assets/cigarrete.svg";
+import { ReactComponent as Pet } from "../../../src/assets/mascotas.svg";
+import { ReactComponent as Couples } from "../../../src/assets/pareja.svg";
 
 const ProfileCardStyle = styled.div`
   width:100%;
@@ -16,6 +27,15 @@ const ProfileCardStyle = styled.div`
   padding: 5%, 0%;
   box-shadow: 5px  10px 10px grey;
 `;
+const FacilitiesStyle = styled.div`
+  padding:5%;
+`
+const InputsStyle = styled.div`
+  display:flex;
+  flex-wrap:wrap;
+`
+
+
 
 class RoomData extends Component {
   
@@ -40,12 +60,6 @@ class RoomData extends Component {
     coordinates:[],
   }
 
-  // location: {
-  //   type: {
-  //     type: String,
-  //   },
-  //   coordinates: [Number],
-
   componentDidMount(){
     this.getRoom()
   }
@@ -65,13 +79,27 @@ class RoomData extends Component {
     .then(responseData=>{
     })
  }
+
+ updateRoom = (value) => {
+   console.log(value)
+  room.updateRoom(value)
+  .then(responseData=> {
+    console.log(responseData)
+  })
+ }
+
  getUrl = (url) => {
   this.setState({
     roomImage: url,
   })
 }
 submit = () => {
-  this.createRoom(this.state)
+  if(this.state.room === null){
+   this.createRoom(this.state) 
+  } else {
+    this.updateRoom(this.state)
+  }
+
 }
 
 getCoordinates =(coordinates) => {
@@ -82,6 +110,7 @@ getCoordinates =(coordinates) => {
 
 handleChange = event => {
   const { name, value } = event.target;
+  console.log(name,value)
   this.setState({ [name]: value });
 }
 
@@ -89,73 +118,78 @@ handleChange = event => {
   return (
     <ProfileCardStyle>
     <RoomGeo  getCoordinates={this.getCoordinates}></RoomGeo>
+    <FacilitiesStyle>
+
     <Form>
       <FormGroup>
-        <h3>Description:</h3>
-        <Input name = "description" type = "string" onChange ={this.handleChange} required/>
+        <Label ><h3>Description:</h3></Label>
+        <Input name = "description" type = "textarea" onChange ={this.handleChange} required/>
       </FormGroup>
         <h3>Facilities:</h3>
       <FormGroup>
         <Label>Private Room:</Label>
-        <Input name = "privateRoom" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "privateRoom" type = "radio" onChange ={this.handleChange}/>
       </FormGroup>
       <FormGroup>  
         <Label>Shared Room:</Label>
-        <Input name = "sharedRoom" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "sharedRoom" type = "radio" onChange ={this.handleChange}/>
       </FormGroup> 
       <FormGroup>
         <Label>Entire Property:</Label>
-        <Input name = "entireProperty" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "entireProperty" type = "radio"  onChange ={this.handleChange}/>
+      </FormGroup>
+      <InputsStyle>
+      <FormGroup>
+        <Input name ="tv" id="tv" type = "checkbox" value="True" className="noneCheckbox" onChange ={this.handleChange}/>
+        <Label for="tv" className="checkboxInputs"> <TV/></Label>
       </FormGroup>
       <FormGroup>
-        <Label>TV:</Label>
-        <Input name = "tv" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "wifi" id="wifi" type = "checkbox"value="True" className="noneCheckbox" onChange ={this.handleChange}/>
+        <Label for ="wifi" className="checkboxInputs"><Wifi/></Label>
       </FormGroup>
       <FormGroup>
-        <Label>WIFI:</Label>
-        <Input name = "wifi" type = "checkbox" onChange ={this.handleChange}/>
-      </FormGroup>
-      <FormGroup>
-        <Label>Air conditioner:</Label>
-        <Input name = "air" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "air" id="air" type = "checkbox"className="noneCheckbox"value="True" onChange ={this.handleChange}/>
+        <Label for="air" className="checkboxInputs"><Air/></Label>
       </FormGroup>  
       <FormGroup>
-        <Label>Garage:</Label>
-        <Input name = "garage" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "garage" id="garage" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="garage" className="checkboxInputs"><Garage/></Label>
       </FormGroup>
       <FormGroup>
-        <Label>Hot Water:</Label>
-        <Input name = "termo" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "termo" id="termo" type="checkbox"className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for ="termo"className="checkboxInputs"><HotWater/></Label>
       </FormGroup>
       <FormGroup>
-        <Label>TV:</Label>
-        <Input name = "tv" type = "checkbox" onChange ={this.handleChange}/>
-      </FormGroup>
-      <FormGroup>
-        <Label>Washer:</Label>
-        <Input name = "washer" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "washer" id="washer" type = "checkbox"className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="washer" className="checkboxInputs"><Washer/></Label>
       </FormGroup>   
       <FormGroup>
-        <Label>Pool:</Label>
-        <Input name = "pool" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "pool" id="pool" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="pool" className="checkboxInputs"><Pool/></Label>
       </FormGroup>
       <FormGroup>
-        <Label>Private Bathroom:</Label>
-        <Input name = "privateBathroom" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "privateBathroom" id="privateBathroom" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="privateBathroom" className="checkboxInputs"><PrivateBathroom/></Label>
       </FormGroup> 
       <FormGroup>
-        <Label>Wheelchair:</Label>
-        <Input name = "wheelchair" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "wheelchair" id="wheelchair" type = "checkbox"className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="wheelchair" className="checkboxInputs"><Wheelchair/></Label>
       </FormGroup> 
       <FormGroup>
-        <Label>Smoke:</Label>
-        <Input name = "smoke" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "smoke" id="smoke" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="smoke" className="checkboxInputs"><Smoke/></Label>
       </FormGroup> 
       <FormGroup>
-        <Label>Pet:</Label>
-        <Input name = "pet" type = "checkbox" onChange ={this.handleChange}/>
+        <Input name = "pet" id="pet" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="pet" className="checkboxInputs"><Pet/></Label>
       </FormGroup>
+      <FormGroup>
+        <Input name = "couples" id="couples" type = "checkbox" className="noneCheckbox" value="True" onChange ={this.handleChange}/>
+        <Label for="couples" className="checkboxInputs"><Couples/></Label>
+      </FormGroup>
+      </InputsStyle>
     </Form>
+    </FacilitiesStyle>
     <Label>Upload Room Image</Label>
     <FileUpload getUrl={this.getUrl }></FileUpload>
     <Button type= "submit" onClick={this.submit}> Submit </Button>

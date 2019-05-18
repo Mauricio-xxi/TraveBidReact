@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import { Spinner } from 'reactstrap';
 
 const UserCardStyle = styled.div`
   width:100%;
@@ -26,11 +27,11 @@ export default class UserCard extends Component {
     return (
       <UserCardStyle>
         <div>
-          <ImageStyle src={userImage} alt={username}></ImageStyle>
+          {userImage !== undefined? <ImageStyle src={userImage} alt={username}/>:<Spinner/> }
         </div>
         <DescriptionArea>
-          <h2>{username}, {age}</h2>
-          <p>{description}</p>
+        {username !== undefined? <h2>{username}, {age}</h2>:<Spinner/> }
+        {description !== undefined? <p>{description}</p>:<Spinner/> }
           <h3>{city}</h3>
         </DescriptionArea>
       </UserCardStyle>
