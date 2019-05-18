@@ -71,7 +71,6 @@ class Bids extends Component {
         bidtoEdit:{},
         loaded: false,
     }
-  
 
   componentDidMount() {
     this.getUserBids();
@@ -87,11 +86,13 @@ class Bids extends Component {
   getUserBids = () => {
     bid.getUserBids(this.props.user._id)
     .then(responseData => {
+      console.log(responseData)
         this.setState({
           bids: [...responseData.bids],
           showEditBidForm: false,
           loaded: true,
         })
+        console.log(this.state.bids)
     })
     .catch( error => console.log(error) )
   }
@@ -125,7 +126,7 @@ class Bids extends Component {
     return (
       <div>
         <h5>Your Bids</h5>
-        {loaded === false ? 
+        {/* {loaded === false ? 
         <div>
             <Loader 
               type="Puff"
@@ -133,7 +134,7 @@ class Bids extends Component {
               height="60"	
               width="60"
             /> 
-          </div>  :
+          </div>  : */}
           <div>
           {bids.length !== 0 && bids[0].offerID !== null ? 
           <BidSilderWrapper>
@@ -163,7 +164,8 @@ class Bids extends Component {
               { showEditBidForm ? <EditBid bidID={bidtoEdit._id} description={bidtoEdit.description} value={bidtoEdit.value} Status={bidtoEdit.Status} getBids={this.getUserBids} /> : <div></div>}
           </BidSilderWrapper>
           : <div><NoBidMessage>You have no bids, create one!</NoBidMessage></div>}
-        </div> }
+        </div> 
+        {/* } */}
       </div>
     );
   }
