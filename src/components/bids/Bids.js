@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
-import Loader from 'react-loader-spinner'
+// import Loader from 'react-loader-spinner'
+
 
 
 
@@ -121,11 +122,12 @@ class Bids extends Component {
   
 
   render() {
-    const { bids, showEditBidForm, bidtoEdit, loaded  } = this.state;
+    const { bids, showEditBidForm, bidtoEdit } = this.state;
     const currentUser = this.props.user._id;
     return (
       <div>
         <h5>Your Bids</h5>
+        {/* <BidCarousel bids={bids}deleteBid= {this.deleteBid} renderEditBidForm={this.renderEditBidForm} /> */}
         {/* {loaded === false ? 
         <div>
             <Loader 
