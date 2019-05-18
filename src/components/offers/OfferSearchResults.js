@@ -67,28 +67,29 @@ class OfferSearchResults extends Component {
 
   render() {
     const { offers } = this.props
+    console.log(offers)
     return (
 
       <div>
+        {offers.length >=1 ? 
         <OffersContainer>
         {offers.map((offer)=>{
          const from = transformDate(offer.from)
          const until = transformDate(offer.until)
          return(
            <Offer key={offer._id}>
-           
              <Link to={`/Offer/${offer._id}`}>
                 <UserInfo>
                   <UserImage src={offer.userID.userImage} alt="userImage"></UserImage>
                   <p> <strong>{offer.userID.username}/${offer.budget}</strong> </p>
-                  <p>{from}  to  {until}</p>
+                  <p>{from}  to  {until} </p>
                 </UserInfo> 
              </Link>
-          
            </Offer>
          )
        })}
         </OffersContainer>
+      : <div>No offers in your town</div> }
       </div>
     )
   }
