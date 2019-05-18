@@ -1,6 +1,19 @@
 import React, { Component } from 'react'
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import bid from "../../lib/bid-service";
+import styled from 'styled-components';
+import '../../stylesheets/styles.css'
+
+
+
+const PopupContainer = styled.div`
+  background-color: white;
+  width: 120px;
+  border: 3px solid #4285F4;
+  border-radius: 15px;
+  margin:0;
+  padding:10px;
+`;
 
 class BidsOnMap extends Component {
   state = {
@@ -27,10 +40,8 @@ class BidsOnMap extends Component {
 
   getBids = () => {
     const ID = this.props.offerID;
-    console.log(ID)
     bid.getBids(ID)
     .then(responseData => {
-      console.log(responseData)
       this.setState({
         bids: responseData,
         viewport: {
@@ -67,7 +78,6 @@ class BidsOnMap extends Component {
 
   render (){
     const  { bids, selectedBid, viewport } = this.state;
-    console.log(bids)
     return (
       <div>
         {bids.length >= 1 ?  
@@ -94,14 +104,15 @@ class BidsOnMap extends Component {
               <Popup
                 latitude={selectedBid.roomID.location.coordinates[0]}
                 longitude={selectedBid.roomID.location.coordinates[1]}
-                closeButton={true} closeOnClick={true}
+                closeButton={true} 
+                closeOnClick={true}
                 onClose={this.unSelectBid }
               >
-                <div>
-                  <h2>{selectedBid.description}</h2>
-                  <h2>{selectedBid.value}</h2>
-                </div>
-               </Popup>
+                <PopupContainer>
+                  <h6>{selectedBid.description}</h6>
+                  <h6 style={{color: '#4285F4'}}> <i> <strong>${selectedBid.value} </strong> </i> </h6>
+                </PopupContainer>
+              </Popup>
              ) : null}
            </ReactMapGL> 
        : <div></div> } 
