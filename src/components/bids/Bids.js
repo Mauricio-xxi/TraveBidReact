@@ -7,56 +7,8 @@ import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
 import Loader from 'react-loader-spinner'
+import BidCarousel from "../bids/BidCarousel";
 
-
-
-
-const BidSilderWrapper = styled.div`
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 5%;
-  padding-bottom: 10%;
-`;
-
-const BidCarouselItem = styled.div`
-  display: inline-block;
-  width: 80%;
-  padding:0;
-  margin-right: 10%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 15px;
-`;
-
-const InfoWrapper = styled.div`
-  display:flex;
-  flex-direction:row;
-`;
-
-const BidValue = styled.div`
-  padding: 5%;
-  padding-top:15%;
-`;
-
-const HandleBidButtons = styled.button`
-  background-color: white;
-  width:30%;
-  padding: 0;
-  margin:0;
-  margin-left: 10%;
-  border:0;
-  cursor: pointer;
-`;
-
-const HandleBidIcons = styled.img`
-  width: 100%;
-`;
-
-const OfferInfo = styled.div`
-  padding:5%;
-`;
 
 const NoBidMessage = styled.h6`
   padding-top: 8%;
@@ -83,17 +35,16 @@ class Bids extends Component {
     })
   }
 
-
   getUserBids = () => {
     bid.getUserBids(this.props.user._id)
     .then(responseData => {
-      console.log('this is response data:',responseData)
+      if (responseData !== undefined){
         this.setState({
-          bids: responseData.bids,
+          bids: [...responseData.bids],
           showEditBidForm: false,
           loaded: true,
         })
-        console.log(this.state.bids)
+      }
     })
     .catch( error => console.log(error) )
   }
@@ -122,52 +73,35 @@ class Bids extends Component {
   
 
   render() {
-    const { bids, showEditBidForm, bidtoEdit } = this.state;
+    const { bids, showEditBidForm, bidtoEdit, loaded } = this.state;
     const currentUser = this.props.user._id;
     return (
       <div>
         <h5>Your Bids</h5>
-        {/* <BidCarousel bids={bids}deleteBid= {this.deleteBid} renderEditBidForm={this.renderEditBidForm} /> */}
-        {/* {bids.length === 0 || bids === null || bids === undefined ? 
-        <div>
+        {loaded === false ? 
+          <div>
             <Loader 
               type="Puff"
               color="lightblue"
               height="60"	
               width="60"
             /> 
-          </div>  : */}
+          </div>  :
           <div>
-          {bids.length !== 0 && bids[0].offerID !== null ? 
-          <BidSilderWrapper>
-              {bids.map((bid)=>{
-                const from = transformDate(bid.offerID.from)
-                const until = transformDate(bid.offerID.until)
-                const {budget} = bid.offerID
-                return (
-                  <BidCarouselItem key={bid._id}>
-                    <InfoWrapper>
-                       <BidValue>
-                          <Link to={`/Offer/${bid.offerID._id}`}>
-                             <h3>${bid.value}</h3>
-                          </Link>
-                            { bid.userID === currentUser ? <HandleBidButtons onClick={()=>this.deleteBid(bid._id)}> <HandleBidIcons src="/trash.svg"/> </HandleBidButtons> : <div></div> }
-                            { bid.userID === currentUser ? <HandleBidButtons onClick={()=>this.renderEditBidForm(bid)}> <HandleBidIcons src="/edit.svg"/> </HandleBidButtons>:  <div></div>  }
-                       </BidValue>
-                       <OfferInfo>
-                         <h5>Offer: ${budget}</h5>
-                         <p>Arriving:{from}</p>
-                         <p>Departing:{until}</p>
-                       </OfferInfo>
-                    </InfoWrapper>
-                  </BidCarouselItem>
-                )
-              })}
-              { showEditBidForm ? <EditBid bidID={bidtoEdit._id} description={bidtoEdit.description} value={bidtoEdit.value} Status={bidtoEdit.Status} getBids={this.getUserBids} /> : <div></div>}
-          </BidSilderWrapper>
-          : <div><NoBidMessage>You have no bids, create one!</NoBidMessage></div>}
-        </div> 
-        {/* } */}
+            {bids.length === 0 ?
+
+              <NoBidMessage>You have no bids, create one!</NoBidMessage> 
+            :
+              <BidCarousel 
+              currentUser={currentUser} 
+              bids={bids} 
+              deleteBid={this.deleteBid} 
+              renderEditBidForm={this.renderEditBidForm} 
+              />
+            }
+          </div>
+          }
+      { showEditBidForm ? <EditBid bidID={bidtoEdit._id} description={bidtoEdit.description} value={bidtoEdit.value} Status={bidtoEdit.Status} getBids={this.getUserBids} /> : <div></div>}
       </div>
     );
   }
