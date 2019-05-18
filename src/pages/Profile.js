@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Navbar from "../components/Navbar";
 import { withAuth } from "../lib/AuthProvider";
-import user from "../lib/user-service";
+import userService from "../lib/user-service";
 import  ProfileForm   from "../components/profile/ProfileForm";
 import RoomData from "../components/user/RoomData";
 import UserCard from "../components/user/UserCard";
 import styled from 'styled-components';
 import { Button  } from 'reactstrap';
-import room from "../lib/room-service";
+import roomService from "../lib/room-service";
 import RoomCard from "../components/user/RoomCard";
 import { ReactComponent as Edit } from "../assets/edit.svg";
 
@@ -20,27 +20,30 @@ const ProfileContainer = styled.div`
 class Profile extends Component {
 
   state = {
-    user,
-    room,
+    user : {},
+    room: undefined,
     showUserForm: false,
     showRoomForm: false,
+    userLogged: false,
+    roomLogged: false,
   }
 
   getUser = () => {
-    user.getUser()
+    userService.getUser()
     .then(responseData=>{
       this.setState({
-        user:responseData
+        user:responseData,
+        userLogged:true,
       })
     })
   }
 
   getRoom = () => {
-    room.getRoom()
+    roomService.getRoom()
     .then(responseData=>{
-      console.log(responseData)
       this.setState({
-        room:responseData
+        room:responseData,
+        roomLogged: true,
       })
     })
   }
@@ -82,18 +85,36 @@ class Profile extends Component {
           <Button style={{margin:"5px"}}onClick={this.showUserFormButton}>Update Profile</Button>
           {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} placeholder={this.state.user}/> : <div/> }
         
-        {this.state.room !== null ? 
+        {this.state.roomLogged !== false && this.state.room !== null? 
           <RoomCard 
           roomImage={this.state.room.roomImage} 
           description={this.state.room.description} 
-          longitude={41.397800000000025} 
-          latitude={2.190348999999946}
+          longitude={this.state.room.location.coordinates[0]} 
+          latitude={this.state.room.location.coordinates[1]}
           facilities={this.state.room.facilities}
           />
         : <div></div> }
         
           <Button style={{margin:"5px"}}onClick={this.showRoomFormButton}><Edit/></Button>
-          {this.state.showRoomForm? <RoomData/> : <div/> }
+          { this.state.roomLogged === true && this.state.room !== null && this.state.showRoomForm? <RoomData
+                    roomID = {this.state.room._id}
+                    roomImage={this.state.room.roomImage} 
+                    description={this.state.room.description} 
+                    longitude={this.state.room.location.coordinates[0]} 
+                    latitude={this.state.room.location.coordinates[1]}
+                    facilities={this.state.room.facilities}
+                    exist={"true"}
+                    showRoomForm={this.showRoomForm}
+          /> : <>{this.state.showRoomForm === true ?<RoomData
+          roomID = {""}
+          roomImage={""} 
+          description={""} 
+          longitude={""} 
+          latitude={""}
+          facilities={""}
+          exist={"false"}
+          showRoomForm={this.showRoomForm}
+          />: <></>}</>}
       </ProfileContainer>
     )
   }

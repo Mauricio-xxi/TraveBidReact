@@ -38,6 +38,7 @@ class Room {
   }
 
   updateRoom(Data) {
+    console.log(Data)
     return this.rooms.put(`/room/`, { Data})
       .then(({ data }) => data)
   }
