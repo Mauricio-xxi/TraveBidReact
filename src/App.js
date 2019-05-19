@@ -12,6 +12,7 @@ import AnonRoute from "./components/AnonRoute";
 import AuthProvider from "./lib/AuthProvider";
 import OfferDetail from "./pages/OfferDetail";
 import  NotFoundPage  from "./components/404";
+import BidDetail from "./pages/BidDetail";
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
             <PrivateRoute path="/private" component={Private} />
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute exact path="/offer/:id" component={OfferDetail} />
+            <PrivateRoute exact  path="/bid/:id"  component={BidDetail} />
             <Route path="/"  component={NotFoundPage}/>
           </Switch>
         </div>

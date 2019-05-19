@@ -40,38 +40,24 @@ const InputsStyle = styled.div`
 class RoomData extends Component {
   
   state = {
-    room,
-    privateRoom:"",
-    sharedRoom:"",
-    entireProperty:"",
-    tv:"",
-    wifi:"",
-    air:"",
-    garage:"",
-    termo:"",
-    washer:"",
-    pool:"",
-    privateBathroom:"",
-    wheelchair:"",
-    smoke:"",
-    pet:"",
-    description:"",
-    roomImage:"",
-    coordinates:[],
-  }
-
-  componentDidMount(){
-    this.getRoom()
-  }
-
-  getRoom = () => {
-    room.getRoom()
-    .then(responseData=>{
-      console.log(responseData)
-      this.setState({
-        room:responseData
-      })
-    })
+     id : this.props.roomID,
+      privateRoom: this.props.facilities.privateRoom,
+      sharedRoom: this.props.facilities.sharedRoom,
+      entireProperty: this.props.facilities.entireProperty,
+      tv: this.props.facilities.tv,
+      wifi: this.props.facilities.wifi,
+      air: this.props.facilities.air,
+      garage: this.props.facilities.garage,
+      termo: this.props.facilities.termo,
+      washer: this.props.facilities.washer,
+      pool: this.props.facilities.pool,
+      privateBathroom: this.props.facilities.privateBathroom,
+      wheelchair: this.props.facilities.wheelchair,
+      smoke: this.props.facilities.smoke,
+      pet: this.props.facilities.pet,
+      description: this.props.description,
+      roomImage: this.props.roomImage,
+      coordinates : [],
   }
 
   createRoom = (value) => {
@@ -81,10 +67,8 @@ class RoomData extends Component {
  }
 
  updateRoom = (value) => {
-   console.log(value)
   room.updateRoom(value)
   .then(responseData=> {
-    console.log(responseData)
   })
  }
 
@@ -94,10 +78,12 @@ class RoomData extends Component {
   })
 }
 submit = () => {
-  if(this.state.room === null){
-   this.createRoom(this.state) 
+  if(this.state.id === ""){
+   this.createRoom(this.state)
+   this.props.showRoomForm()
   } else {
     this.updateRoom(this.state)
+    this.props.showRoomForm()
   }
 
 }
@@ -110,7 +96,6 @@ getCoordinates =(coordinates) => {
 
 handleChange = event => {
   const { name, value } = event.target;
-  console.log(name,value)
   this.setState({ [name]: value });
 }
 
