@@ -21,6 +21,7 @@ class ProfileForm extends Component {
   submit = () => {
     this.props.showUserFormButton()
     this.updateUser(this.state)
+    this.props.getUser();
   }
 
   updateUser = (data) => {

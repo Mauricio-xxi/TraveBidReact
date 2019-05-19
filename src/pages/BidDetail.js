@@ -15,32 +15,34 @@ export default class BidDetail extends Component {
  }
 
  componentDidMount() {
-  this.getBid()
-  this.getUser()
-  this.getRoom()
+   this.getBid()
 }
 
 getBid = () => {
   const id = this.props.match.params.id
   bidService.getBid(id)
   .then((responseData) => {
+  this.getUser(responseData.bid.userID)
   this.setState({
-      bid: responseData,
-    })
+      bid: responseData.bid,
+    })   
   })
 }
 
-getUser = () => {
-  userService.getUser()
+
+getUser = (userID) => {
+  userService.getUserBid(userID)
   .then(responseData=>{
+    this.getRoom(this.state.bid.roomID)
     this.setState({
       user:responseData,
     })
   })
 }
 
-getRoom = () => {
-  roomService.getRoom()
+
+getRoom = (roomID) => {
+  roomService.getRooms(roomID)
   .then(responseData=>{
     this.setState({
       room:responseData,
@@ -50,12 +52,20 @@ getRoom = () => {
 }
 
   render() {
-    console.log(this.props.match.params.id)
+    const { username,age, description, city, userImage } = this.state.user;
     return (
       <div>
-        {this.state.loggedData === true? <p>hola</p>:<Spinner/>}
-        {/* <RoomCard/>
-        <UserCard/> */}
+        {this.state.loggedData === true? <div>
+          <p>meter Bid info</p>
+        <RoomCard
+          roomImage={this.state.room.roomImage} 
+          description={this.state.room.description} 
+          longitude={this.state.room.location.coordinates[0]} 
+          latitude={this.state.room.location.coordinates[1]}
+          facilities={this.state.room.facilities}
+        />
+        <UserCard userImage={userImage} username={username} age={age} description={description} city={city}/>
+        </div>:<Spinner/>}
       </div>
     )
   }

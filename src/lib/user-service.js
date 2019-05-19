@@ -11,6 +11,12 @@ import axios from 'axios';
     return this.user.get(`/profile/`)
       .then(({ data }) => data)
   }
+
+  getUserBid(id) {
+    return this.user.post(`/profile/`,{id} )
+      .then(({ data }) => data)
+  }
+
   async updateUser(userInfo){
     const {
       age,

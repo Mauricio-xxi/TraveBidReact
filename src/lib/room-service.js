@@ -27,7 +27,6 @@ class Room {
   }
 
   getRooms(roomID) {
-    console.log(`getRooms services with this ${roomID}`)
     return this.rooms.get(`/room/${roomID}`)
       .then(({ data }) => data)
   }
@@ -38,7 +37,6 @@ class Room {
   }
 
   updateRoom(Data) {
-    console.log(Data)
     return this.rooms.put(`/room/`, { Data})
       .then(({ data }) => data)
   }

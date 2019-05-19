@@ -21,7 +21,7 @@ class Profile extends Component {
 
   state = {
     user : {},
-    room: undefined,
+    room: {},
     showUserForm: false,
     showRoomForm: false,
     userLogged: false,
@@ -104,7 +104,8 @@ class Profile extends Component {
                     latitude={this.state.room.location.coordinates[1]}
                     facilities={this.state.room.facilities}
                     exist={"true"}
-                    showRoomForm={this.showRoomForm}
+                    showRoomForm={this.showRoomFormButton}
+                    getRoom={this.getRoom}
           /> : <>{this.state.showRoomForm === true ?<RoomData
           roomID = {""}
           roomImage={""} 
@@ -113,7 +114,8 @@ class Profile extends Component {
           latitude={""}
           facilities={""}
           exist={"false"}
-          showRoomForm={this.showRoomForm}
+          showRoomForm={this.showRoomFormButton}
+          getRoom={this.getRoom}
           />: <></>}</>}
       </ProfileContainer>
     )

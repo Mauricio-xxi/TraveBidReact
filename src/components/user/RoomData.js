@@ -69,6 +69,7 @@ class RoomData extends Component {
  updateRoom = (value) => {
   room.updateRoom(value)
   .then(responseData=> {
+    this.props.getRoom();
   })
  }
 
@@ -81,9 +82,11 @@ submit = () => {
   if(this.state.id === ""){
    this.createRoom(this.state)
    this.props.showRoomForm()
+   this.props.getRoom()
   } else {
     this.updateRoom(this.state)
     this.props.showRoomForm()
+    this.props.getRoom()
   }
 
 }

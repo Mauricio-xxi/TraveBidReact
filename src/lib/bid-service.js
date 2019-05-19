@@ -17,6 +17,12 @@ class Bid {
       .catch(error => console.log(error))
   }
 
+  getBid(id) {
+    return this.bids.post(`/bid`, {id})
+      .then(({ data }) => data)
+      .catch(error => console.log(error))
+  }
+
   getBids(offerID) {
     return this.bids.get(`/bid/${offerID}`)
       .then(({ data }) => data)
