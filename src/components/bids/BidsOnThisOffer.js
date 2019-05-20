@@ -89,7 +89,7 @@ const HandleBidIcons = styled.img`
   margin:0;
 `;
 
-const BidButtonContainer = styled.button`
+const BidButtonContainer = styled.div`
   text-align:center;
   width: 100%;
 `;
