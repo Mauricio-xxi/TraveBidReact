@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import room from "../../lib/room-service";
 import FileUpload from "../firebase/index";
 import RoomGeo from "./RoomGeo";
-import { Form, Label, Input, Button, FormGroup } from 'reactstrap';
+import { Form, Label, Input, FormGroup } from 'reactstrap';
 import styled from 'styled-components';
 import { ReactComponent as TV } from "../../../src/assets/television.svg";
 import { ReactComponent as Wifi } from "../../../src/assets/wifi.svg";

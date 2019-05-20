@@ -3,28 +3,6 @@ import { withAuth } from "../../lib/AuthProvider";
 import { Link } from "react-router-dom";
 import transformDate from "../../functions/dates"
 import styled from 'styled-components';
-// import { Transition } from 'react-transition-group'
-
-// const duration = 1000
-
-// const sidebarStyle = {
-//   transition: `width ${duration}ms`
-// }
-// const sidebarTransitionStyles = {
-//   entering: { width: 0 },
-//   entered: { width: '100%' },
-//   exiting: { width: '100%' },
-//   exited: { width: 0, height:0 }
-// }
-// const linkStyle = {
-//   transition: `opacity ${duration}ms`
-// }
-// const linkTransitionStyles = {
-//   entering: { opacity: 0 },
-//   entered: { opacity: 1 },
-//   exiting: { opacity: 1 },
-//   exited: { opacity: 0 }
-// }
 
 const OffersContainer = styled.div`
   padding-top: 15%;
@@ -41,16 +19,6 @@ const Offer = styled.div`
     display:flex;
     flex-direction:row;
 `;
-
-// const OfferContainer = styled.div`
-//   display:flex;
-//   flex-direction:row;
-// `;
-
-// const OfferInfo = styled.div`
-//   width:100%;
-//   padding:3%;
-// `;
 
 const UserInfo = styled.div`
   padding:3%;
@@ -80,16 +48,16 @@ class OfferSearchResults extends Component {
            <Offer key={offer._id}>
              <Link to={`/Offer/${offer._id}`}>
                 <UserInfo>
-                  <UserImage src={offer.userID.userImage} alt="userImage"></UserImage>
-                  <p> <strong>{offer.userID.username}/${offer.budget}</strong> </p>
-                  <p>{from}  to  {until} </p>
+                    <UserImage src={offer.userID.userImage} alt="userImage"></UserImage>
+                  <p style={{paddingTop: "2%"}}> <strong>{offer.userID.username}/${offer.budget}</strong> </p>
+                  <p style={{width: "150px"}}>{from}  to  {until} </p>
                 </UserInfo> 
              </Link>
            </Offer>
          )
        })}
         </OffersContainer>
-      : <div>No offers in your town</div> }
+      : '' }
       </div>
     )
   }
