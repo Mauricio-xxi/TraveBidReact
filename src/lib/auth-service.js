@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 class Auth {
   constructor() {
     this.auth = axios.create({
@@ -19,7 +20,10 @@ class Auth {
     const { username, password } = user;
     return this.auth
       .post("/auth/login", { username, password })
-      .then(({ data }) => data);
+      .then(({ data }) => data)
+      // .catch(error => {
+      //   console.log(error)
+      // })
   }
 
   logout() {

@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import ee from 'event-emitter';
 
 const Container = styled.div`
-  background-color:  #4285F4;
+  background-color: ${ props  =>  props.background === 'success' ? '#0F9D58' : props.background === 'warning' ? '#DB4437' : props.background === 'welcome' ? '#4285F4' : '' } ;
   color: white;
   padding: 16px;
   position:absolute;
+  border-radius: 8px;
   top: ${props => props.top}px;
   right: 16px;
   z-index: 1300;
@@ -15,8 +16,8 @@ const Container = styled.div`
 
 const emitter = new ee();
 
-export const notify = (msg) => {
-  emitter.emit('notification', msg);
+export const notify = (msg, type) => {
+  emitter.emit('notification', msg, type);
 }
 
 export default class Notifications extends Component {
@@ -27,38 +28,41 @@ export default class Notifications extends Component {
     this.state = {
       top: -100,
       msg: '',
+      type:'',
     }
     this.timeout = null;
 
-    emitter.on('notification', (msg) => {
-      this.onshow(msg);
+    emitter.on('notification', (msg, type) => {
+      this.onshow(msg, type);
     })
   }
 
-  onshow = (msg) => {
+  onshow = (msg, type) => {
     if (this.timeout){
       clearTimeout(this.timeout);
       this.setState({
         top: -100
       }, () => {
         this.timeout = setTimeout(()=>{
-          this.showNotification(msg);
+          this.showNotification(msg, type);
         }, 3000 );
       })
     } else {
-      this.showNotification(msg);
+      this.showNotification(msg, type);
     }
   }
 
-  showNotification = (msg) => {
+  showNotification = (msg, type) => {
     this.setState({
       top: 16,
       msg,
+      type,
     }, () => {
       this.timeout = setTimeout(()=>{
         this.setState({
           top: -100,
           msg,
+          type,
         })
       }, 3000);
     })
@@ -66,7 +70,7 @@ export default class Notifications extends Component {
 
   render (){
     return (
-        <Container top={this.state.top}> <h6>{this.state.msg}</h6></Container> 
+        <Container background={this.state.type} top={this.state.top}> <h6>{this.state.msg}</h6></Container> 
     )
   }
 }

@@ -66,7 +66,7 @@ class Bids extends Component {
   deleteBid = (bidID) => {
     bid.deleteBid(bidID)
     .then(()=>{
-      notify('your bid was deleted')
+      notify('Bid successfully deleted', 'success');
       this.getUserBids()
     })
   }

@@ -30,7 +30,12 @@ const UserInfo = styled.div`
 
 const UserImage = styled.img`
   border-radius: 50%;
-  width:65%;
+  width:100%;
+`;
+
+const UserText = styled.p`
+  padding-left: 15%;
+  margin-top: 5%;
 `;
 
 
@@ -53,7 +58,6 @@ class OfferDetail extends Component {
           until: responseData.until,
           offerOwner: responseData.userID,
         })
-        console.log(responseData.userID)
     })
     .catch( error => console.log(error) )
   }
@@ -64,7 +68,6 @@ class OfferDetail extends Component {
 
   render() {
     const { from, until, offerOwner, budget } = this.state;
-    console.log('offerowner:', offerOwner)
     const fromFormated = transformDate(from)
     const untilFormated = transformDate(until)
     const { offerID } = this.props;
@@ -78,7 +81,7 @@ class OfferDetail extends Component {
           </OfferInfo>
           <UserInfo>
             <UserImage src={offerOwner.userImage} alt="userImage"></UserImage>
-            <p> <strong>{offerOwner.username}, {offerOwner.age}</strong> </p>
+            <UserText> <strong>{offerOwner.username}, {offerOwner.age}</strong> </UserText>
           </UserInfo>
         </OfferContainer>
         <BidsOnThisOffer offerID={offerID} offerOwner={offerOwner}/>

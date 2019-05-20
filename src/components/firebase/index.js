@@ -51,7 +51,8 @@ class FileUpload extends Component {
           {this.state.uploadValue} %
         </progress>
         <br />
-        <input type='file' onChange={this.handleOnChange.bind(this)}/>
+        <button style={{maxWidth: "100%"}}>
+          <input style={{backgroundColor: "#F4B400", width: "30%", borderRadius: "8px"}} type='file' onChange={this.handleOnChange.bind(this)}/></button> 
         <br />
         <img width='90' src={this.state.picture} alt = "Uploaded"/>
       </div>

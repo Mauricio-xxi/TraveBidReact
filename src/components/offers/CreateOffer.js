@@ -24,7 +24,7 @@ class CreateOffer extends Component {
     const { location, budget, from, until } = this.state;
     offer.create({ location, budget, from, until })
     .then( () => {
-        notify('Your Offer was created!!!')
+        notify('Offer successfully created!', 'success')
         this.setState({
           location:"",
           budget: "",
@@ -63,7 +63,6 @@ class CreateOffer extends Component {
             <Input type="date" name="until" value={this.state.until} onChange={e => this.handleChange(e)} required />
           </FormGroup>
             <Button color= "success" type="submit" value="Submit"> Create</Button>
-            {/* <Input type="submit" value="Submit" /> */}
        </Form>
       </CreateOfferForm>
     )

@@ -6,7 +6,17 @@ import styled from 'styled-components';
 
 const ProfileFormStyle = styled.div`
   display:block;
+  text-align: center;
 `
+
+const SubmitUpdate = styled.button`
+  padding: 3%;
+  background-color: white;
+  border: 1px solid #0F9D58;
+  border-radius: 8px;
+  margin-top: 2%;
+  color: #0F9D58;
+`;
 
 class ProfileForm extends Component {
   value = this.props.placeholder
@@ -45,19 +55,20 @@ class ProfileForm extends Component {
     return (
      <ProfileFormStyle>
         <label>Image</label>
-        <FileUpload getUrl={this.getUrl }></FileUpload>
+        <FileUpload getUrl={this.getUrl}></FileUpload>
 
       <Form>
-        <Label>Age:</Label>
-        <Input name = "age" type = "number" onChange={this.handleChange}required/>
-        <Label>Gender:</Label>
-        <Input  name = "gender" type = "string"  onChange={this.handleChange} required/>
-        <Label>Description:</Label>
-        <Input name = "description" type = "textarea"  onChange={this.handleChange} required/>
-        <Label>City:</Label>
-        <Input name = "city" type = "string"  onChange={this.handleChange}  required/>
+        <Label></Label>
+        <Input name = "age" type = "number" placeholder="Age" onChange={this.handleChange}required/>
+        <Label></Label>
+        <Input  name = "gender" type = "string" placeholder="Gender"  onChange={this.handleChange} required/>
+        <Label></Label>
+        <Input name = "description" type = "textarea" placeholder="Personal description" onChange={this.handleChange} required/>
+        <Label></Label>
+        <Input name = "city" type = "string" placeholder="City" onChange={this.handleChange}  required/>
       </Form>
-      <button type= "submit" onClick={this.submit}> Submit </button>
+
+      <SubmitUpdate type= "submit" onClick={this.submit}> Submit </SubmitUpdate>
 
      </ProfileFormStyle>
     )

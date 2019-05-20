@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import bid from '../../lib/bid-service';
 import { Form, Label, Input } from 'reactstrap';
+import {notify} from '../notifications/index'
+
 
 class EditBid extends Component {
     
@@ -12,6 +14,7 @@ class EditBid extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
+    notify('Bid successfully updated!', 'success');
     const bidID = this.props.bidID;
     const { description, value, Status } = this.state;
      bid.editBid({ bidID, description, value, Status  })
