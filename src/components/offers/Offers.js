@@ -10,6 +10,9 @@ import '../../stylesheets/transitions.css'
 import Loader from 'react-loader-spinner'
 import {notify} from '../notifications/index'
 
+const DashboardOffers = styled.div`
+  margin-top: 17%;
+`;
 
 const OffersectionHeader = styled.div`
   display:flex;
@@ -93,7 +96,7 @@ class Offers extends Component {
   deleteOffer = (offerID) => {
     offer.deleteOffer(offerID)
     .then(() => {
-      notify('Your Offer was deleted!!!')
+      notify('Deleted successfully!', 'success')
       this.getOffers()
   })
     .catch( error => console.log(error) )
@@ -102,7 +105,7 @@ class Offers extends Component {
   render() {
     const { showCreateOfferForm, showEditOfferForm, offers, offerToEdit, loaded } = this.state;
     return (
-      <div>
+      <DashboardOffers>
 
         <OffersectionHeader>
           <OfferTitle>Your Offers</OfferTitle>
@@ -146,7 +149,7 @@ class Offers extends Component {
             /> 
         : <div></div>}
 
-      </div>
+      </DashboardOffers>
     );
   }
 }

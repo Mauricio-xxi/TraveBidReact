@@ -6,7 +6,6 @@ import  ProfileForm   from "../components/profile/ProfileForm";
 import RoomData from "../components/user/RoomData";
 import UserCard from "../components/user/UserCard";
 import styled from 'styled-components';
-import { Button  } from 'reactstrap';
 import roomService from "../lib/room-service";
 import RoomCard from "../components/user/RoomCard";
 import { ReactComponent as Edit } from "../assets/edit.svg";
@@ -15,6 +14,19 @@ const ProfileContainer = styled.div`
   display:block;
 `;
 
+const UpdateButtonsContainer = styled.button`
+  text-align:center;
+  width: 100%;
+`;
+
+const UpdateButtons = styled.button`
+  padding: 3%;
+  background-color: white;
+  border: 1px solid #4285F4;
+  border-radius: 8px;
+  margin-top: 2%;
+  color: #4285F4;
+`;
 
 
 class Profile extends Component {
@@ -82,7 +94,7 @@ class Profile extends Component {
       <ProfileContainer>
         <Navbar/>
         <UserCard userImage={userImage} username={username} age={age} description={description} city={city}/>
-          <Button style={{margin:"5px"}}onClick={this.showUserFormButton}>Update Profile</Button>
+          <UpdateButtonsContainer ><UpdateButtons style={{margin:"5px"}}onClick={this.showUserFormButton}>Update Profile</UpdateButtons></UpdateButtonsContainer> 
           {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} placeholder={this.state.user}/> : <div/> }
         
         {this.state.roomLogged !== false && this.state.room !== null? 
@@ -95,7 +107,7 @@ class Profile extends Component {
           />
         : <div></div> }
         
-          <Button style={{margin:"5px"}}onClick={this.showRoomFormButton}><Edit/></Button>
+        <UpdateButtonsContainer ><UpdateButtons style={{margin:"5px"}}onClick={this.showRoomFormButton}>Update Room</UpdateButtons></UpdateButtonsContainer> 
           { this.state.roomLogged === true && this.state.room !== null && this.state.showRoomForm? <RoomData
                     roomID = {this.state.room._id}
                     roomImage={this.state.room.roomImage} 

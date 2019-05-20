@@ -6,7 +6,6 @@ import Comodities from "./Comodities";
 
 const RoomCardStyle = styled.div`
   width:100%;
-  display:;
   color: black;
   border-style: none;
   border-color: black;
@@ -14,6 +13,7 @@ const RoomCardStyle = styled.div`
   padding: 5%, 0%;
   box-shadow: 5px  10px 10px grey;
   margin-top:15%;
+  border-radius:8px;
 `;
 const ImageStyle = styled.img`
   max-width: 100%;
@@ -22,16 +22,16 @@ const ImageStyle = styled.img`
 const DescriptionArea = styled.div`
   padding: 1.5em;
 `
-const IconsStyle = styled.div`
-  display:flex;
-  flex-wrap:wrap;
-`
+// const IconsStyle = styled.div`
+//   display:flex;
+//   flex-wrap:wrap;
+// `
 
 export default class RoomCard extends Component {
   state = {
     viewport: {
       width: "100%",
-      height: "150px",
+      height: "200px",
       latitude: this.props.longitude,
       longitude: this.props.latitude,
       zoom: 11

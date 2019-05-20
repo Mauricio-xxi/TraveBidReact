@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import offer from '../../lib/offer-service';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import {notify} from '../notifications/index'
 
 class EditOffer extends Component {
       
@@ -10,14 +11,6 @@ class EditOffer extends Component {
         until: this.props.offer.until, 
       };
   
-
-  // componentDidMount() {
-  //   this.setState({
-  //     budget: this.props.offer.budget,
-  //     from: this.props.offer.from,
-  //     until: this.props.offer.until, 
-  //   });
-  // }
    
   handleFormSubmit = (event) => {
     event.preventDefault();
@@ -25,7 +18,7 @@ class EditOffer extends Component {
     const { budget, from, until } = this.state;
     offer.editOffer({ offerID, budget, from, until })
     .then( (data) => {
-      console.log(data)
+      notify('Offer successfully updated', 'success');
         this.setState({
           budget: "",
           from: "",

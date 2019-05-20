@@ -11,7 +11,6 @@ class Private extends Component {
     return (
     <div>
       <Navbar />
-      <h2>Welcome {this.props.user.username}</h2>
       <Offers />
       <Notifications/>
       <Bids/>

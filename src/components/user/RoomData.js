@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import room from "../../lib/room-service";
 import FileUpload from "../firebase/index";
 import RoomGeo from "./RoomGeo";
-import { Form, Label, Input, Button, FormGroup } from 'reactstrap';
+import { Form, Label, Input, FormGroup } from 'reactstrap';
 import styled from 'styled-components';
 import { ReactComponent as TV } from "../../../src/assets/television.svg";
 import { ReactComponent as Wifi } from "../../../src/assets/wifi.svg";
@@ -24,8 +24,9 @@ const ProfileCardStyle = styled.div`
   border-style: none;
   border-color: black;
   border-width: 1px;
-  padding: 5%, 0%;
+  padding: 5%, 3%;
   box-shadow: 5px  10px 10px grey;
+  margin-bottom: 3%;
 `;
 const FacilitiesStyle = styled.div`
   padding:5%;
@@ -34,6 +35,21 @@ const InputsStyle = styled.div`
   display:flex;
   flex-wrap:wrap;
 `
+
+const SubmitUpdate = styled.button`
+  padding: 3%;
+  background-color: white;
+  border: 1px solid #0F9D58;
+  border-radius: 8px;
+  margin-top: 2%;
+  color: #0F9D58;
+`;
+
+const UploadRoomImageContainer = styled.div`
+  max-width: 100%;
+  text-align: center;
+  padding-bottom: 4%;
+`;
 
 
 
@@ -110,21 +126,21 @@ handleChange = event => {
 
     <Form>
       <FormGroup>
-        <Label ><h3>Description:</h3></Label>
+        <Label ><h6>Description</h6></Label>
         <Input name = "description" type = "textarea" onChange ={this.handleChange} required/>
       </FormGroup>
-        <h3>Facilities:</h3>
+        <h6>Facilities:</h6>
       <FormGroup>
-        <Label>Private Room:</Label>
-        <Input name = "privateRoom" type = "radio" onChange ={this.handleChange}/>
+        <Label>Private Room</Label>
+        <Input style={{marginLeft: "6%"}} name = "privateRoom" type = "radio" onChange ={this.handleChange}/>
       </FormGroup>
       <FormGroup>  
-        <Label>Shared Room:</Label>
-        <Input name = "sharedRoom" type = "radio" onChange ={this.handleChange}/>
+        <Label>Shared Room</Label>
+        <Input style={{marginLeft: "6%"}} name = "sharedRoom" type = "radio" onChange ={this.handleChange}/>
       </FormGroup> 
       <FormGroup>
-        <Label>Entire Property:</Label>
-        <Input name = "entireProperty" type = "radio"  onChange ={this.handleChange}/>
+        <Label>Entire Property</Label>
+        <Input style={{marginLeft: "3%"}} name = "entireProperty" type = "radio"  onChange ={this.handleChange}/>
       </FormGroup>
       <InputsStyle>
       <FormGroup>
@@ -178,9 +194,11 @@ handleChange = event => {
       </InputsStyle>
     </Form>
     </FacilitiesStyle>
-    <Label>Upload Room Image</Label>
-    <FileUpload getUrl={this.getUrl }></FileUpload>
-    <Button type= "submit" onClick={this.submit}> Submit </Button>
+    <Label style={{marginLeft: "3%"}}><h6>Upload Room Image</h6></Label>
+    <UploadRoomImageContainer>
+      <FileUpload style={{backgroundColor: "blue"}} getUrl={this.getUrl }></FileUpload>
+      <SubmitUpdate type= "submit" onClick={this.submit}> Submit </SubmitUpdate>
+    </UploadRoomImageContainer>
     </ProfileCardStyle>
   )    
 

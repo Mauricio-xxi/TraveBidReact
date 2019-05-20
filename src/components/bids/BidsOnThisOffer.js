@@ -3,10 +3,11 @@ import { withAuth } from "../../lib/AuthProvider";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
 import BidsOnMap from "../bids/BidsOnMap"
-import { Button } from 'reactstrap';
 import styled from 'styled-components';
 import '../../stylesheets/styles.css'
 import { Link } from "react-router-dom";
+import {notify} from '../notifications/index'
+import Notifications from '../notifications/index'
 
 const BidSilderWrapper = styled.div`
   overflow-x: scroll;
@@ -25,6 +26,7 @@ const BidCarouselItem = styled.div`
   margin-right: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border: ${ ({ status }) =>  status === 1 ? '2px solid green' : status === 2 ? '2px solid red' : '' };
+  border-radius: 8px;
 `;
 
 const ItemSections = styled.div`
@@ -53,6 +55,7 @@ const RoomImage = styled.img`
   height:100%;
   border: 1px solid grey;
   margin:0;
+  border-radius: 8px;
 `;
 
 const UserImage = styled.img`
@@ -63,6 +66,11 @@ const UserImage = styled.img`
 
 const UserBidInfo = styled.div`
   padding:2%;
+`;
+
+const UserNameValue = styled.p`
+  margin-left: 4%;
+  margin-top: 2%;
 `;
 
 const HandleBidButtons = styled.button`
@@ -81,12 +89,26 @@ const HandleBidIcons = styled.img`
   margin:0;
 `;
 
+const BidButtonContainer = styled.div`
+  text-align:center;
+  width: 100%;
+`;
+
+const BidButton = styled.button`
+  padding: 3%;
+  background-color: white;
+  border: 1px solid #4285F4;
+  border-radius: 8px;
+  margin-top: 2%;
+  color: #4285F4;
+`;
+
 
 class BidsOnThisOffer extends Component {
   state = {
     bids: [],
-    showBidButton: false,//button to create bid
-    showBidForm: false,//form to create bid
+    showBidButton: false,
+    showBidForm: false,
     alreadyBidded : false,
     aBidHasBeenAccepted: false,
   }
@@ -164,16 +186,18 @@ class BidsOnThisOffer extends Component {
    })
   }
 
+  showCreatedBidMessage = () => {
+    notify('Bid successfully updated!', 'success');
+  }
 
   render() {
     const { bids, alreadyBidded, showBidForm, aBidHasBeenAccepted  } = this.state;
     const { offerOwner, offerID } = this.props;
     const currentUser = this.props.user._id;
-    console.log(offerOwner)
     return (
       <div>
 
-       { bids.length === 0 ? <h6>No bids yet </h6> :
+       { bids.length === 0 ? '' :
        <>
        <BidsOnMap offerID={this.props.offerID}/>
        <BidSilderWrapper>
@@ -190,18 +214,16 @@ class BidsOnThisOffer extends Component {
                     <UserImageContainer>
                       <UserImage src={bid.userID.userImage} alt="userImage"/>
                     </UserImageContainer>
-                    <p> <strong>{bid.userID.username} / ${bid.value}</strong> </p>
+                    <UserNameValue> <strong>{bid.userID.username} / ${bid.value}</strong> </UserNameValue>
 
                     { 
                       offerOwner._id === currentUser && aBidHasBeenAccepted === false && bid.Status === 0 ? 
-                      // <Button color="success" onClick= {()=>this.acceptBid(bid._id, 1, offerID)}> Accept</Button> 
                       <HandleBidButtons onClick= {()=>this.acceptBid(bid._id, 1, offerID)} > <HandleBidIcons src="/check.svg" alt=""/> </HandleBidButtons>
                       : <div></div>  
                     }
 
                     { 
                       offerOwner._id === currentUser && aBidHasBeenAccepted === false  && bid.Status === 0 ? 
-                      // <Button color="danger" onClick={()=>this.declineBid(bid._id, 2) }> Decline</Button> 
                       <HandleBidButtons onClick={()=>this.declineBid(bid._id, 2)} > <HandleBidIcons src="/x_mark.svg" alt=""/> </HandleBidButtons>
                       : <div></div> 
                     }
@@ -214,8 +236,13 @@ class BidsOnThisOffer extends Component {
         </BidSilderWrapper>
         </>
        }
-      { alreadyBidded === false && offerOwner._id !== currentUser ? <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
-      { showBidForm ?  < CreateBid offerID={offerID} getBids={this.getBids} checkIfUserBidded={this.checkIfUserBidded}/> : <div></div> }
+       <Notifications/>
+
+      { alreadyBidded === false && offerOwner._id !== currentUser ? 
+        <BidButtonContainer><BidButton onClick={this.renderBidForm}>Place a Bid</BidButton></BidButtonContainer>  
+      : <div></div>  }
+
+      { showBidForm ?  < CreateBid offerID={offerID} getBids={this.getBids} showCreatedBidMessage={this.showCreatedBidMessage} checkIfUserBidded={this.checkIfUserBidded}/> : <div></div> }
       </div>
     );
   }

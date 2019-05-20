@@ -4,6 +4,7 @@ import offer from '../../lib/offer-service';
 import transformDate from "../../functions/dates"
 import BidsOnThisOffer from "../bids/BidsOnThisOffer"
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner'
 
 
 const Container = styled.div`
@@ -30,7 +31,12 @@ const UserInfo = styled.div`
 
 const UserImage = styled.img`
   border-radius: 50%;
-  width:65%;
+  width:100%;
+`;
+
+const UserText = styled.p`
+  padding-left: 15%;
+  margin-top: 5%;
 `;
 
 
@@ -39,7 +45,8 @@ class OfferDetail extends Component {
       budget: "",
       from: "",
       until:"",
-      offerOwner:{}
+      offerOwner:{},
+      loaded: false,
   }
 
   getOffer = () => {
@@ -52,8 +59,8 @@ class OfferDetail extends Component {
           from: responseData.from,
           until: responseData.until,
           offerOwner: responseData.userID,
+          loaded: true,
         })
-        console.log(responseData.userID)
     })
     .catch( error => console.log(error) )
   }
@@ -63,13 +70,22 @@ class OfferDetail extends Component {
   }
 
   render() {
-    const { from, until, offerOwner, budget } = this.state;
-    console.log('offerowner:', offerOwner)
+    const { from, until, offerOwner, budget, loaded } = this.state;
     const fromFormated = transformDate(from)
     const untilFormated = transformDate(until)
     const { offerID } = this.props;
     return (
       <Container>
+        { loaded === false ? 
+        <div>
+          <Loader 
+            type="Puff"
+            color="lightblue"
+            height="60"	
+            width="60"
+            /> 
+        </div> 
+        : <div>
         <OfferContainer>
           <OfferInfo>
             <h3>${budget}</h3>
@@ -78,11 +94,14 @@ class OfferDetail extends Component {
           </OfferInfo>
           <UserInfo>
             <UserImage src={offerOwner.userImage} alt="userImage"></UserImage>
-            <p> <strong>{offerOwner.username}, {offerOwner.age}</strong> </p>
+            <UserText> <strong>{offerOwner.username}, {offerOwner.age}</strong> </UserText>
           </UserInfo>
         </OfferContainer>
         <BidsOnThisOffer offerID={offerID} offerOwner={offerOwner}/>
+        </div>
+        }
       </Container>
+      
     );
   }
 }

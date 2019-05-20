@@ -3,25 +3,26 @@ import bid from '../../lib/bid-service';
 import { Form, Label, Input } from 'reactstrap';
 
 class CreateBid extends Component {
-    state = {
-        description: "", 
-        value: "",
-      };
+  
+  state = {
+      description: "", 
+      value: "",
+    };
   
    
   handleFormSubmit = (event) => {
     event.preventDefault();
+    this.props.showCreatedBidMessage()
     const { description, value } = this.state;
     const offerID = this.props.offerID;
     bid.create({ description, value, offerID })
     .then( () => {
-        this.setState({
-          description:"",
-          value: "",
-        })
-        this.props.getBids()
-        this.props.checkIfUserBidded()
-        this.props.renderBidForm()
+      this.setState({
+        description:"",
+        value: "",
+      })
+      this.props.getBids()
+      this.props.checkIfUserBidded()
     })
     .catch( error => console.log(error) )
   }
