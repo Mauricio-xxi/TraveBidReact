@@ -22,9 +22,9 @@ getBid = () => {
   const id = this.props.match.params.id
   bidService.getBid(id)
   .then((responseData) => {
-  this.getUser(responseData.bid.userID)
+  this.getUser(responseData.userID)
   this.setState({
-      bid: responseData.bid,
+      bid: responseData,
     })   
   })
 }
