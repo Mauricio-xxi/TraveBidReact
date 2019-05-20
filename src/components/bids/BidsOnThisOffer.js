@@ -3,7 +3,6 @@ import { withAuth } from "../../lib/AuthProvider";
 import CreateBid from "../bids/CreateBid";
 import bid from '../../lib/bid-service';
 import BidsOnMap from "../bids/BidsOnMap"
-import { Button } from 'reactstrap';
 import styled from 'styled-components';
 import '../../stylesheets/styles.css'
 import { Link } from "react-router-dom";
@@ -88,6 +87,20 @@ const HandleBidIcons = styled.img`
   width: 80%;
   padding:0;
   margin:0;
+`;
+
+const BidButtonContainer = styled.button`
+  text-align:center;
+  width: 100%;
+`;
+
+const BidButton = styled.button`
+  padding: 3%;
+  background-color: white;
+  border: 1px solid #4285F4;
+  border-radius: 8px;
+  margin-top: 2%;
+  color: #4285F4;
 `;
 
 
@@ -184,7 +197,7 @@ class BidsOnThisOffer extends Component {
     return (
       <div>
 
-       { bids.length === 0 ? <h6>No bids yet </h6> :
+       { bids.length === 0 ? '' :
        <>
        <BidsOnMap offerID={this.props.offerID}/>
        <BidSilderWrapper>
@@ -224,7 +237,11 @@ class BidsOnThisOffer extends Component {
         </>
        }
        <Notifications/>
-      { alreadyBidded === false && offerOwner._id !== currentUser ? <Button color="primary" onClick={this.renderBidForm}>Bid</Button> : <div></div>  }
+
+      { alreadyBidded === false && offerOwner._id !== currentUser ? 
+        <BidButtonContainer><BidButton onClick={this.renderBidForm}>Place a Bid</BidButton></BidButtonContainer>  
+      : <div></div>  }
+
       { showBidForm ?  < CreateBid offerID={offerID} getBids={this.getBids} showCreatedBidMessage={this.showCreatedBidMessage} checkIfUserBidded={this.checkIfUserBidded}/> : <div></div> }
       </div>
     );

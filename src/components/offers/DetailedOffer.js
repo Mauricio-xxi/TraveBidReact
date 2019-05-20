@@ -4,6 +4,7 @@ import offer from '../../lib/offer-service';
 import transformDate from "../../functions/dates"
 import BidsOnThisOffer from "../bids/BidsOnThisOffer"
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner'
 
 
 const Container = styled.div`
@@ -44,7 +45,8 @@ class OfferDetail extends Component {
       budget: "",
       from: "",
       until:"",
-      offerOwner:{}
+      offerOwner:{},
+      loaded: false,
   }
 
   getOffer = () => {
@@ -57,6 +59,7 @@ class OfferDetail extends Component {
           from: responseData.from,
           until: responseData.until,
           offerOwner: responseData.userID,
+          loaded: true,
         })
     })
     .catch( error => console.log(error) )
@@ -67,12 +70,22 @@ class OfferDetail extends Component {
   }
 
   render() {
-    const { from, until, offerOwner, budget } = this.state;
+    const { from, until, offerOwner, budget, loaded } = this.state;
     const fromFormated = transformDate(from)
     const untilFormated = transformDate(until)
     const { offerID } = this.props;
     return (
       <Container>
+        { loaded === false ? 
+        <div>
+          <Loader 
+            type="Puff"
+            color="lightblue"
+            height="60"	
+            width="60"
+            /> 
+        </div> 
+        : <div>
         <OfferContainer>
           <OfferInfo>
             <h3>${budget}</h3>
@@ -85,7 +98,10 @@ class OfferDetail extends Component {
           </UserInfo>
         </OfferContainer>
         <BidsOnThisOffer offerID={offerID} offerOwner={offerOwner}/>
+        </div>
+        }
       </Container>
+      
     );
   }
 }
