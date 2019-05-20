@@ -89,11 +89,11 @@ class Profile extends Component {
   }
 
   render() {
-    const { username,age, description, city, userImage } = this.state.user;
+    const { username,age, description, city, userImage, email } = this.state.user;
     return (
       <ProfileContainer>
         <Navbar/>
-        <UserCard userImage={userImage} username={username} age={age} description={description} city={city}/>
+        <UserCard userImage={userImage} email = {email}username={username} age={age} description={description} city={city}/>
           <UpdateButtonsContainer ><UpdateButtons style={{margin:"5px"}}onClick={this.showUserFormButton}>Update Profile</UpdateButtons></UpdateButtonsContainer> 
           {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} placeholder={this.state.user}/> : <div/> }
         
