@@ -4,7 +4,8 @@ import RoomCard from '../components/user/RoomCard';
 import bidService from '../lib/bid-service'
 import roomService from "../lib/room-service";
 import userService from "../lib/user-service";
-import { Spinner } from 'reactstrap';
+import Loader from 'react-loader-spinner'
+import Navbar from "../components/Navbar";
 
 export default class BidDetail extends Component {
  state = {
@@ -55,8 +56,8 @@ getRoom = (roomID) => {
     const { username,age, description, city, userImage } = this.state.user;
     return (
       <div>
+        <Navbar/>
         {this.state.loggedData === true? <div>
-          <p>meter Bid info</p>
         <RoomCard
           roomImage={this.state.room.roomImage} 
           description={this.state.room.description} 
@@ -65,7 +66,15 @@ getRoom = (roomID) => {
           facilities={this.state.room.facilities}
         />
         <UserCard userImage={userImage} username={username} age={age} description={description} city={city}/>
-        </div>:<Spinner/>}
+        </div> :
+         <div style={{textAlign: "center", marginTop:"40%"}}>
+            <Loader 
+              type="Puff"
+              color="lightblue"
+              height="60"	
+              width="60"
+            /> 
+          </div> }
       </div>
     )
   }

@@ -19,6 +19,7 @@ const BidCarouselItem = styled.div`
   padding:0;
   margin-right: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: ${ ({ status }) =>  status === 1 ? '2px solid green' : status === 2 ? '2px solid red' : '' };
   border-radius: 15px;
 `;
 
@@ -63,7 +64,7 @@ class BidCarousel extends Component {
                 const until = transformDate(bid.offerID.until)
                 const {budget} = bid.offerID
                 return (
-                  <BidCarouselItem key={bid._id}>
+                  <BidCarouselItem status={ bid.Status } key={bid._id}>
                     <InfoWrapper>
                        <BidValue>
                           <Link to={`/Offer/${bid.offerID._id}`}>

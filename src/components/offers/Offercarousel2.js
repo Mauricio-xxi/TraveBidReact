@@ -21,6 +21,7 @@ const OfferItemContainer = styled.div`
   padding:0;
   margin-right: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: ${ ({ status }) =>  status === 1 ? '2px solid green' : '' };
   border-radius: 15px;
 `;
 
@@ -93,7 +94,7 @@ class Offercarousel2 extends Component {
              const from = transformDate(offer.from)
              const until = transformDate(offer.until)
              return (
-               <OfferItemContainer key={offer._id}>
+               <OfferItemContainer status={ offer.Status } key={offer._id}>
                  <OfferItemImage>
                    <Link to={`/Offer/${offer._id}`}>
                        <OfferMainInfo>{offer.location}</OfferMainInfo> 

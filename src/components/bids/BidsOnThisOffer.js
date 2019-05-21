@@ -38,7 +38,7 @@ const ItemSections = styled.div`
 const RoomImageContainer = styled.div`
   margin:0;
   padding:0;
-  width: auto;
+  height: 100%;
 `;
 
 const UserImageContainer = styled.div`
@@ -57,26 +57,18 @@ const RoomImage = styled.img`
 `;
 
 const UserImage = styled.img`
-  width: 100%;
+  width: 80%;
   border: 1px solid grey;
   border-radius: 50%;
-  position: relative;
-  top: -25px;
 `;
 
 const UserBidInfo = styled.div`
   padding:2%;
-  display: flex;
-  flex-direction: row;
 `;
 
 const UserNameValue = styled.p`
   margin-left: 4%;
   margin-top: 2%;
-`;
-
-const BidButtonsContainer = styled.div`
-  width: 100%;
 `;
 
 const HandleBidButtons = styled.button`
@@ -152,8 +144,6 @@ class BidsOnThisOffer extends Component {
       await this.checkIfABidHasBeenAccepted(bids);
   }
 
-
-
   renderBidForm = e => {
     const { showBidForm } = this.state
     if (showBidForm === false ){
@@ -216,13 +206,13 @@ class BidsOnThisOffer extends Component {
                   <RoomImageContainer>
                     <RoomImage src={bid.roomID.roomImage} alt="roomImage"/>
                   </RoomImageContainer>
-                  
+                  </Link>
                   <UserBidInfo>
                     <UserImageContainer>
                       <UserImage src={bid.userID.userImage} alt="userImage"/>
                     </UserImageContainer>
                     <UserNameValue> <strong>{bid.userID.username} / ${bid.value}</strong> </UserNameValue>
-                    <BidButtonsContainer>
+                   
                     { 
                       offerOwner._id === currentUser && aBidHasBeenAccepted === false && bid.Status === 0 ? 
                       <HandleBidButtons onClick= {()=>this.acceptBid(bid._id, 1, offerID)} > <HandleBidIcons src="/check.svg" alt=""/> </HandleBidButtons>
@@ -234,9 +224,7 @@ class BidsOnThisOffer extends Component {
                       <HandleBidButtons onClick={()=>this.declineBid(bid._id, 2)} > <HandleBidIcons src="/x_mark.svg" alt=""/> </HandleBidButtons>
                       : <div></div> 
                     }
-                    </BidButtonsContainer>
                   </UserBidInfo>
-                  </Link>
                 </ItemSections> 
               </BidCarouselItem>
             )
