@@ -15,17 +15,15 @@ const RoomCardStyle = styled.div`
   margin-top:15%;
   border-radius:8px;
 `;
+
 const ImageStyle = styled.img`
   max-width: 100%;
   max-height: 100%;
-`
+`;
+
 const DescriptionArea = styled.div`
   padding: 1.5em;
-`
-// const IconsStyle = styled.div`
-//   display:flex;
-//   flex-wrap:wrap;
-// `
+`;
 
 export default class RoomCard extends Component {
   state = {
@@ -71,8 +69,9 @@ export default class RoomCard extends Component {
           {roomImage? <ImageStyle src={roomImage} alt={roomId}/>:<Spinner/> } 
           </div>
           <DescriptionArea>
-          {description? <h5>{description}</h5>:<Spinner/> } 
-              {facilities? <Comodities icons={facilities}/>:<Spinner/> }
+          { description ? <h6 style={{textAlign: "center"}}>{description}</h6>:<Spinner/> } 
+          
+          { facilities ? <Comodities icons={facilities}/>:<Spinner/> }
           </DescriptionArea>
           <ReactMapGL
             ref={this.mapRef}

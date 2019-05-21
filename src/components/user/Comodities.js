@@ -14,10 +14,11 @@ import { ReactComponent as Couples } from "../../../src/assets/pareja.svg";
 import styled from 'styled-components';
 
 const FacilitiesStyle = styled.div`
-display:flex;
-flex-wrap:wrap;
-justify-content:space-around;
-`
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-around;
+  margin-top: 10%;
+`;
 
 export default class Comodities extends Component {
   

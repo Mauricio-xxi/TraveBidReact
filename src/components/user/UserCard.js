@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import { Spinner } from 'reactstrap';
+import Loader from 'react-loader-spinner'
 
 const UserCardStyle = styled.div`
   width:100%;
@@ -32,18 +32,30 @@ const DescriptionArea = styled.div`
 
 
 export default class UserCard extends Component {
+
   render() {
     const {userImage,username,age, description, city} = this.props
     return (
       <UserCardStyle>
+        {userImage !== undefined ?
+        <div>
         <UserImageContainer>
-          {userImage !== undefined? <ImageStyle src={userImage} alt={username}/>:<Spinner/> }
+           <ImageStyle src={userImage} alt={username}/>
         </UserImageContainer>
         <DescriptionArea>
-        {username !== undefined? <h2>{username}, {age}</h2>:<Spinner/> }
-        {description !== undefined? <p>{description}</p>:<Spinner/> }
-          <h3>{city}</h3>
+          <h2>{username}, {age}</h2>
+           <p>{description}</p>
+          <h6>{city}</h6>
         </DescriptionArea>
+        </div>
+        : <div>
+            <Loader 
+              type="Puff"
+              color="lightblue"
+              height="60"	
+              width="60"
+            /> 
+          </div> }
       </UserCardStyle>
     )
   }

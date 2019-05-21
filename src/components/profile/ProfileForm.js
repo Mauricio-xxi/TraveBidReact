@@ -54,7 +54,6 @@ class ProfileForm extends Component {
   };
 
   render () {
-    console.log(this.props)
     return (
      <ProfileFormStyle>
         <label>Image</label>
