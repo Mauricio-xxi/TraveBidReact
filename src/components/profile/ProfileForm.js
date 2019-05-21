@@ -25,7 +25,8 @@ class ProfileForm extends Component {
       gender:this.value.gender,
       city:this.value.city,
       description:this.value.description,
-      userImage:this.value.userImage
+      userImage:this.value.userImage,
+      email:this.value.email,
     }
 
   submit = () => {
@@ -53,6 +54,7 @@ class ProfileForm extends Component {
   };
 
   render () {
+    console.log(this.props)
     return (
      <ProfileFormStyle>
         <label>Image</label>
