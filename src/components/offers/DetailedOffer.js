@@ -27,6 +27,7 @@ const UserInfo = styled.div`
   padding:3%;
   width:100%;
   margin-left:20%;
+  padding-top: 0;
 `;
 
 const UserImage = styled.img`
@@ -37,6 +38,7 @@ const UserImage = styled.img`
 const UserText = styled.p`
   padding-left: 15%;
   margin-top: 5%;
+  margin-bottom: 0;
 `;
 
 

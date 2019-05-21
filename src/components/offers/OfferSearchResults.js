@@ -35,7 +35,6 @@ class OfferSearchResults extends Component {
 
   render() {
     const { offers } = this.props
-    console.log(offers)
     return (
 
       <div>

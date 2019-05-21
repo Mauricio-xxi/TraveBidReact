@@ -39,15 +39,13 @@ const RoomImageContainer = styled.div`
   margin:0;
   padding:0;
   width: auto;
-  max-height: 130px;
 `;
 
 const UserImageContainer = styled.div`
   margin:0;
   padding:0;
   margin-left: 10%;
-  padding-top: 8%;
-  width: 100px;
+  width: 80%;
 `;
 
 const RoomImage = styled.img`
@@ -59,18 +57,26 @@ const RoomImage = styled.img`
 `;
 
 const UserImage = styled.img`
-  width: 50%;
+  width: 100%;
   border: 1px solid grey;
   border-radius: 50%;
+  position: relative;
+  top: -25px;
 `;
 
 const UserBidInfo = styled.div`
   padding:2%;
+  display: flex;
+  flex-direction: row;
 `;
 
 const UserNameValue = styled.p`
   margin-left: 4%;
   margin-top: 2%;
+`;
+
+const BidButtonsContainer = styled.div`
+  width: 100%;
 `;
 
 const HandleBidButtons = styled.button`
@@ -92,6 +98,7 @@ const HandleBidIcons = styled.img`
 const BidButtonContainer = styled.div`
   text-align:center;
   width: 100%;
+  margin-top:10%;
 `;
 
 const BidButton = styled.button`
@@ -215,7 +222,7 @@ class BidsOnThisOffer extends Component {
                       <UserImage src={bid.userID.userImage} alt="userImage"/>
                     </UserImageContainer>
                     <UserNameValue> <strong>{bid.userID.username} / ${bid.value}</strong> </UserNameValue>
-
+                    <BidButtonsContainer>
                     { 
                       offerOwner._id === currentUser && aBidHasBeenAccepted === false && bid.Status === 0 ? 
                       <HandleBidButtons onClick= {()=>this.acceptBid(bid._id, 1, offerID)} > <HandleBidIcons src="/check.svg" alt=""/> </HandleBidButtons>
@@ -227,6 +234,7 @@ class BidsOnThisOffer extends Component {
                       <HandleBidButtons onClick={()=>this.declineBid(bid._id, 2)} > <HandleBidIcons src="/x_mark.svg" alt=""/> </HandleBidButtons>
                       : <div></div> 
                     }
+                    </BidButtonsContainer>
                   </UserBidInfo>
                   </Link>
                 </ItemSections> 
