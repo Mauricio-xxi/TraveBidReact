@@ -8,13 +8,13 @@ import UserCard from "../components/user/UserCard";
 import styled from 'styled-components';
 import roomService from "../lib/room-service";
 import RoomCard from "../components/user/RoomCard";
-import { ReactComponent as Edit } from "../assets/edit.svg";
+// import { ReactComponent as Edit } from "../assets/edit.svg";
 
 const ProfileContainer = styled.div`
   display:block;
 `;
 
-const UpdateButtonsContainer = styled.button`
+const UpdateButtonsContainer = styled.div`
   text-align:center;
   width: 100%;
 `;
