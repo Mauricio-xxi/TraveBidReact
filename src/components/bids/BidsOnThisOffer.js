@@ -45,7 +45,7 @@ const UserImageContainer = styled.div`
   margin:0;
   padding:0;
   margin-left: 10%;
-  width: 80%;
+  width: 75px;
 `;
 
 const RoomImage = styled.img`
@@ -57,7 +57,8 @@ const RoomImage = styled.img`
 `;
 
 const UserImage = styled.img`
-  width: 80%;
+  height: 75px;
+  width: 75px;
   border: 1px solid grey;
   border-radius: 50%;
 `;
