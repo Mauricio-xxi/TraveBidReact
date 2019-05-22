@@ -10,6 +10,7 @@ import '../../stylesheets/transitions.css'
 import Loader from 'react-loader-spinner'
 import {notify} from '../notifications/index'
 
+
 const DashboardOffers = styled.div`
   margin-top: 17%;
 `;
@@ -53,6 +54,10 @@ class Offers extends Component {
     })
   }
 
+  loadCityImage(){
+
+
+  }
 
   getOffers = () => {
     offer.showOfferList(this.props.user._id)

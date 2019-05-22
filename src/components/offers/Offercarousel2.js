@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
 import '../../stylesheets/carousel.css'
+import * as images from "../../assets/cities.json";
 
 const OfferSilderWrapper = styled.div`
   overflow-x: scroll;
@@ -25,8 +26,9 @@ const OfferItemContainer = styled.div`
   border-radius: 15px;
 `;
 
+
 const OfferItemImage = styled.div`
-  background-image: url("/city.jpg");
+
   background-repeat: no-repeat;
   background-position: center;
   object-fit: cover;
@@ -41,9 +43,9 @@ const OfferItemImage = styled.div`
   border-radius: 15px;
 `;
 
-
 const OfferMainInfo = styled.p`
   color: white;
+  text-shadow: 2px 1px black;
   font-size: 20px;
   padding-left: 10%;
 `;
@@ -83,11 +85,19 @@ const NoOfferMessage = styled.h6`
 
  
 class Offercarousel2 extends Component {
-  
+
+  getImage(offer){
+    if(offer){
+      const url = images.default[offer]
+      return({"backgroundImage":"url("+ url+")"})
+    } else return "https://cdn.pixabay.com/photo/2016/01/19/17/59/new-york-city-1150012_960_720.jpg"
+  }
+
+
     render() {
       const { showEditOfferForm, deleteOffer, offers } = this.props;
-        return (
-          <div>
+      return (
+        <div>
           {offers.length !== 0 ? 
           <OfferSilderWrapper>
            {offers.map((offer)=>{
@@ -95,7 +105,9 @@ class Offercarousel2 extends Component {
              const until = transformDate(offer.until)
              return (
                <OfferItemContainer status={ offer.Status } key={offer._id}>
-                 <OfferItemImage>
+                 <OfferItemImage 
+                 style={this.getImage(offer.location)}
+                  >
                    <Link to={`/Offer/${offer._id}`}>
                        <OfferMainInfo>{offer.location}</OfferMainInfo> 
                        <OfferMainInfo>${offer.budget}</OfferMainInfo>
