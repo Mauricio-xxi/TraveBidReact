@@ -6,6 +6,16 @@ import roomService from "../lib/room-service";
 import userService from "../lib/user-service";
 import Loader from 'react-loader-spinner'
 import Navbar from "../components/Navbar";
+import styled from 'styled-components';
+
+const GoBackContainer = styled.div`
+  max-width: 50px;
+  margin-top: 20%;
+`;
+
+const GoBackButton= styled.button`
+  width: 100%;
+`;
 
 export default class BidDetail extends Component {
  state = {
@@ -52,12 +62,19 @@ getRoom = (roomID) => {
   })
 }
 
+goBack = () => {
+  this.props.history.goBack();
+}
+
   render() {
     const { username,age, description, city, userImage } = this.state.user;
     return (
       <div>
         <Navbar/>
         {this.state.loggedData === true? <div>
+        <GoBackContainer>
+          <GoBackButton onClick={this.goBack}> <img src="/Go_Back.svg" alt=""/> </GoBackButton>
+        </GoBackContainer> 
         <RoomCard
           roomImage={this.state.room.roomImage} 
           description={this.state.room.description} 
@@ -75,6 +92,7 @@ getRoom = (roomID) => {
               width="60"
             /> 
           </div> }
+
       </div>
     )
   }
