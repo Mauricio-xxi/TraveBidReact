@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import '../../stylesheets/styles.css'
 import { Link } from "react-router-dom";
 import {notify} from '../notifications/index'
-import Notifications from '../notifications/index'
 
 const BidSilderWrapper = styled.div`
   overflow-x: scroll;
@@ -161,6 +160,7 @@ class BidsOnThisOffer extends Component {
   acceptBid = (bidID, Status, offerID) =>{
     bid.acceptBid({ bidID, Status, offerID })
     .then( () => {
+      notify('Bid Accepted!', 'success');
       this.getBids()
     })
     .catch( error => console.log(error) )
@@ -169,6 +169,7 @@ class BidsOnThisOffer extends Component {
   declineBid = (bidID, Status) =>{
     bid.declineBid({ bidID, Status })
     .then( () => {
+      notify('Bid declined!', 'success');
       this.getBids()
     })
     .catch( error => console.log(error) )
@@ -233,7 +234,6 @@ class BidsOnThisOffer extends Component {
         </BidSilderWrapper>
         </>
        }
-       <Notifications/>
 
       { alreadyBidded === false && offerOwner._id !== currentUser ? 
         <BidButtonContainer><BidButton onClick={this.renderBidForm}>Place a Bid</BidButton></BidButtonContainer>  
