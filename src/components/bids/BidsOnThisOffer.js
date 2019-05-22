@@ -21,7 +21,7 @@ const BidSilderWrapper = styled.div`
 
 const BidCarouselItem = styled.div`
   display: inline-block;
-  width: 80%;
+  width: 85%;
   padding:0;
   margin-right: 10%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -49,7 +49,7 @@ const UserImageContainer = styled.div`
 `;
 
 const RoomImage = styled.img`
-  width: 100%;
+  width: 150px;
   height:100%;
   border: 1px solid grey;
   margin:0;
@@ -83,7 +83,7 @@ const HandleBidButtons = styled.button`
 `;
 
 const HandleBidIcons = styled.img`
-  width: 80%;
+  width: 20px;
   padding:0;
   margin:0;
 `;

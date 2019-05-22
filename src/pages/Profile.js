@@ -8,7 +8,6 @@ import UserCard from "../components/user/UserCard";
 import styled from 'styled-components';
 import roomService from "../lib/room-service";
 import RoomCard from "../components/user/RoomCard";
-// import { ReactComponent as Edit } from "../assets/edit.svg";
 
 const ProfileContainer = styled.div`
   display:block;
