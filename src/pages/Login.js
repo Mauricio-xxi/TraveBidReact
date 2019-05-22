@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
 import UserLogin from "../components/user/UserLogin";
-import Notifications from '../../src/components/notifications/index.js'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -36,7 +35,6 @@ class Login extends Component {
         <LandingBack>
         <Title><Link style={{color: "white"}}  to={"/"}>TravelBID</Link></Title>
           <UserLogin />
-          <Notifications/>
         </LandingBack>
       </div>
     );
