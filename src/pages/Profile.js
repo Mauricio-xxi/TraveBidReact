@@ -8,6 +8,7 @@ import UserCard from "../components/user/UserCard";
 import styled from 'styled-components';
 import roomService from "../lib/room-service";
 import RoomCard from "../components/user/RoomCard";
+import Notifications from '../components/notifications/index'
 
 const ProfileContainer = styled.div`
   display:block;
@@ -95,7 +96,7 @@ class Profile extends Component {
         <UserCard userImage={userImage} email = {email}username={username} age={age} description={description} city={city}/>
           <UpdateButtonsContainer ><UpdateButtons style={{margin:"5px"}}onClick={this.showUserFormButton}>Update Profile</UpdateButtons></UpdateButtonsContainer> 
           {this.state.showUserForm? <ProfileForm  getUser={this.getUser} showUserFormButton={this.showUserFormButton} placeholder={this.state.user}/> : <div/> }
-        
+        <Notifications/>
         {this.state.roomLogged !== false && this.state.room !== null? 
           <RoomCard 
           roomImage={this.state.room.roomImage} 
