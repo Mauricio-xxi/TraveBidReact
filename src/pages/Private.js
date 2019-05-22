@@ -28,7 +28,6 @@ class Private extends Component {
   }
 
   search = () => {
-    // Protect, verify city that user has city
     const city = this.props.user.city
     offer.searchOffers(city)
       .then(responseData => {
@@ -41,7 +40,6 @@ class Private extends Component {
 
   render() {
     const { showSearchResults, offers } = this.state;
-    console.log(offers)
     return (
     <div>
       <Navbar handleShowSearchResults={this.handleShowSearchResults} />

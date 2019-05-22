@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
 import offer from '../../lib/offer-service';
-import OfferSearchResults from "./OfferSearchResults";
 import user from "../../lib/user-service";
 import styled from 'styled-components';
 
@@ -36,7 +35,6 @@ class SearchOffers extends Component {
 
     componentDidMount = ()=> {
       this.getUser();
-      console.log(this.props)
     }
 
     getUser = () => {
@@ -75,13 +73,10 @@ class SearchOffers extends Component {
   }
 
   render() {
-    const { showSearchResults, offers } = this.state;
-    console.log(this.props)
     const {handleShowSearchResults} = this.props;
     return (
       <SideBarContainer>
         <SearchButton onClick={()=> handleShowSearchResults()}><SearchIcon src="/Search.png" alt="View offer in your town"/></SearchButton>
-        {/* { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> } */}
       </SideBarContainer>
     );
   }

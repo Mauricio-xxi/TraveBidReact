@@ -14,16 +14,12 @@ const Offer = styled.div`
     margin-right:5vw;
     padding-left:12%;
     position:relative;
-    /* right:90%; */
     margin-top:10%;
     display:flex;
     flex-direction:row;
 `;
 
 const UserInfo = styled.div`
-  /* padding:3%;
-  width:100%;
-  margin-left:20%; */
   max-width: 200px;
   display: flex;
   flex-direction: row;
@@ -36,7 +32,6 @@ const UserText = styled.div`
 
 const UserImage = styled.img`
   border-radius: 50%;
-  /* width:50%; */
   height: 100px;
   width: 100px;
 `;
