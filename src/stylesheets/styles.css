@@ -30,11 +30,6 @@ body {
   padding: 10%;
 }
 
-
-/* label + #tv:checked {
-  background-color: blue;
-} */
-
 .noneCheckbox{
   display: none;
 }

@@ -36,6 +36,7 @@ class SearchOffers extends Component {
 
     componentDidMount = ()=> {
       this.getUser();
+      console.log(this.props)
     }
 
     getUser = () => {
@@ -75,10 +76,12 @@ class SearchOffers extends Component {
 
   render() {
     const { showSearchResults, offers } = this.state;
+    console.log(this.props)
+    const {handleShowSearchResults} = this.props;
     return (
       <SideBarContainer>
-        <SearchButton onClick={this.handleShowSearchResults}><SearchIcon src="/Search.png" alt="View offer in your town"/></SearchButton>
-        { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
+        <SearchButton onClick={()=> handleShowSearchResults()}><SearchIcon src="/Search.png" alt="View offer in your town"/></SearchButton>
+        {/* { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> } */}
       </SideBarContainer>
     );
   }

@@ -14,21 +14,31 @@ const Offer = styled.div`
     margin-right:5vw;
     padding-left:12%;
     position:relative;
-    right:90%;
+    /* right:90%; */
     margin-top:10%;
     display:flex;
     flex-direction:row;
 `;
 
 const UserInfo = styled.div`
-  padding:3%;
+  /* padding:3%;
   width:100%;
-  margin-left:20%;
+  margin-left:20%; */
+  max-width: 200px;
+  display: flex;
+  flex-direction: row;
+  max-width: 250px;
+`;
+const UserText = styled.div`
+  width: 50%;
+  margin-left: 5%;
 `;
 
 const UserImage = styled.img`
   border-radius: 50%;
-  width:50%;
+  /* width:50%; */
+  height: 100px;
+  width: 100px;
 `;
 
 class OfferSearchResults extends Component {
@@ -47,9 +57,11 @@ class OfferSearchResults extends Component {
            <Offer key={offer._id}>
              <Link to={`/Offer/${offer._id}`}>
                 <UserInfo>
-                    <UserImage src={offer.userID.userImage} alt="userImage"></UserImage>
-                  <p style={{paddingTop: "2%"}}> <strong>{offer.userID.username}/${offer.budget}</strong> </p>
-                  <p style={{width: "150px"}}>{from}  to  {until} </p>
+                  <UserImage src={offer.userID.userImage} alt="userImage"></UserImage>
+                  <UserText>
+                    <p style={{paddingTop: "2%"}}> <strong>{offer.userID.username}/${offer.budget}</strong> </p>
+                    <p style={{width: "150px"}}>From: {from} Until:{until} </p>
+                  </UserText>
                 </UserInfo> 
              </Link>
            </Offer>
