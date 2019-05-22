@@ -32,7 +32,8 @@ const UserInfo = styled.div`
 
 const UserImage = styled.img`
   border-radius: 50%;
-  width:100%;
+  width:100px;
+  height: 100px;
 `;
 
 const UserText = styled.p`
