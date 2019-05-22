@@ -97,7 +97,7 @@ class Offercarousel2 extends Component {
                <OfferItemContainer status={ offer.Status } key={offer._id}>
                  <OfferItemImage>
                    <Link to={`/Offer/${offer._id}`}>
-                       <OfferMainInfo>{offer.location}</OfferMainInfo> 
+                       <OfferMainInfo>{offer.location}</OfferMainInfo>
                        <OfferMainInfo>${offer.budget}</OfferMainInfo>
                    </Link>
                  </OfferItemImage>
