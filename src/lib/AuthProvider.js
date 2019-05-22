@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import auth from "./auth-service";
 import Loader from 'react-loader-spinner'
 import styled from 'styled-components';
+import {notify} from '../components/notifications/index'
 const { Consumer, Provider } = React.createContext();
 
 const SpinnerContainer = styled.div`
@@ -88,8 +89,11 @@ class AuthProvider extends Component {
           isLoggedin: true,
           user
         });
+        notify(`Welcome ${username}!`, 'welcome')
       })
-      .catch(() => {});
+      .catch(() => {
+        notify(`Username or password is incorrect!`, 'warning')
+      });
   };
 
   logout = () => {

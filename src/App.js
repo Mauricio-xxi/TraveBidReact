@@ -14,6 +14,8 @@ import OfferDetail from "./pages/OfferDetail";
 import  NotFoundPage  from "./components/404";
 import BidDetail from "./pages/BidDetail";
 import './stylesheets/styles.css'
+import Notifications from './components/notifications/index'
+
 
 class App extends Component {
   render() {
@@ -30,6 +32,7 @@ class App extends Component {
             <PrivateRoute exact  path="/bid/:id"  component={BidDetail} />
             <Route path="/"  component={NotFoundPage}/>
           </Switch>
+        <Notifications/>
         </div>
 
       </AuthProvider>

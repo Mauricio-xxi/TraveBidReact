@@ -3,7 +3,6 @@ import { withAuth } from "../lib/AuthProvider";
 import Navbar from "../components/Navbar";
 import Offers from "../components/offers/Offers";
 import Bids from "../components/bids/Bids";
-import Notifications from '../components/notifications/index'
 import OfferSearchResults from "../components/offers/OfferSearchResults";
 import offer from '../lib/offer-service';
 
@@ -46,7 +45,6 @@ class Private extends Component {
       <Navbar handleShowSearchResults={this.handleShowSearchResults} />
       { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       <Offers />
-      <Notifications/>
       <Bids/>
     </div>
     );
