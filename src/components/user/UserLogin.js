@@ -1,11 +1,24 @@
 import React, { Component } from "react";
 import { withAuth } from "../../lib/AuthProvider";
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Link } from "react-router-dom";
+import { Form, FormGroup, Input, Button } from 'reactstrap';
 import styled from 'styled-components';
 
 
 const Container = styled.div`
-  margin-top: 10%;
+  margin-top: 50%;
+  padding: 10%;
+`;
+
+const ButtonContainer = styled.div`
+  text-align: center;
+`;
+
+const SignUpPhrase = styled.div`
+  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 class UserLogin extends Component {
@@ -31,8 +44,8 @@ class UserLogin extends Component {
       <Container>
         <Form onSubmit={this.handleFormSubmit}>
           <FormGroup>
-            <Label>Username:</Label>
             <Input
+              placeholder="Username"
               type="text"
               name="username"
               value={username}
@@ -41,8 +54,8 @@ class UserLogin extends Component {
           />
           </FormGroup>
           <FormGroup>
-            <Label>Password:</Label>
             <Input
+              placeholder="Password"
               type="password"
               name="password"
               value={password}
@@ -50,8 +63,14 @@ class UserLogin extends Component {
               required
             />
           </FormGroup>
-          <Input type="submit" value="Login" />
+          <ButtonContainer>
+            <Button color="primary" type="submit" value="Login" > Login </Button>
+          </ButtonContainer>
         </Form>
+        <SignUpPhrase>
+         <p style={{color: "white"}}>Don't have an account?</p> 
+          <Link to={"/signup"}> Signup</Link>
+        </SignUpPhrase>
      </Container>
     );
   }

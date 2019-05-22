@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../lib/AuthProvider";
-import { Form, Button, FormGroup, Label, Input } from 'reactstrap';
+import { Form, Button, FormGroup, Input } from 'reactstrap';
 import styled from 'styled-components';
 
 
 const Container = styled.div`
   margin-top: 10%;
+  padding: 10%;
+`;
+
+const ButtonContainer = styled.div`
+  text-align: center;
 `;
 
 const LoginPhrase = styled.div`
   margin-top: 5%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 `;
 
 
@@ -44,8 +50,8 @@ class Signup extends Component {
         <Container>
         <Form onSubmit={this.handleFormSubmit}>
           <FormGroup>
-            <Label>Username:</Label>
             <Input
+              placeholder="Username"
               type="text"
               name="username"
               value={username}
@@ -54,8 +60,8 @@ class Signup extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Email:</Label>
             <Input
+              placeholder="Email"
               type="email"
               name="email"
               value={email}
@@ -64,8 +70,8 @@ class Signup extends Component {
             />
           </FormGroup>
           <FormGroup>         
-            <Label>Password:</Label>
             <Input
+              placeholder="Password"
               type="password"
               name="password"
               value={password}
@@ -74,8 +80,8 @@ class Signup extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label>City:</Label>
              <Input
+              placeholder="City"
               type="text"
               name="city"
               value={city}
@@ -84,8 +90,8 @@ class Signup extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Age:</Label>
              <Input
+              placeholder="Age"
               type="number"
               name="age"
               value={age}
@@ -93,18 +99,20 @@ class Signup extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label>Gender:</Label>
              <Input
+              placeholder="Gender"
               type="text"
               name="gender"
               value={gender}
               onChange={this.handleChange}
             />
           </FormGroup>
-          <Button color="primary" type="submit" value="Signup" >Signup</Button>
+          <ButtonContainer>
+            <Button color="primary" type="submit" value="Signup" >Signup</Button>
+          </ButtonContainer> 
         </Form>
         <LoginPhrase>
-         <p>Already have account?</p> 
+         <p style={{color: "white"}}>Already have account?</p> 
           <Link to={"/login"}> Login</Link>
         </LoginPhrase>
         </Container>

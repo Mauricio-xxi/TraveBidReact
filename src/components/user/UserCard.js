@@ -23,7 +23,7 @@ const UserImageContainer = styled.div`
 const ImageStyle = styled.img`
   padding: 5%;
   max-width: 80%;
-  max-height: 80%;
+  /* max-height: 300px; */
   border-radius: 50%;
 `
 const DescriptionArea = styled.div`
