@@ -185,7 +185,7 @@ class BidsOnThisOffer extends Component {
   }
 
   showCreatedBidMessage = () => {
-    notify('Bid successfully updated!', 'success');
+    notify('Bid successfully created!', 'success');
   }
 
   render() {
