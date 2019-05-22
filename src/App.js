@@ -13,6 +13,7 @@ import AuthProvider from "./lib/AuthProvider";
 import OfferDetail from "./pages/OfferDetail";
 import  NotFoundPage  from "./components/404";
 import BidDetail from "./pages/BidDetail";
+import './stylesheets/styles.css'
 
 class App extends Component {
   render() {
