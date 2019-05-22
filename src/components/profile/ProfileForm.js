@@ -3,6 +3,7 @@ import user from "../../lib/user-service";
 import  FileUpload  from "../firebase/index";
 import { Form, Label, Input } from 'reactstrap';
 import styled from 'styled-components';
+import {notify} from '../notifications/index'
 
 const ProfileFormStyle = styled.div`
   display:block;
@@ -30,6 +31,7 @@ class ProfileForm extends Component {
     }
 
   submit = () => {
+    notify('Profile successfully updated!', 'success')
     this.props.showUserFormButton()
     this.updateUser(this.state)
     this.props.getUser();
