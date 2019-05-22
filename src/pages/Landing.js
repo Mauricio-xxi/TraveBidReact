@@ -25,6 +25,7 @@ const Title = styled.h1`
  color: white;
 `;
 
+
 const Button = styled.button`
   color: white;
   background-color: Transparent;
@@ -52,8 +53,8 @@ class Landing extends Component {
     return (
      <LandingBack>
        <Title>TravelBID</Title>
-       <Button><Link to={"/login"}> Login </Link></Button>
-       <Signup>Not a member yet?<Link to={"/signup"}> signup</Link></Signup>
+       <Button><Link style={{color: "white"}} to={"/login"}> Login </Link></Button>
+       <Signup>Not a member yet?<Link to={"/signup"}> Signup</Link></Signup>
      </LandingBack>
     );
   }

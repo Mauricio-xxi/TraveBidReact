@@ -3,6 +3,7 @@ import { withAuth } from "../lib/AuthProvider";
 import UserLogin from "../components/user/UserLogin";
 import Notifications from '../../src/components/notifications/index.js'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const LandingBack = styled.div`
  background-image: url("/landing_sunset.jpg");
@@ -18,6 +19,13 @@ const LandingBack = styled.div`
   background-size: cover; 
 `;
 
+const Title = styled.h1`
+ font: "Lucida Grande", Helvetica, Arial, sans-serif; 
+ margin-left: 27%;
+ margin-right: 27%;
+ margin-top: 30%;
+ color: white;
+`;
 
 class Login extends Component {
 
@@ -26,6 +34,7 @@ class Login extends Component {
     return (
       <div>
         <LandingBack>
+        <Title><Link style={{color: "white"}}  to={"/"}>TravelBID</Link></Title>
           <UserLogin />
           <Notifications/>
         </LandingBack>
