@@ -13,9 +13,6 @@ class Private extends Component {
     showSearchResults: false,
   }
 
-  componentDidMount (){
-    console.log(this.props)
-  }
 
   handleShowSearchResults = async (e) => {
     await this.search()

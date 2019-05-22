@@ -38,7 +38,6 @@ class NavbarTravel extends Component {
 
   render() {
     const { logout, isLoggedin, handleShowSearchResults } = this.props;
-    console.log(this.props)
 
     return (
 

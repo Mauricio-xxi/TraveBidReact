@@ -21,9 +21,6 @@ class Auth {
     return this.auth
       .post("/auth/login", { username, password })
       .then(({ data }) =>  data );
-      // .catch(error => {
-      //   console.log(error)
-      // })
   }
 
   logout() {
