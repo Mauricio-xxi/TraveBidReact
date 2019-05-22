@@ -39,6 +39,4 @@ class App extends Component {
   }
 }
 
-// crear component container 
-
 export default App;
