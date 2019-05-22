@@ -21,22 +21,6 @@ class RoomGeo extends Component {
  
   mapRef = React.createRef()
  
-  componentDidMount() {
-    // window.addEventListener('resize', this.resize)
-    // this.resize()
-  }
- 
-  componentWillUnmount() {
-    // window.removeEventListener('resize', this.resize)
-  }
- 
-  resize = () => {
-    // this.handleViewportChange({
-    //   width: window.innerWidth,
-    //   height: window.innerHeight
-    // })
-  }
- 
   handleViewportChange = (viewport) => {
     viewport.width = 100%
     this.setState({
@@ -76,13 +60,6 @@ class RoomGeo extends Component {
           mapRef={this.mapRef}
           onViewportChange={this.handleGeocoderViewportChange}
           mapboxApiAccessToken={MAPBOX_TOKEN}
-          onResult={(results) => {
-            console.log("test", results);
-          }}
-          
-          // onError={(error) =>{
-          //   console.log(error);
-          // }}
         />
       </MapGL>
     )
