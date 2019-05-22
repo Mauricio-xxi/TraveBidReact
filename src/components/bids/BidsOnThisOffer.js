@@ -16,7 +16,7 @@ const BidSilderWrapper = styled.div`
   margin-top: 5%;
   margin-bottom: 5%;
   margin-left: 5%;
-  padding-bottom: 10%;
+  padding-bottom: 3%;
 `;
 
 const BidCarouselItem = styled.div`
@@ -91,7 +91,7 @@ const HandleBidIcons = styled.img`
 const BidButtonContainer = styled.div`
   text-align:center;
   width: 100%;
-  margin-top:10%;
+  margin-bottom: 3%;
 `;
 
 const BidButton = styled.button`

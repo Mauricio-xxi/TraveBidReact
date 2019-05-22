@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import bid from '../../lib/bid-service';
-import { Form, Label, Input } from 'reactstrap';
+import { Form, Input } from 'reactstrap';
+import styled from 'styled-components';
+
+const CreateButtonsContainer = styled.div`
+  text-align:center;
+  width: 100%;
+`;
+const SubmitButton = styled.button`
+  padding: 3%;
+  background-color: white;
+  border: 1px solid #0F9D58;
+  border-radius: 8px;
+  margin-top: 2%;
+  color: #0F9D58;
+`;
 
 class CreateBid extends Component {
   
@@ -36,11 +50,11 @@ class CreateBid extends Component {
     return(
       <div>
        <Form onSubmit={this.handleFormSubmit}>
-         <Label>Description:</Label>
-         <Input type="text" name="description" value={this.state.description} onChange={e => this.handleChange(e)} required/>
-         <Label>Value:</Label>
-         <Input type="number" name="value" value={this.state.value} onChange={e => this.handleChange(e)} required />
-         <Input type="submit" value="Submit" />
+         <Input style={{marginBottom: "2%"}} placeholder="Description" type="text" name="description" value={this.state.description} onChange={e => this.handleChange(e)} required/>
+         <Input placeholder="Value" type="number" name="value" value={this.state.value} onChange={e => this.handleChange(e)} required />
+         <CreateButtonsContainer>
+            <SubmitButton type="submit" value="Submit"> Submit</SubmitButton> 
+         </CreateButtonsContainer>
        </Form>
       </div>
     )
