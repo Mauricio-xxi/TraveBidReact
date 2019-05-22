@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
 import offer from '../../lib/offer-service';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 import {notify} from '../notifications/index'
+import styled from 'styled-components';
+
+const Container = styled.div`
+  text-align: center;
+  margin-bottom: 5%;
+`;
+
+const SubmitUpdate = styled.button`
+  padding: 3%;
+  background-color: white;
+  border: 1px solid #0F9D58;
+  border-radius: 8px;
+  margin-top: 2%;
+  color: #0F9D58;
+`;
 
 class EditOffer extends Component {
       
@@ -35,24 +50,22 @@ class EditOffer extends Component {
 
   render() {
     return(
-      <div>
+      <Container>
        <Form onSubmit={this.handleFormSubmit}>
         <FormGroup>
-          <Label>Budget:</Label>
-          <Input type="number" name="budget"  onChange={e => this.handleChange(e)} />
+          <Input placeholder="Budget" type="number" name="budget"  onChange={e => this.handleChange(e)} />
         </FormGroup>
         <FormGroup>
           <Label>From:</Label>
-          <Input type="date" name="from" onChange={e => this.handleChange(e)} />
+          <Input placeholder="From" type="date" name="from" onChange={e => this.handleChange(e)} />
         </FormGroup>
         <FormGroup>
           <Label>Until:</Label>
           <Input type="date" name="until"  onChange={e => this.handleChange(e)} />
         </FormGroup>
-          <Button color= "success" type="submit" value="Edit">Edit</Button>
-          {/* <input type="submit" value="Submit" /> */}
+          <SubmitUpdate color= "success" type="submit" value="Edit">Edit</SubmitUpdate>
        </Form>
-      </div>
+      </Container>
     )
   }
 }
