@@ -3,6 +3,7 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import bid from "../../lib/bid-service";
 import styled from 'styled-components';
 import '../../stylesheets/styles.css'
+import { Link } from "react-router-dom";
 
 
 
@@ -109,8 +110,10 @@ class BidsOnMap extends Component {
                 onClose={this.unSelectBid }
               >
                 <PopupContainer>
-                  <h6>{selectedBid.description}</h6>
-                  <h6 style={{color: '#4285F4'}}> <i> <strong>${selectedBid.value} </strong> </i> </h6>
+                  <Link to = {`/bid/${selectedBid._id}`} >
+                    <h6>{selectedBid.description}</h6>
+                    <h6 style={{color: '#4285F4'}}> <i> <strong>${selectedBid.value} </strong> </i> </h6>
+                  </Link>
                 </PopupContainer>
               </Popup>
              ) : null}
