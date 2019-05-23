@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import ee from 'event-emitter';
 
 const Container = styled.div`
-  background-color: ${ props  =>  props.background === 'success' ? '#0F9D58' : props.background === 'warning' ? '#DB4437' : props.background === 'welcome' ? '#4285F4' : '' } ;
+  background-color: ${ props  =>  
+    props.background === 'success' ? '#0F9D58' 
+    : props.background === 'warning' ? '#DB4437' 
+    : props.background === 'welcome' ? '#4285F4' : '' } ;
   color: white;
   padding: 16px;
   position:absolute;
