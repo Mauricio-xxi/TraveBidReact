@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const LandingBack = styled.div`
- background-image: url("/landing_sunset.jpg");
+ background-image: url("https://cdn.pixabay.com/photo/2016/01/19/17/45/hiker-1149877_960_720.jpg");
   height: 100%;
   top: 0;
   left: 0;
@@ -23,7 +23,7 @@ const Title = styled.h1`
  margin-left: 27%;
  margin-right: 27%;
  margin-top: 30%;
- color: white;
+ color: black;
 `;
 
 class Login extends Component {
@@ -33,7 +33,7 @@ class Login extends Component {
     return (
       <div>
         <LandingBack>
-        <Title><Link style={{color: "white"}}  to={"/"}>TravelBID</Link></Title>
+        <Title><Link style={{color: "black"}}  to={"/"}>TravelBID</Link></Title>
           <UserLogin />
         </LandingBack>
       </div>
