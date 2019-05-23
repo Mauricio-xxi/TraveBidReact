@@ -72,6 +72,7 @@ goBack = () => {
         <GoBackContainer>
           <Button color="primary" onClick={this.goBack}> <img style={{width: "20px"}} src="/arrow.png" alt=""/> </Button>
         </GoBackContainer> 
+        <h1 style={{"color":"#007bff", "marginTop":"25px"}}>Bid Value: {this.state.bid.value} $</h1>
         <RoomCard
           roomImage={this.state.room.roomImage} 
           description={this.state.room.description} 
