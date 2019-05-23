@@ -9,6 +9,7 @@ import {CSSTransition} from 'react-transition-group';
 import '../../stylesheets/transitions.css'
 import Loader from 'react-loader-spinner'
 import {notify} from '../notifications/index'
+import { Button } from 'reactstrap';
 
 
 const DashboardOffers = styled.div`
@@ -24,15 +25,22 @@ const OfferTitle = styled.h5`
   margin-top: 10%;
 `;
 
-const CreateOfferButton = styled.button`
-  background-color: white;
-  width:35%;
-  padding: 0;
-  margin:0;
-  margin-top: 9%;
-  border:0;
-  cursor: pointer;
+const CreateButtonContainer = styled.div`
+  max-height: 30px;
+  margin-left: 10px;
+  margin-top: 25px;
 `;
+
+// const CreateOfferButton = styled.button`
+//   background-color: white;
+//   width:35%;
+//   padding: 0;
+//   margin:0;
+//   margin-top: 9%;
+//   border:0;
+//   cursor: pointer;
+// `;
+
 
 
 class Offers extends Component {
@@ -54,10 +62,6 @@ class Offers extends Component {
     })
   }
 
-  loadCityImage(){
-
-
-  }
 
   getOffers = () => {
     offer.showOfferList(this.props.user._id)
@@ -114,7 +118,11 @@ class Offers extends Component {
 
         <OffersectionHeader>
           <OfferTitle>Your Offers</OfferTitle>
-          <CreateOfferButton onClick={this.renderOfferForm}> <img src="/plus.svg" alt="Create a new offer"/> </CreateOfferButton>
+          {/* <CreateOfferButton onClick={this.renderOfferForm}> <img src="/plus.svg" alt="Create a new offer"/> </CreateOfferButton> */}
+          <CreateButtonContainer>
+            <Button color="primary" onClick={this.renderOfferForm}> <img style={{width: "20px"}} src="/plus.png" alt="Create a new offer"/> </Button>
+          </CreateButtonContainer>
+          
         </OffersectionHeader>
 
         <CSSTransition 
