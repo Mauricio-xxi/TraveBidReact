@@ -7,14 +7,11 @@ import userService from "../lib/user-service";
 import Loader from 'react-loader-spinner'
 import Navbar from "../components/Navbar";
 import styled from 'styled-components';
+import { Button } from 'reactstrap';
 
 const GoBackContainer = styled.div`
-  max-width: 50px;
+  max-width: 30px;
   margin-top: 20%;
-`;
-
-const GoBackButton= styled.button`
-  width: 100%;
 `;
 
 export default class BidDetail extends Component {
@@ -73,7 +70,7 @@ goBack = () => {
         <Navbar/>
         {this.state.loggedData === true? <div>
         <GoBackContainer>
-          <GoBackButton onClick={this.goBack}> <img src="/Go_Back.svg" alt=""/> </GoBackButton>
+          <Button color="primary" onClick={this.goBack}> <img style={{width: "20px"}} src="/arrow.png" alt=""/> </Button>
         </GoBackContainer> 
         <RoomCard
           roomImage={this.state.room.roomImage} 
