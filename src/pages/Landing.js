@@ -17,6 +17,10 @@ const LandingBack = styled.div`
   background-size: cover; 
 `;
 
+const TextWrapper = styled.div`
+  text-align: center;
+`;
+
 const Title = styled.h1`
  font: "Lucida Grande", Helvetica, Arial, sans-serif; 
  margin-left: 27%;
@@ -40,21 +44,20 @@ const Button = styled.button`
 `;
 
 const Signup = styled.p`
-  margin-left: 25%;
   color: white;
   margin-top: 20%;
 `;
-
-
 
 class Landing extends Component {
 
   render() {
     return (
      <LandingBack>
-       <Title>TravelBID</Title>
-       <Button><Link style={{color: "white"}} to={"/login"}> Login </Link></Button>
-       <Signup>Not a member yet?<Link to={"/signup"}> Signup</Link></Signup>
+       <TextWrapper>
+        <Title>TravelBID</Title>
+        <Button><Link style={{color: "white"}} to={"/login"}> Login </Link></Button>
+        <Signup> Not a member yet?<Link to={"/signup"}> Signup</Link></Signup>
+       </TextWrapper>
      </LandingBack>
     );
   }
