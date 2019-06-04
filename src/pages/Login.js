@@ -18,6 +18,10 @@ const LandingBack = styled.div`
   background-size: cover; 
 `;
 
+const TextWrapper = styled.div`
+  text-align: center;
+`;
+
 const Title = styled.h1`
  font: "Lucida Grande", Helvetica, Arial, sans-serif; 
  margin-left: 27%;
@@ -33,8 +37,10 @@ class Login extends Component {
     return (
       <div>
         <LandingBack>
-        <Title><Link style={{color: "black"}}  to={"/"}>TravelBID</Link></Title>
-          <UserLogin />
+          <TextWrapper>
+            <Title><Link style={{color: "black"}}  to={"/"}>TravelBID</Link></Title>
+            <UserLogin />
+          </TextWrapper>
         </LandingBack>
       </div>
     );
