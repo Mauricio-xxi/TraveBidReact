@@ -8,6 +8,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   margin-top: 50%;
   padding: 10%;
+  text-align: center;
 `;
 
 const ButtonContainer = styled.div`
