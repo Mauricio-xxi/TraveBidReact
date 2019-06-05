@@ -39,21 +39,35 @@ const UserImage = styled.img`
 class OfferSearchResults extends Component {
   state = {
     offerOrder: '',
+    showFilterDates: false,
   }
 
 
   handleChange = (event) => {
     if (event.target.value === 'lowToHigh' ){
       this.props.orderOffersLowToHighPrice()
+      this.setState({
+        showFilterDates: false,
+      })
     } else if (event.target.value === 'highToLow' ){
       this.props.orderOffersHighToLowPrice()
+      this.setState({
+        showFilterDates: false,
+      })
     } else if (event.target.value === 'date' ){
-      this.props.chooseFilterDate()
+      this.setState({
+        showFilterDates: true,
+      })
     }
+  }
+
+  handleFormSubmit = () =>{
+    
   }
 
   render() {
     const { offers } = this.props
+    const {showFilterDates} = this.state;
     return (
 
       <div>
@@ -65,6 +79,15 @@ class OfferSearchResults extends Component {
             <option value="highToLow">Price from highest to lowest</option>
             <option value="date">Choose dates</option>
           </select>
+          { showFilterDates === false ? '' : 
+          <form onSubmit={this.handleFormSubmit}>
+            <label>From</label>
+            <input type="date" name="from"></input>
+            <label>Until</label>
+            <input type="date" name="until"></input>
+            <button type="submit" value="Submit">Filter</button>
+          </form>
+          }
           {offers.map((offer)=>{
            const from = transformDate(offer.from)
            const until = transformDate(offer.until)
