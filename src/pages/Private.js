@@ -40,9 +40,10 @@ class Private extends Component {
 
   render() {
     const { showSearchResults, offers } = this.state;
+    console.log(this.props.location)
     return (
     <div>
-      <Navbar handleShowSearchResults={this.handleShowSearchResults} />
+      <Navbar handleShowSearchResults={this.handleShowSearchResults} location={this.props.location.pathname} />
       { showSearchResults ? <OfferSearchResults offers={offers}/> : <div></div> }
       <Offers />
       <Bids/>
