@@ -38,7 +38,7 @@ class Private extends Component {
       .catch( error => console.log(error) )
   }
 
-  orderOffersByPrice = async () => {
+  orderOffersLowToHighPrice = async () => {
     const { offers } = this.state;
     const compare = (a , b ) => {
       const priceA = a.budget;
@@ -51,7 +51,25 @@ class Private extends Component {
       }
       return comparison;
     }
+    const orderedOffers = [...offers].sort(compare);
+    this.setState({
+      offers: orderedOffers
+    })
+  }
 
+  orderOffersHighToLowPrice = async () => {
+    const { offers } = this.state;
+    const compare = (a , b ) => {
+      const priceA = a.budget;
+      const priceB = b.budget;
+      let comparison = 0;
+      if (priceA < priceB) {
+        comparison = 1;
+      } else if (priceA > priceB) {
+        comparison = -1;
+      }
+      return comparison;
+    }
     const orderedOffers = [...offers].sort(compare);
     this.setState({
       offers: orderedOffers
@@ -64,14 +82,17 @@ class Private extends Component {
 
   render() {
     const { showSearchResults, offers } = this.state;
-    console.log(this.props.location)
     return (
     <div>
       <Navbar 
         handleShowSearchResults={this.handleShowSearchResults} 
         location={this.props.location.pathname} 
         />
-      { showSearchResults ? <OfferSearchResults offers={offers} orderOffersByPrice = {this.orderOffersByPrice}/> : <div></div> }
+      { showSearchResults ? 
+        <OfferSearchResults offers={offers} 
+          orderOffersLowToHighPrice = {this.orderOffersLowToHighPrice}
+          orderOffersHighToLowPrice = {this.orderOffersHighToLowPrice}
+          /> : <div></div> }
       <Offers />
       <Bids/>
     </div>
