@@ -37,10 +37,8 @@ class NavbarTravel extends Component {
   }
 
   render() {
-    const { logout, isLoggedin, handleShowSearchResults } = this.props;
-
+    const { logout, isLoggedin, handleShowSearchResults, location } = this.props;
     return (
-
       <div>
       {isLoggedin ? (
         <>
@@ -56,9 +54,10 @@ class NavbarTravel extends Component {
                 </DropdownMenu>
               </Dropdown>
               <TitleLinkToHome><Link to="/private"><h3>TravelBID</h3></Link></TitleLinkToHome> 
-              <SearchOffers handleShowSearchResults={handleShowSearchResults} />
+              { location === '/private' ? 
+                <SearchOffers handleShowSearchResults={handleShowSearchResults} />
+              : ''}  
               </NavElements>
-              
           </Nav>
         </Navbar>
         
