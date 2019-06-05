@@ -5,7 +5,7 @@ import transformDate from "../../functions/dates"
 import styled from 'styled-components';
 
 const OffersContainer = styled.div`
-  padding-top: 15%;
+  padding-top: 20%;
   height: 100%;
   background-color: #F8F9FA;
 `;
@@ -36,15 +36,17 @@ const UserImage = styled.img`
   width: 100px;
 `;
 
+
 class OfferSearchResults extends Component {
 
   render() {
-    const { offers } = this.props
+    const { offers, orderOffersByPrice } = this.props
     return (
 
       <div>
         {offers.length >=1 ? 
         <OffersContainer>
+        <button onClick={()=> orderOffersByPrice()}> Order by price</button>
         {offers.map((offer)=>{
          const from = transformDate(offer.from)
          const until = transformDate(offer.until)
