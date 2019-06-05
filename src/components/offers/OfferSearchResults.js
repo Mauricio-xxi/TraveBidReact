@@ -36,34 +36,52 @@ const UserImage = styled.img`
   width: 100px;
 `;
 
-
 class OfferSearchResults extends Component {
+  state = {
+    offerOrder: '',
+  }
+
+
+  handleChange = (event) => {
+    if (event.target.value === 'lowToHigh' ){
+      this.props.orderOffersLowToHighPrice()
+    } else if (event.target.value === 'highToLow' ){
+      this.props.orderOffersHighToLowPrice()
+    } else if (event.target.value === 'date' ){
+      this.props.chooseFilterDate()
+    }
+  }
 
   render() {
-    const { offers, orderOffersByPrice } = this.props
+    const { offers } = this.props
     return (
 
       <div>
         {offers.length >=1 ? 
         <OffersContainer>
-        <button onClick={()=> orderOffersByPrice()}> Order by price</button>
-        {offers.map((offer)=>{
-         const from = transformDate(offer.from)
-         const until = transformDate(offer.until)
-         return(
-           <Offer key={offer._id}>
-             <Link to={`/Offer/${offer._id}`}>
-                <UserInfo>
-                  <UserImage src={offer.userID.userImage} alt="userImage"></UserImage>
-                  <UserText>
-                    <p style={{paddingTop: "2%"}}> <strong>{offer.userID.username}/${offer.budget}</strong> </p>
-                    <p style={{width: "150px"}}>From: {from} Until:{until} </p>
-                  </UserText>
-                </UserInfo> 
-             </Link>
-           </Offer>
-         )
-       })}
+          <select style={{margin: '5%'}} value={this.state.offerOrder} onChange={this.handleChange}>
+            <option>Sort by</option>
+            <option value="lowToHigh">Price from lowest to highest</option>
+            <option value="highToLow">Price from highest to lowest</option>
+            <option value="date">Choose dates</option>
+          </select>
+          {offers.map((offer)=>{
+           const from = transformDate(offer.from)
+           const until = transformDate(offer.until)
+           return(
+             <Offer key={offer._id}>
+               <Link to={`/Offer/${offer._id}`}>
+                  <UserInfo>
+                    <UserImage src={offer.userID.userImage} alt="userImage"></UserImage>
+                    <UserText>
+                      <p style={{paddingTop: "2%"}}> <strong>{offer.userID.username}/${offer.budget}</strong> </p>
+                      <p style={{width: "150px"}}>From: {from} Until:{until} </p>
+                    </UserText>
+                  </UserInfo> 
+               </Link>
+             </Offer>
+           )
+          })}
         </OffersContainer>
       : '' }
       </div>
