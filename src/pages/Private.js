@@ -76,8 +76,21 @@ class Private extends Component {
     })
   }
 
-  orderOffersByDate = () => {
-    
+  filterOffersBydate = async (from, until) => {
+    const { offers } = this.state;
+    const fromTrans = new Date(from)
+    const untilTrans = new Date(until)
+    const filteredOffers = [];
+    await offers.map(async (offer) => {
+      const from1 = new Date (offer.from)
+      const until1 = new Date (offer.until)
+      if (from1 >= fromTrans && until1 <= untilTrans){
+        await filteredOffers.push(offer)
+      }
+      return this.setState({
+        offers: [...filteredOffers],
+      })
+    })
   }
 
   render() {
@@ -92,6 +105,7 @@ class Private extends Component {
         <OfferSearchResults offers={offers} 
           orderOffersLowToHighPrice = {this.orderOffersLowToHighPrice}
           orderOffersHighToLowPrice = {this.orderOffersHighToLowPrice}
+          filterOffersBydate = {this.filterOffersBydate}
           /> : <div></div> }
       <Offers />
       <Bids/>
