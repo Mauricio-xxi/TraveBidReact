@@ -40,6 +40,8 @@ class OfferSearchResults extends Component {
   state = {
     offerOrder: '',
     showFilterDates: false,
+    from: '',
+    until: '',
   }
 
 
@@ -61,8 +63,15 @@ class OfferSearchResults extends Component {
     }
   }
 
-  handleFormSubmit = () =>{
-    
+  handleFormChange = (e) => {
+    const { name, value } = e.target;
+      this.setState({[name]: value})
+  }
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+    const {from, until } = this.state;
+    this.props.filterOffersBydate(from, until);
   }
 
   render() {
@@ -82,9 +91,9 @@ class OfferSearchResults extends Component {
           { showFilterDates === false ? '' : 
           <form onSubmit={this.handleFormSubmit}>
             <label>From</label>
-            <input type="date" name="from"></input>
+            <input type="date" name="from"  value={this.state.from} onChange={e => this.handleFormChange(e)} ></input>
             <label>Until</label>
-            <input type="date" name="until"></input>
+            <input type="date" name="until" value={this.state.until} onChange={e => this.handleFormChange(e)} ></input>
             <button type="submit" value="Submit">Filter</button>
           </form>
           }
