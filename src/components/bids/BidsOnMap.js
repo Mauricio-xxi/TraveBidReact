@@ -108,6 +108,7 @@ class BidsOnMap extends Component {
                 closeButton={true} 
                 closeOnClick={true}
                 onClose={this.unSelectBid }
+                anchor="top"
               >
                 <PopupContainer>
                   <Link to = {`/bid/${selectedBid._id}`} >
