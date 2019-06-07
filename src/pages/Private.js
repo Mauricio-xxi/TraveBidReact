@@ -5,12 +5,18 @@ import Offers from "../components/offers/Offers";
 import Bids from "../components/bids/Bids";
 import OfferSearchResults from "../components/offers/OfferSearchResults";
 import offer from '../lib/offer-service';
+import socketIO from 'socket.io-client';
 
 class Private extends Component {
   state = {
     offers: [],
     showSearchResults: false,
   }
+
+  // componentDidMount () {
+  //   const socket = socketIO(process.env.REACT_APP_URL);
+  //   socket.emit('greet', {content: `Hellow ${this.props.user.name}` });
+  // }
 
 
   handleShowSearchResults = async (e) => {
