@@ -8,7 +8,6 @@ import Loader from 'react-loader-spinner'
 import BidCarousel from "../bids/BidCarousel";
 import {notify} from '../notifications/index'
 
-
 const NoBidMessage = styled.h6`
   padding-top: 8%;
   padding-bottom:10%;
