@@ -11,12 +11,16 @@ class Private extends Component {
   state = {
     offers: [],
     showSearchResults: false,
+    response:'',
   }
 
-  // componentDidMount () {
-  //   const socket = socketIO(process.env.REACT_APP_URL);
-  //   socket.emit('greet', {content: `Hellow ${this.props.user.name}` });
-  // }
+  componentDidMount () {
+    const socket = socketIO(process.env.REACT_APP_URL);
+    socket.emit('greet', data => {console.log(data)});
+    socket.on('greet', data => {console.log(data)});
+    socket.emit('my other event', { my: 'data' }, data => {console.log(data)} );
+    // socket.on("outgoing data", data => this.setState({response: data}));
+  }
 
 
   handleShowSearchResults = async (e) => {
