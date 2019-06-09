@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { withAuth } from "../lib/AuthProvider";
+import { Link } from "react-router-dom";
 import UserCard from "../components/user/UserCard";
 import RoomCard from '../components/user/RoomCard';
 import bidService from '../lib/bid-service'
@@ -12,9 +14,10 @@ import { Button } from 'reactstrap';
 const GoBackContainer = styled.div`
   max-width: 30px;
   margin-top: 20%;
+  margin-bottom:5%;
 `;
 
-export default class BidDetail extends Component {
+class BidDetail extends Component {
  state = {
   bid:{},
   user:{},
@@ -24,7 +27,7 @@ export default class BidDetail extends Component {
 
  componentDidMount() {
    this.getBid()
-}
+ }
 
 getBid = () => {
   const id = this.props.match.params.id
@@ -64,14 +67,27 @@ goBack = () => {
 }
 
   render() {
-    const { username,age, description, city, userImage } = this.state.user;
+    const { username,age, description, city, userImage, _id } = this.state.user;
+    const currentUser = this.props.user._id;
     return (
       <div>
         <Navbar/>
         {this.state.loggedData === true? <div>
         <GoBackContainer>
-          <Button color="primary" onClick={this.goBack}> <img style={{width: "20px"}} src="/arrow.png" alt=""/> </Button>
+          <Button color="primary" onClick={this.goBack}> 
+            <img style={{width: "20px"}} src="/arrow.png" alt=""/> 
+          </Button>
         </GoBackContainer> 
+        {_id !== currentUser ? 
+          
+            <Link to = {`/chat/${currentUser}/${_id}`} >
+            <Button color="primary" onClick={this.open}>
+            Send message to bidder 
+            </Button>
+            </Link> 
+           :
+          ''
+        }
         <h1 style={{"color":"#007bff", "marginTop":"25px"}}>Bid Value: {this.state.bid.value} $</h1>
         <RoomCard
           roomImage={this.state.room.roomImage} 
@@ -95,3 +111,5 @@ goBack = () => {
     )
   }
 }
+
+export default withAuth(BidDetail)
