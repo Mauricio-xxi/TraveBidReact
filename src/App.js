@@ -21,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <AuthProvider>
-        <div className="container">
+        <>
           <Switch>
             <Route exact path="/" component={Landing} />
             <AnonRoute path="/signup" component={Signup} />
@@ -34,7 +34,7 @@ class App extends Component {
             <Route path="/"  component={NotFoundPage}/>
           </Switch>
         <Notifications/>
-        </div>
+        </>
 
       </AuthProvider>
     );
