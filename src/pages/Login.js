@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { withAuth } from "../lib/AuthProvider";
-import UserLogin from "../components/user/UserLogin";
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import UserLoginUI from "../components/uiStyle/UserLoginUI";
 
 const LandingBack = styled.div`
  background-image: url("https://cdn.pixabay.com/photo/2016/01/19/17/45/hiker-1149877_960_720.jpg");
@@ -18,25 +17,14 @@ const LandingBack = styled.div`
   background-size: cover; 
 `;
 
-const Title = styled.h1`
- font: "Lucida Grande", Helvetica, Arial, sans-serif; 
- margin-left: 27%;
- margin-right: 27%;
- margin-top: 30%;
- color: black;
-`;
-
 class Login extends Component {
 
   render() {
 
     return (
-      <div>
         <LandingBack>
-        <Title><Link style={{color: "black"}}  to={"/"}>TravelBID</Link></Title>
-          <UserLogin />
+          <UserLoginUI></UserLoginUI>
         </LandingBack>
-      </div>
     );
   }
 }
