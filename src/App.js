@@ -6,6 +6,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
+import ChatView from "./pages/ChatView";
 
 import PrivateRoute from "./components/PrivateRoute";
 import AnonRoute from "./components/AnonRoute";
@@ -29,6 +30,7 @@ class App extends Component {
             <PrivateRoute path="/profile" component={Profile} />
             <PrivateRoute exact path="/offer/:id" component={OfferDetail} />
             <PrivateRoute exact  path="/bid/:id"  component={BidDetail} />
+            <PrivateRoute exact  path="/chat/:currentUserID/:bidownerID"  component={ChatView} />
             <Route path="/"  component={NotFoundPage}/>
           </Switch>
         <Notifications/>
