@@ -6,12 +6,12 @@ import Chat from "../components/chat/Chat";
 class ChatView extends Component {
 
   render(){
-
+    console.log(this.props)
     return (
 
       <div>
         <Navbar/>
-        <Chat/>
+        <Chat props={this.props} />
       </div>
     )
 
