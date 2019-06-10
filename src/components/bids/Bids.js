@@ -14,6 +14,10 @@ const NoBidMessage = styled.h6`
   margin-left: 5%;
 `;
 
+const BidTitle = styled.h5`
+  margin-left: 3%;
+`;
+
 class Bids extends Component {
     state = {
         bids: [],
@@ -76,7 +80,7 @@ class Bids extends Component {
     const currentUser = this.props.user._id;
     return (
       <div>
-        <h5>Your Bids</h5>
+        <BidTitle>Your Bids</BidTitle>
         {loaded === false ? 
           <div>
             <Loader 
