@@ -9,6 +9,8 @@ const CreateOfferForm = styled.div`
   display:block;
   margin-top: 5%;
   width: 100%;
+  padding:5%;
+  background-color: lavender;
 `
 
 class CreateOffer extends Component {

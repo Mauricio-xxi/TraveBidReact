@@ -13,6 +13,9 @@ const NoBidMessage = styled.h6`
   padding-bottom:10%;
   margin-left: 5%;
 `;
+const BidTitle = styled.h5`
+  margin-left: 2em;
+`;
 
 class Bids extends Component {
     state = {
@@ -75,18 +78,18 @@ class Bids extends Component {
     const { bids, showEditBidForm, bidtoEdit, loaded } = this.state;
     const currentUser = this.props.user._id;
     return (
-      <div>
-        <h5>Your Bids</h5>
+      <>
+        <BidTitle>Your Bids</BidTitle>
         {loaded === false ? 
-          <div>
+          <>
             <Loader 
               type="Puff"
               color="lightblue"
               height="60"	
               width="60"
             /> 
-          </div>  :
-          <div>
+          </>  :
+          <>
             {bids.length === 0 ?
 
               <NoBidMessage>You have no bids, create one!</NoBidMessage> 
@@ -98,10 +101,10 @@ class Bids extends Component {
               renderEditBidForm={this.renderEditBidForm} 
               />
             }
-          </div>
+          </>
           }
       { showEditBidForm ? <EditBid bidID={bidtoEdit._id} description={bidtoEdit.description} value={bidtoEdit.value} Status={bidtoEdit.Status} getBids={this.getUserBids} /> : <div></div>}
-      </div>
+      </>
     );
   }
 }

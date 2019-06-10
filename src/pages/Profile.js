@@ -20,11 +20,12 @@ const UpdateButtonsContainer = styled.div`
 
 const UpdateButtons = styled.button`
   padding: 3%;
-  background-color: white;
+  background-color: #4285F4;
   border: 1px solid #4285F4;
   border-radius: 8px;
   margin-top: 2%;
-  color: #4285F4;
+  color: white;
+  width: 100%;
 `;
 
 

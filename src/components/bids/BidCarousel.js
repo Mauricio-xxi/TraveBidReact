@@ -2,25 +2,34 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import transformDate from "../../functions/dates"
+import Icon from '@material-ui/core/Icon';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const BidSilderWrapper = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  margin-top: 5%;
-  margin-bottom: 5%;
   margin-left: 5%;
-  padding-bottom: 10%;
+  padding-bottom: 5%;
 `;
+
+const ButtonsContainer = styled.div`
+  display:flex;
+  flex-direction:row;
+  justify-content:space-around;
+  align-items:end;
+`
 
 const BidCarouselItem = styled.div`
   display: inline-block;
   width: 80%;
   padding:0;
   margin-right: 10%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.2), 0px 0px 10px 0px rgba(0,0,0,0.19);
   border: ${ ({ status }) =>  status === 1 ? '2px solid green' : status === 2 ? '2px solid red' : '' };
-  border-radius: 15px;
+  border-radius: 5px;
+  margin-left:10px;
+  margin-top:10px;
 `;
 
 const InfoWrapper = styled.div`
@@ -70,20 +79,22 @@ class BidCarousel extends Component {
                           <Link to={`/Offer/${bid.offerID._id}`}>
                              <h3>${bid.value}</h3>
                           </Link>
+                          <ButtonsContainer>
                             { bid.userID === currentUser ? 
                               <HandleBidButtons onClick={()=>deleteBid(bid._id)}> 
-                              <HandleBidIcons src="/trash.svg"/> </HandleBidButtons> 
+                              <DeleteIcon></DeleteIcon> </HandleBidButtons> 
                             : <div></div> }
 
                             { bid.userID === currentUser ? 
                               <HandleBidButtons onClick={()=>renderEditBidForm(bid)}> 
-                              <HandleBidIcons src="/edit.svg"/> </HandleBidButtons> 
+                              <Icon>edit_icon</Icon>  </HandleBidButtons> 
                             : <div></div>  }
+                            </ButtonsContainer>
                        </BidValue>
                        <OfferInfo>
                          <h5>Offer: ${budget}</h5>
-                         <p>Arriving:{from}</p>
-                         <p>Departing:{until}</p>
+                         <p><strong>Arriving: </strong>{from}</p>
+                         <p><strong>Departing: </strong>{until}</p>
                        </OfferInfo>
                     </InfoWrapper>
                   </BidCarouselItem>

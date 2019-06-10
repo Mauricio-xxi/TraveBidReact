@@ -5,16 +5,26 @@ import { Nav, Navbar, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, } fr
 import styled from 'styled-components';
 import SearchOffers from '../components/offers/SearchOffers'
 import '../stylesheets/nav.css'
+import MenuIcon from '@material-ui/icons/Menu';
 
 const NavElements = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items:center;
   `;
 
 const TitleLinkToHome = styled.div`
   width: 40%;
 `;
+
+const NavBarStyle = styled.div`
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  list-style: none;
+`;
+
 
 class NavbarTravel extends Component {
     
@@ -42,23 +52,23 @@ class NavbarTravel extends Component {
       <div>
       {isLoggedin ? (
         <>
-        <Navbar color="light" light expand="lg" fixed="top">
-          <Nav>
+        <Navbar color="light" light expand="lg">
+          <NavBarStyle>
           <NavElements>
               <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle nav caret>
+                <DropdownToggle nav caret> <MenuIcon />
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem><p onClick={logout}>Logout</p> </DropdownItem>
                   <DropdownItem><Link  to="/profile">Profile</Link></DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <TitleLinkToHome><Link to="/private"><h3>TravelBID</h3></Link></TitleLinkToHome> 
+              </NavElements>
+                <TitleLinkToHome><Link to="/private"><h3>TravelBID</h3></Link></TitleLinkToHome> 
               { location === '/private' ? 
                 <SearchOffers handleShowSearchResults={handleShowSearchResults} />
-              : ''}  
-              </NavElements>
-          </Nav>
+                : ''}  
+          </NavBarStyle>
         </Navbar>
         
         </>

@@ -7,15 +7,17 @@ import styled from 'styled-components';
 const Container = styled.div`
   text-align: center;
   margin-bottom: 5%;
+  padding:5%;
+  background-color: lavender;
 `;
 
 const SubmitUpdate = styled.button`
   padding: 3%;
-  background-color: white;
+  background-color: #0F9D58;
   border: 1px solid #0F9D58;
   border-radius: 8px;
   margin-top: 2%;
-  color: #0F9D58;
+  color: white;
 `;
 
 class EditOffer extends Component {
@@ -53,6 +55,7 @@ class EditOffer extends Component {
       <Container>
        <Form onSubmit={this.handleFormSubmit}>
         <FormGroup>
+        <Label>Budget:</Label>
           <Input placeholder="Budget" type="number" name="budget"  onChange={e => this.handleChange(e)} />
         </FormGroup>
         <FormGroup>
