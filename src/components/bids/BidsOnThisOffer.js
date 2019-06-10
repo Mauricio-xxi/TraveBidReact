@@ -37,7 +37,7 @@ const ItemSections = styled.div`
 const RoomImageContainer = styled.div`
   margin:0;
   padding:0;
-  height: 130px;
+  height: 100%;
 `;
 
 const UserImageContainer = styled.div`
