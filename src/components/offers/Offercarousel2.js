@@ -74,12 +74,12 @@ const HandleOfferButtons = styled.button`
   cursor: pointer;
 `;
 
-const HandleOfferIcons = styled.img`
-  width: 50%;
-  height:12%;
-  padding:0;
-  margin:0;
-`;
+// const HandleOfferIcons = styled.img`
+//   width: 50%;
+//   height:12%;
+//   padding:0;
+//   margin:0;
+// `;
 
 const NoOfferMessage = styled.h6`
   padding-top: 8%;

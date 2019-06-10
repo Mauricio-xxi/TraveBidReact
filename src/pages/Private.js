@@ -6,7 +6,6 @@ import Bids from "../components/bids/Bids";
 import OfferSearchResults from "../components/offers/OfferSearchResults";
 import offer from '../lib/offer-service';
 import socketIO from 'socket.io-client';
-import NavBarUI from "../components/uiStyle/NavBarUI";
 
 class Private extends Component {
   state = {

@@ -52,10 +52,6 @@ const HandleBidButtons = styled.button`
   cursor: pointer;
 `;
 
-const HandleBidIcons = styled.img`
-  width: 100%;
-`;
-
 const OfferInfo = styled.div`
   padding:5%;
 `;
