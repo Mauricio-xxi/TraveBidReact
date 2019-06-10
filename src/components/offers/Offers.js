@@ -23,6 +23,7 @@ const OffersectionHeader = styled.div`
 
 const OfferTitle = styled.h5`
   margin-top: 10%;
+  margin-left: 3%;
 `;
 
 const CreateButtonContainer = styled.div`
