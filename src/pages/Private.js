@@ -106,7 +106,7 @@ class Private extends Component {
   render() {
     const { showSearchResults, offers } = this.state;
     return (
-    <div>
+    <>
       <Navbar 
         handleShowSearchResults={this.handleShowSearchResults} 
         location={this.props.location.pathname} 
@@ -118,8 +118,9 @@ class Private extends Component {
           filterOffersBydate = {this.filterOffersBydate}
           /> : <div></div> }
       <Offers />
+      <hr></hr>
       <Bids/>
-    </div>
+    </>
     );
   }
 }

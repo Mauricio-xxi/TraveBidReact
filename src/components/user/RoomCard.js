@@ -13,12 +13,13 @@ const RoomCardStyle = styled.div`
   padding: 5%, 0%;
   box-shadow: 5px  10px 10px grey;
   margin-top:15%;
-  border-radius:8px;
+  border-radius:5px;
 `;
 
 const ImageStyle = styled.img`
   max-width: 100%;
   max-height: 100%;
+  border-radius: 5px;
 `;
 
 const DescriptionArea = styled.div`

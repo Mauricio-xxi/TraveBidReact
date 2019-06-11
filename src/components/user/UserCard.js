@@ -10,10 +10,9 @@ const UserCardStyle = styled.div`
   border-width: 1px;
   padding: 5%, 0%;
   box-shadow: 0px 0px 20px 0px grey;
-  margin-top:15%;
-  border-radius: 8px;
+  margin-top:5%;
+  border-radius: 5px;
   text-align:center; 
-  margin-top: 20%;
 `;
 
 const UserImageContainer = styled.div`

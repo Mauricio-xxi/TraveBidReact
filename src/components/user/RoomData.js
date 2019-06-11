@@ -40,7 +40,7 @@ const SubmitUpdate = styled.button`
   padding: 3%;
   background-color: white;
   border: 1px solid #0F9D58;
-  border-radius: 8px;
+  border-radius: 5px;
   margin-top: 2%;
   color: #0F9D58;
 `;

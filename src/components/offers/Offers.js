@@ -11,24 +11,23 @@ import Loader from 'react-loader-spinner'
 import {notify} from '../notifications/index'
 import { Button } from 'reactstrap';
 
-
 const DashboardOffers = styled.div`
-  margin-top: 17%;
+  margin-top: 20px;
 `;
 
 const OffersectionHeader = styled.div`
   display:flex;
   flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
 `;
 
 const OfferTitle = styled.h5`
-  margin-top: 10%;
+  
 `;
 
 const CreateButtonContainer = styled.div`
   max-height: 30px;
-  margin-left: 10px;
-  margin-top: 25px;
 `;
 
 // const CreateOfferButton = styled.button`
@@ -120,7 +119,7 @@ class Offers extends Component {
           <OfferTitle>Your Offers</OfferTitle>
           {/* <CreateOfferButton onClick={this.renderOfferForm}> <img src="/plus.svg" alt="Create a new offer"/> </CreateOfferButton> */}
           <CreateButtonContainer>
-            <Button color="primary" onClick={this.renderOfferForm}> <img style={{width: "20px"}} src="/plus.png" alt="Create a new offer"/> </Button>
+            <Button color="primary" onClick={this.renderOfferForm}>Create an Offer</Button>
           </CreateButtonContainer>
           
         </OffersectionHeader>

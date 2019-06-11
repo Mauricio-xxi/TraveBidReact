@@ -5,15 +5,17 @@ import transformDate from "../../functions/dates"
 import '../../stylesheets/styles.css'
 import '../../stylesheets/carousel.css'
 import * as images from "../../assets/cities.json";
+import Icon from '@material-ui/core/Icon';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const OfferSilderWrapper = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 5%;
   margin-left: 5%;
-  padding-bottom: 10%;
+  padding-bottom: 2%;
 `;
 
 const OfferItemContainer = styled.div`
@@ -21,9 +23,11 @@ const OfferItemContainer = styled.div`
   width: 80%;
   padding:0;
   margin-right: 10%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.2), 0px 0px 10px 0px rgba(0,0,0,0.19);
   border: ${ ({ status }) =>  status === 1 ? '2px solid green' : '' };
-  border-radius: 15px;
+  border-radius: 5px;
+  margin-left:10px;
+  margin-top:10px;
 `;
 
 
@@ -40,12 +44,12 @@ const OfferItemImage = styled.div`
   padding:0;
   padding-top: 10%;
   padding-bottom: 10%;
-  border-radius: 15px;
+  border-radius: 5px;
 `;
 
 const OfferMainInfo = styled.p`
   color: white;
-  text-shadow: 2px 1px black;
+  text-shadow: 0px 0px 11px black;
   font-size: 20px;
   padding-left: 10%;
 `;
@@ -59,29 +63,35 @@ const OfferInfo = styled.div`
 `;
 
 const HandleOfferButtons = styled.button`
+
   background-color: white;
   width:25%;
   height:20%;
   padding: 0;
   margin:0;
   margin-left: 5%;
-  border:0;
+  border: 1px black;
   cursor: pointer;
 `;
 
-const HandleOfferIcons = styled.img`
-  width: 50%;
-  height:12%;
-  padding:0;
-  margin:0;
-`;
+// const HandleOfferIcons = styled.img`
+//   width: 50%;
+//   height:12%;
+//   padding:0;
+//   margin:0;
+// `;
 
 const NoOfferMessage = styled.h6`
   padding-top: 8%;
   padding-bottom:10%;
   margin-left: 5%;
 `;
-
+const ButtonsContainer = styled.div`
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:end;
+`
 
  
 class Offercarousel2 extends Component {
@@ -114,10 +124,12 @@ class Offercarousel2 extends Component {
                    </Link>
                  </OfferItemImage>
                  <OfferInfo>
-                   <p>Arriving: <strong>{from}</strong> </p> 
-                   <p>Departing: <strong>{until}</strong> </p> 
-                   <HandleOfferButtons  onClick={()=>deleteOffer(offer._id)}> <HandleOfferIcons src="/trash.svg"/> </HandleOfferButtons>
-                   <HandleOfferButtons  onClick={()=>showEditOfferForm(offer)}> <HandleOfferIcons src="/edit.svg"/> </HandleOfferButtons>
+                   <p><strong>Arriving: </strong> {from} </p> 
+                   <p><strong>Departing: </strong> {until} </p> 
+                  <ButtonsContainer>
+                   <HandleOfferButtons  onClick={()=>deleteOffer(offer._id)}> <DeleteIcon></DeleteIcon> </HandleOfferButtons>
+                   <HandleOfferButtons  onClick={()=>showEditOfferForm(offer)}> <Icon>edit_icon</Icon> </HandleOfferButtons>
+                  </ButtonsContainer>
                  </OfferInfo>
               </OfferItemContainer>
              )

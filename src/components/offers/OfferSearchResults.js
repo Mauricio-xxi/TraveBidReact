@@ -5,7 +5,7 @@ import transformDate from "../../functions/dates"
 import styled from 'styled-components';
 
 const OffersContainer = styled.div`
-  padding-top: 20%;
+  padding-top: 5%;
   height: 100%;
   background-color: #F8F9FA;
 `;

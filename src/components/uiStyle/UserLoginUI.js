@@ -50,7 +50,6 @@ function UserLoginUI(props) {
   };
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(values)
     const { username, password } = values;
     props.login({ username, password });
   };
