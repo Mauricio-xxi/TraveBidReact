@@ -8,6 +8,18 @@ import '../../stylesheets/styles.css'
 import { Link } from "react-router-dom";
 import {notify} from '../notifications/index'
 
+const BidSectionTitleContainer = styled.div`
+  margin-bottom: 3%;
+  margin-left: 3%;
+  margin-top: 3%;
+  text-align: center;
+`;
+
+const Title = styled.h6`
+  color:black;
+  font-style: italic
+`;
+
 const BidSilderWrapper = styled.div`
   overflow-x: scroll;
   overflow-y: hidden;
@@ -37,7 +49,7 @@ const ItemSections = styled.div`
 const RoomImageContainer = styled.div`
   margin:0;
   padding:0;
-  height: 130px;
+  height: 100%;
 `;
 
 const UserImageContainer = styled.div`
@@ -198,6 +210,7 @@ class BidsOnThisOffer extends Component {
 
        { bids.length === 0 ? '' :
        <>
+       <BidSectionTitleContainer><Title> {offerOwner._id === currentUser ? 'Checkout the bids on your offer!' : 'All bids on this offer'} </Title></BidSectionTitleContainer>
        <BidsOnMap offerID={this.props.offerID}/>
        <BidSilderWrapper>
           {bids.map((bid)=>{

@@ -17,6 +17,10 @@ const BidTitle = styled.h5`
   margin-left: 2em;
 `;
 
+const BidTitle = styled.h5`
+  margin-left: 3%;
+`;
+
 class Bids extends Component {
     state = {
         bids: [],
@@ -78,7 +82,7 @@ class Bids extends Component {
     const { bids, showEditBidForm, bidtoEdit, loaded } = this.state;
     const currentUser = this.props.user._id;
     return (
-      <>
+      <div>
         <BidTitle>Your Bids</BidTitle>
         {loaded === false ? 
           <>
@@ -104,7 +108,7 @@ class Bids extends Component {
           </>
           }
       { showEditBidForm ? <EditBid bidID={bidtoEdit._id} description={bidtoEdit.description} value={bidtoEdit.value} Status={bidtoEdit.Status} getBids={this.getUserBids} /> : <div></div>}
-      </>
+      </div>
     );
   }
 }

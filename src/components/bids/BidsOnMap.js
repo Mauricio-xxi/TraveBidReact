@@ -6,6 +6,10 @@ import '../../stylesheets/styles.css'
 import { Link } from "react-router-dom";
 
 
+const MapContainer = styled.div`
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+`;
 
 const PopupContainer = styled.div`
   background-color: white;
@@ -80,7 +84,7 @@ class BidsOnMap extends Component {
   render (){
     const  { bids, selectedBid, viewport } = this.state;
     return (
-      <div>
+      <MapContainer>
         {bids.length >= 1 ?  
           <ReactMapGL
             {...viewport}
@@ -121,7 +125,7 @@ class BidsOnMap extends Component {
            </ReactMapGL> 
        : <div></div> } 
             
-      </div>
+      </MapContainer>
     )
   }
 }

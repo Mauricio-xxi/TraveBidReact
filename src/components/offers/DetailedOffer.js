@@ -6,6 +6,14 @@ import BidsOnThisOffer from "../bids/BidsOnThisOffer"
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner'
 
+const TitleContainer = styled.div`
+  margin-bottom: 3%;
+  margin-left: 3%;
+`;
+
+const Title = styled.h4`
+  color:black;
+`;
 
 const Container = styled.div`
   margin-top: 20%;
@@ -34,6 +42,7 @@ const UserImage = styled.img`
   border-radius: 50%;
   width:100px;
   height: 100px;
+  border: 1px solid black;
 `;
 
 const UserText = styled.p`
@@ -89,11 +98,12 @@ class OfferDetail extends Component {
             /> 
         </div> 
         : <div>
+        <TitleContainer><Title>Offer Details</Title></TitleContainer> 
         <OfferContainer>
           <OfferInfo>
-            <h3>${budget}</h3>
-            <p>{fromFormated }</p>
-            <p>{untilFormated}</p>
+            <h4>${budget}</h4>
+            <p>From: {fromFormated }</p>
+            <p>Until: {untilFormated}</p>
           </OfferInfo>
           <UserInfo>
             <UserImage src={offerOwner.userImage} alt="userImage"></UserImage>

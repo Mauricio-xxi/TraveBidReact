@@ -59,19 +59,21 @@ function TabComponent() {
       </AppBar>
       {value === 0 && <TabContainer>
         <h3>Step 1</h3>
-        <p>Sign up, complete your profile and list your room</p>
+        <p>Sign up, complete your profile and list your room.</p>
         <h3>Step 2</h3>
-        <p>Get personalised recommendations and room enquiries the same day.</p>
+        <p>Find offers posted by travelers and bid on them.</p>
         <h3>Step 3</h3>
-        <p>Accept or decline chat invites based on in-depth profiles, then get chatting!</p>
+        <p>Once your bid has been accepted by the traveler you can get chatting to close all arrangements.</p>
         </TabContainer>}
       {value === 1 && <TabContainer>
         <h3>Step 1</h3>
         <p>Sign up, complete your profile and get your room search underway.</p>
         <h3>Step 2</h3>
-        <p>Find your ideal room and invite the landlord to chat</p>
+        <p>Create offers to all your travel destinations indicating: location, budget and dates.</p>
         <h3>Step 3</h3>
-        <p>As soon as the landlord accepts your invite, you can get chatting directly through the platform.</p>
+        <p>Sit back, relax, and wait for all the bidders offering accomodation.</p>
+        <h3>Step 4</h3>
+        <p>Accept or decline bids based on price, geolocation and facilities offered by the bidder.</p>
         </TabContainer>}
     </div>
   );

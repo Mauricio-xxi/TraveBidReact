@@ -58,9 +58,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const cards = [
-  {image:"https://cdn.pixabay.com/photo/2014/11/30/20/46/sagrada-familia-552084_960_720.jpg",name:"Barcelona", text:"Dive into this vibrant and sunbathed city"},
-   {image:"https://cdn.pixabay.com/photo/2017/06/11/18/03/london-2393098_960_720.jpg", name:"London", text:"Cosy pubs, green parks and sheer diversity in the British capital"},
-    {image:"https://cdn.pixabay.com/photo/2017/12/31/10/26/berlin-3051937_960_720.jpg", name:"Berlin", text:"Jump into the city that never sleeps"}
+  {image:"https://cdn.pixabay.com/photo/2014/11/30/20/46/sagrada-familia-552084_960_720.jpg",name:"Barcelona", text:"Dive into this vibrant and sunbathed city."},
+   {image:"https://cdn.pixabay.com/photo/2017/06/11/18/03/london-2393098_960_720.jpg", name:"London", text:"Cosy pubs, green parks and sheer diversity in the British capital."},
+    {image:"https://cdn.pixabay.com/photo/2017/12/31/10/26/berlin-3051937_960_720.jpg", name:"Berlin", text:"Jump into the city that never sleeps."}
   ];
 
 export default function Landing() {
@@ -84,9 +84,10 @@ export default function Landing() {
             TravelBID
             </Typography>
             <Typography variant="h5" align="center" color="inherit" paragraph>
-            An open platform enabling users to offer and find short stay accommodation around the world. 
-            Accomodation seekers are able to post offers indicating stay duration, location, and budget. 
-            Accommodation providers can see all offers posted by seekers and bid in order to provide the service.
+            The safest and most affordable way to travel. TravelBID is an open platform enabling users to offer and find short stay accommodation around the world. 
+            </Typography>
+            <Typography variant="h4" align="center" color="inherit" paragraph>
+              Because happiness is a way of travel, not a destination. Join!
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
@@ -106,10 +107,10 @@ export default function Landing() {
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
         <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
-        Our top cities
+        Discover our top cities
         </Typography>
         <Typography component="h5" variant="h5" align="center" color="textSecondary" gutterBottom>
-        Choose the city you’ll be visiting in next, or look for rooms near you.
+        Start posting offers for your next travel destinations.
         </Typography>
           {/* End hero unit */}
           <Grid container spacing={4}>
